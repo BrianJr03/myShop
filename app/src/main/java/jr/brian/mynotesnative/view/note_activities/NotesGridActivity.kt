@@ -2,7 +2,6 @@ package jr.brian.mynotesnative.view.note_activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.SharedPreferences
 import android.database.Cursor
 import android.os.Bundle
 import android.view.MenuItem
@@ -11,20 +10,18 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.*
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKeys
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.mynotesnative.R
-import jr.brian.mynotesnative.model.remote.Note
 import jr.brian.mynotesnative.databinding.ActivityNotesGridBinding
 import jr.brian.mynotesnative.databinding.NavHeaderBinding
 import jr.brian.mynotesnative.model.local.DatabaseHelper
+import jr.brian.mynotesnative.model.local.SharedPrefHelper
+import jr.brian.mynotesnative.model.remote.Note
 import jr.brian.mynotesnative.model.remote.PantryHelper
 import jr.brian.mynotesnative.model.remote.User
-import jr.brian.mynotesnative.view.main.LandingActivity
 import jr.brian.mynotesnative.view.adapter.NoteAdapter
-import jr.brian.mynotesnative.view.auth_fragments.SignInFragment
 import jr.brian.mynotesnative.view.auth_fragments.SignUpFragment.Companion.USER
+import jr.brian.mynotesnative.view.main.LandingActivity
 
 class NotesGridActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotesGridBinding
@@ -34,8 +31,6 @@ class NotesGridActivity : AppCompatActivity() {
     private lateinit var noteAdapter: NoteAdapter
     private lateinit var noteList: ArrayList<Note>
     private lateinit var favList: ArrayList<Note>
-    private lateinit var sp: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var fullName: String
 
@@ -61,7 +56,6 @@ class NotesGridActivity : AppCompatActivity() {
         initDrawer()
         initListeners()
         initNoteOnSwipe()
-        initSharedPref()
     }
 
     private fun fetchSqlData() {
@@ -178,31 +172,11 @@ class NotesGridActivity : AppCompatActivity() {
         }).attachToRecyclerView(binding.notesRecyclerView)
     }
 
-    private fun initSharedPref() {
-        val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
-        val mainKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)
-        sp = EncryptedSharedPreferences.create(
-            SignInFragment.FILENAME,
-            mainKeyAlias,
-            this,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM,
-        )
-        editor = sp.edit()
-    }
-
     private fun deleteNote(viewHolder: RecyclerView.ViewHolder) {
         val pos = viewHolder.adapterPosition
         databaseHelper.deleteNote(noteList[pos])
         pantryHelper.deleteNote(noteList[pos], binding.root)
         noteList.removeAt(pos)
-//        favList.apply {
-//            if (isNotEmpty()) {
-//                if (favList.contains(noteList[pos])) {
-//                    favList.removeAt(pos)
-//                }
-//            }
-//        }
         noteAdapter.notifyItemRemoved(pos)
         Snackbar.make(
             binding.notesRecyclerView,
@@ -271,10 +245,7 @@ class NotesGridActivity : AppCompatActivity() {
     }
 
     private fun signOut() {
-        editor.apply {
-            clear()
-            apply()
-        }
+        SharedPrefHelper(this).signOut()
         startActivity(
             Intent(
                 this@NotesGridActivity,

@@ -57,7 +57,7 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
                             mobileNo = "2123223432"
                         )
                     )
-                    (presenter as SignUpPresenter).signUpUser(
+                    presenter.signUpUser(
                         emailEt.text.toString(),
                         passwordEt.text.toString(),
                         view

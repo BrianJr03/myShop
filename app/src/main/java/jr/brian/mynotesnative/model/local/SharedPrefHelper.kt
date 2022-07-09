@@ -9,7 +9,7 @@ import jr.brian.mynotesnative.view.auth_fragments.SignUpFragment
 
 class SharedPrefHelper(context: Context) {
     private var editor: SharedPreferences.Editor
-    private var encryptedSharedPrefs: SharedPreferences
+    var encryptedSharedPrefs: SharedPreferences
 
     init {
         val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
@@ -31,6 +31,21 @@ class SharedPrefHelper(context: Context) {
             if (commit()) {
                 callback.onSuccess("Success")
             } else callback.onFailure("Failure")
+        }
+    }
+
+    fun verifySignIn(email: String, password: String, callback: OperationalCallback) {
+        if (email.isNotEmpty() && password.isNotEmpty()) {
+            callback.onSuccess("Success")
+        } else {
+            callback.onFailure("Failure")
+        }
+    }
+
+    fun signOut() {
+        editor.apply {
+            clear()
+            apply()
         }
     }
 }

@@ -1,8 +1,6 @@
 package jr.brian.mynotesnative.presenter.sign_up_presenter
 
-import android.content.Context
 import android.view.View
-import jr.brian.mynotesnative.model.remote.OperationalCallback
 
 interface SignUpMVP {
     interface SignUpPresenter {
