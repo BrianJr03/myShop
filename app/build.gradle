@@ -8,7 +8,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "jr.brian.mynotesnative"
+        applicationId "jr.brian.myshop"
         minSdk 26
         targetSdk 32
         versionCode 1

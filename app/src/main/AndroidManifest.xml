@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="jr.brian.mynotesnative">
+    package="jr.brian.myShop">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:theme="@style/Theme.MyNotesNative"
         tools:targetApi="31">
         <activity
-            android:name=".view.main.LandingActivity"
+            android:name="jr.brian.myShop.view.main.LandingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,10 +23,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.note_activities.NotesGridActivity"
+            android:name="jr.brian.myShop.view.note_activities.NotesGridActivity"
             android:exported="true" />
         <activity
-            android:name=".view.note_activities.NoteEditorActivity"
+            android:name="jr.brian.myShop.view.note_activities.NoteEditorActivity"
             android:exported="false" />
     </application>
 
