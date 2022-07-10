@@ -6,9 +6,9 @@
 
     <TextView
         android:id="@+id/app_tv"
-        android:layout_marginTop="@dimen/_20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40dp"
         android:text="@string/app_name"
         android:textColor="@color/blueish_idk"
         android:textSize="@dimen/app_name_text_size"
@@ -22,21 +22,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginTop="20dp"
         android:backgroundTint="@color/transparent_bg_color"
         android:elevation="10dp"
         app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@id/radio_group"
+        app:layout_constraintBottom_toTopOf="@id/guideline2"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/animation_view" />
+        app:layout_constraintTop_toBottomOf="@id/animation_view"
+        app:layout_constraintVertical_bias="0.481" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="@dimen/_0dp"
         android:layout_height="@dimen/_0dp"
-        android:layout_marginTop="@dimen/_40dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,24 +44,24 @@
         app:layout_constraintWidth_percent="0.4"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/notepad_lottie" />
+        app:lottie_rawRes="@raw/shopping_icon_2000x1600" />
 
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_20dp"
         android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/_40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/signin_rb"
-            android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_20dp"
+            android:checked="true"
             android:text="@string/sign_in"
             android:textColor="@color/blueish_idk"
             android:textSize="@dimen/_20sp"
@@ -76,6 +76,13 @@
             android:textSize="@dimen/_20sp"
             android:textStyle="bold" />
     </RadioGroup>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="587dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

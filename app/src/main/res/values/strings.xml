@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">myNotesNative</string>
+    <string name="app_name">myShop</string>
     <string name="example_date">March 23, 1998</string>
     <string name="starred_note_descr">Indicates if the Note is starred</string>
     <string name="locked_note_descr">Indicates if the Note is locked</string>
@@ -37,4 +37,6 @@
     <string name="toggle_favorites">Toggle Favorites</string>
     <string name="passcode">passcode</string>
     <string name="full_name">Full Name</string>
+    <string name="mobileNo">2121212121</string>
+    <string name="mobile_phone_hint">Mobile Phone</string>
 </resources>

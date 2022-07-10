@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_300dp"
+    android:layout_height="@dimen/_250dp"
     android:background="@color/blueish_idk">
 
     <TextView
@@ -11,16 +11,36 @@
         android:layout_height="wrap_content"
         android:text="@string/full_name"
         android:textSize="@dimen/_25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/animation_view" />
 
+    <TextView
+        android:id="@+id/email_tv"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/full_name_tv" />
+
+    <TextView
+        android:id="@+id/mobileNo_tv"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mobileNo"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_tv" />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
-        android:layout_width="@dimen/_0dp"
-        android:layout_height="@dimen/_0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="125dp"
+        android:layout_height="117dp"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,6 +48,6 @@
         app:layout_constraintWidth_percent="0.4"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/notepad_lottie" />
+        app:lottie_rawRes="@raw/shopping_icon_2000_1600_white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
