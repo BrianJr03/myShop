@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">myShop</string>
-    <string name="example_date">March 23, 1998</string>
+    <string name="example_category_name">Smartphones</string>
     <string name="starred_note_descr">Indicates if the Note is starred</string>
     <string name="locked_note_descr">Indicates if the Note is locked</string>
     <string name="add_note">Add note</string>
@@ -43,4 +43,6 @@
     <string name="Cart">Cart</string>
     <string name="Orders">Orders</string>
     <string name="Profile">Profile</string>
+    <string name="search_products">Search Products …</string>
+    <string name="category_image">category_image</string>
 </resources>

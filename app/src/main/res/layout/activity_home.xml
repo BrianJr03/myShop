@@ -15,7 +15,7 @@
         <ImageButton
             android:id="@+id/menu"
             android:layout_width="@dimen/_40dp"
-            android:layout_height="@dimen/_40dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10dp"
             android:backgroundTint="@color/transparent_bg_color"
             android:clickable="true"
@@ -26,18 +26,37 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/page_title"
-            android:layout_width="wrap_content"
+        <ImageButton
+            android:id="@+id/search"
+            android:layout_width="@dimen/_40dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10dp"
+            android:backgroundTint="@color/transparent_bg_color"
             android:clickable="true"
+            android:contentDescription="@string/show_menu"
             android:focusable="true"
-            android:text="@string/app_name"
-            android:textColor="@color/blueish_idk"
-            android:textSize="@dimen/note_title_size"
+            android:src="@drawable/search_36"
             app:layout_constraintBottom_toTopOf="@id/guideline_grid"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/menu"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/home_search_et"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:backgroundTint="@color/blueish_idk"
+            android:clickable="true"
+            android:cursorVisible="false"
+            android:focusable="true"
+            android:hint="@string/search_products"
+            android:inputType="text"
+            android:textColor="@color/blueish_idk"
+            android:textColorHint="@color/blueish_idk"
+            android:textSize="@dimen/_20sp"
+            app:layout_constraintBottom_toTopOf="@id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -47,44 +66,24 @@
             android:layout_height="@dimen/_0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_grid"
+            app:layout_constraintVertical_bias="0.0"
             tools:itemCount="1"
-            tools:layout_editor_absoluteX="-16dp"
-            tools:layout_editor_absoluteY="0dp"
-            tools:listitem="@layout/note" />
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/fab"
-            android:text="@string/add_note"
-            android:textColor="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="@dimen/_16dp"
-            android:backgroundTint="@color/blueish_idk"
-            android:contentDescription="@string/add_note"
-            app:icon="@drawable/add_note_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:rippleColor="@color/teal_200" />
-
-        <ImageView
-            android:id="@+id/no_notes_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/app_name"
-            android:src="@drawable/no_notes"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/category" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_grid"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.08" />
+            app:layout_constraintGuide_percent="0.11" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="73dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
