@@ -3,33 +3,28 @@ package jr.brian.myShop.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import jr.brian.myShop.R
 import jr.brian.myShop.databinding.ActivityHomeBinding
-import jr.brian.myShop.databinding.NavHeaderBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.Category
-import jr.brian.myShop.model.remote.User
 import jr.brian.myShop.view.adapter.CategoryAdapter
-import jr.brian.myShop.view.auth_fragments.SignUpFragment.Companion.USER
+import jr.brian.myShop.view.auth_fragments.SignUpFragment
 import jr.brian.myShop.view.main.LandingActivity
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
-    private lateinit var navHeaderBinding: NavHeaderBinding
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categories: ArrayList<Category>
     private lateinit var toggle: ActionBarDrawerToggle
-    private lateinit var fullName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
-        navHeaderBinding = NavHeaderBinding.inflate(layoutInflater)
-        navHeaderBinding.animationView.setMinAndMaxFrame(67, 120)
         setContentView(binding.root)
         init()
         supportActionBar?.hide()
@@ -48,7 +43,6 @@ class HomeActivity : AppCompatActivity() {
             )
         }
         setAdapter(categories)
-        initFullName()
         initDrawer()
         initListeners()
     }
@@ -83,12 +77,19 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
+        initDrawerHeader()
     }
 
-    private fun initFullName() {
-        fullName =
-            intent.extras?.getParcelable<User>(USER)?.fullName ?: "Full Name"
-        navHeaderBinding.fullNameTv.text = fullName
+    private fun initDrawerHeader() {
+        val navView = binding.navView.inflateHeaderView(R.layout.nav_header)
+        val fullNameTv = navView.findViewById<TextView>(R.id.full_name_tv)
+        val emailTv = navView.findViewById<TextView>(R.id.email_tv)
+        val mobileNoTv = navView.findViewById<TextView>(R.id.mobileNo_tv)
+        SharedPrefHelper(this).apply {
+            fullNameTv.text = encryptedSharedPrefs.getString(SignUpFragment.FULL_NAME, "Full Name")
+            emailTv.text = encryptedSharedPrefs.getString(SignUpFragment.EMAIL, "Email")
+            mobileNoTv.text = encryptedSharedPrefs.getString(SignUpFragment.MOBILE_NO, "Mobile No")
+        }
     }
 
     private fun initListeners() {
@@ -106,7 +107,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setGridLayout() {
         binding.notesRecyclerView.layoutManager =
-            GridLayoutManager(this@HomeActivity, 2)
+            GridLayoutManager(this, 2)
         binding.notesRecyclerView.adapter = categoryAdapter
     }
 
@@ -119,7 +120,7 @@ class HomeActivity : AppCompatActivity() {
         SharedPrefHelper(this).signOut()
         startActivity(
             Intent(
-                this@HomeActivity,
+                this,
                 LandingActivity::class.java
             )
         )
@@ -133,11 +134,15 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val a = Intent(Intent.ACTION_MAIN).apply {
-            addCategory(Intent.CATEGORY_HOME)
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawers()
+        } else {
+            val a = Intent(Intent.ACTION_MAIN).apply {
+                addCategory(Intent.CATEGORY_HOME)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+            startActivity(a)
         }
-        startActivity(a)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

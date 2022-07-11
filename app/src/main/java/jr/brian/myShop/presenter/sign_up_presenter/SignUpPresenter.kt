@@ -9,28 +9,39 @@ class SignUpPresenter(
     private val registrationView: SignUpMVP.SignUpView
 ) : SignUpMVP.SignUpPresenter {
 
-    override fun signUpUser(email: String, password: String, view: View): String {
+    override fun signUpUser(
+        fullName: String,
+        mobileNo: String,
+        email: String,
+        password: String,
+        view: View
+    ): String {
         var status = ""
         registrationView.onLoad(true)
         sharedPrefHelper = SharedPrefHelper(view.context)
-        sharedPrefHelper.saveUserInDB(email, password, object : OperationalCallback {
-            override fun onSuccess(message: String) {
-                status = message
-                registrationView.apply {
-                    onLoad(false)
-                    setResult(message)
-                    startHomeActivity()
+        sharedPrefHelper.saveUserInDB(
+            fullName,
+            mobileNo,
+            email,
+            password,
+            object : OperationalCallback {
+                override fun onSuccess(message: String) {
+                    status = message
+                    registrationView.apply {
+                        onLoad(false)
+                        setResult(message)
+                        startHomeActivity()
+                    }
                 }
-            }
 
-            override fun onFailure(message: String) {
-                status = message
-                registrationView.apply {
-                    onLoad(false)
-                    setResult(message)
+                override fun onFailure(message: String) {
+                    status = message
+                    registrationView.apply {
+                        onLoad(false)
+                        setResult(message)
+                    }
                 }
-            }
-        })
+            })
         return status
     }
 }

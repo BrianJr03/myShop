@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
 import jr.brian.myShop.model.local.SharedPrefHelper
-import jr.brian.myShop.model.remote.User
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpMVP
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpPresenter
 import jr.brian.myShop.view.activities.HomeActivity
@@ -51,15 +50,9 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
             ) {
                 if (passwordEt.text.toString() == cPasswordEt.text.toString()) {
                     intent = Intent(view.context, HomeActivity::class.java)
-                    intent.putExtra(
-                        USER, User(
-                            emailId = emailEt.text.toString(),
-                            password = passwordEt.text.toString(),
-                            fullName = fullNameEt.text.toString(),
-                            mobileNo = mobileNoEt.text.toString()
-                        )
-                    )
                     presenter.signUpUser(
+                        fullNameEt.text.toString(),
+                        mobileNoEt.text.toString(),
                         emailEt.text.toString(),
                         passwordEt.text.toString(),
                         view
@@ -80,7 +73,8 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
 
     companion object {
         const val FILENAME = "login-details"
-        const val USER = "user"
+        const val FULL_NAME = "full name"
+        const val MOBILE_NO = "mobile no"
         const val EMAIL = "email"
         const val PASSWORD = "password"
     }

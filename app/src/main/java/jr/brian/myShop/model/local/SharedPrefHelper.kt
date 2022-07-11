@@ -10,7 +10,7 @@ import jr.brian.myShop.view.auth_fragments.SignUpFragment
 
 class SharedPrefHelper(context: Context) {
     private var editor: SharedPreferences.Editor
-    private var encryptedSharedPrefs: SharedPreferences
+    var encryptedSharedPrefs: SharedPreferences
 
     init {
         val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
@@ -25,8 +25,16 @@ class SharedPrefHelper(context: Context) {
         editor = encryptedSharedPrefs.edit()
     }
 
-    fun saveUserInDB(email: String, password: String, callback: OperationalCallback) {
+    fun saveUserInDB(
+        fullName: String,
+        mobileNo: String,
+        email: String,
+        password: String,
+        callback: OperationalCallback
+    ) {
         editor.apply {
+            putString(SignUpFragment.FULL_NAME, fullName)
+            putString(SignUpFragment.MOBILE_NO, mobileNo)
             putString(SignUpFragment.EMAIL, email)
             putString(SignUpFragment.PASSWORD, password)
             if (commit()) {
@@ -45,8 +53,7 @@ class SharedPrefHelper(context: Context) {
                 } else {
                     callback.onFailure("Failure")
                 }
-            }
-            else callback.onFailure("Empty")
+            } else callback.onFailure("Empty")
         }
     }
 

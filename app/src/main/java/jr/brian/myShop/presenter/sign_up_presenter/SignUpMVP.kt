@@ -5,6 +5,8 @@ import android.view.View
 interface SignUpMVP {
     interface SignUpPresenter {
         fun signUpUser(
+            fullName: String,
+            mobileNo: String,
             email: String,
             password: String,
             view: View
