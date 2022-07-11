@@ -45,4 +45,5 @@
     <string name="Profile">Profile</string>
     <string name="search_products">Search Products …</string>
     <string name="category_image">category_image</string>
+    <string name="versionNo">myShop v1.0</string>
 </resources>

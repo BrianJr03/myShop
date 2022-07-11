@@ -106,9 +106,9 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setGridLayout() {
-        binding.notesRecyclerView.layoutManager =
+        binding.recyclerView.layoutManager =
             GridLayoutManager(this, 2)
-        binding.notesRecyclerView.adapter = categoryAdapter
+        binding.recyclerView.adapter = categoryAdapter
     }
 
     private fun setAdapter(list: List<Category>) {

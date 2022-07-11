@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_view_header"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_250dp"
-    android:id="@+id/nav_view_header"
     android:background="@color/blueish_idk">
 
     <TextView
@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/full_name"
+        android:textColor="@color/white"
         android:textSize="@dimen/_25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,22 +19,24 @@
 
     <TextView
         android:id="@+id/email_tv"
-        android:layout_marginTop="@dimen/_10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
         android:text="@string/email"
-        android:textSize="@dimen/_25sp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/full_name_tv" />
 
     <TextView
         android:id="@+id/mobileNo_tv"
-        android:layout_marginTop="@dimen/_10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
         android:text="@string/mobileNo"
-        android:textSize="@dimen/_25sp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email_tv" />
