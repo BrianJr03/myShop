@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/drawable/cart_24.xml" value="0.146" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/drawable/home_24.xml" value="0.146" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/drawable/orders_24.xml" value="0.146" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/drawable/phone_50.xml" value="0.146" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/drawable/profile_24.xml" value="0.146" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/drawable/search_36.xml" value="0.146" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/drawable/shopping_cart.xml" value="0.1815" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/drawable/sign_out_24.xml" value="0.146" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/drawable/unstarred_icon.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_category.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_home.xml" value="0.2602921646746348" />

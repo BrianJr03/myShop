@@ -2,21 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/drawer_home"
+        android:icon="@drawable/home_24"
+        android:iconTint="@color/blueish_idk"
         android:title="@string/Home" />
 
     <item
         android:id="@+id/drawer_cart"
+        android:icon="@drawable/cart_24"
+        android:iconTint="@color/blueish_idk"
         android:title="@string/Cart" />
 
     <item
         android:id="@+id/drawer_orders"
+        android:icon="@drawable/orders_24"
+        android:iconTint="@color/blueish_idk"
         android:title="@string/Orders" />
 
     <item
         android:id="@+id/drawer_profile"
+        android:icon="@drawable/profile_24"
+        android:iconTint="@color/blueish_idk"
         android:title="@string/Profile" />
 
     <item
         android:id="@+id/drawer_sign_out"
+        android:icon="@drawable/sign_out_24"
         android:title="@string/sign_out" />
 </menu>
