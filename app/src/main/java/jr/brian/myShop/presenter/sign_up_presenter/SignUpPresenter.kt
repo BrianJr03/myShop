@@ -15,7 +15,7 @@ class SignUpPresenter(
         sharedPrefHelper = SharedPrefHelper(view.context)
         sharedPrefHelper.saveUserInDB(email, password, object : OperationalCallback {
             override fun onSuccess(message: String) {
-                status = "Success"
+                status = message
                 registrationView.apply {
                     onLoad(false)
                     setResult(message)
@@ -24,7 +24,7 @@ class SignUpPresenter(
             }
 
             override fun onFailure(message: String) {
-                status = "Failure"
+                status = message
                 registrationView.apply {
                     onLoad(false)
                     setResult(message)

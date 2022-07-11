@@ -2,50 +2,64 @@ package jr.brian.myShop.model.remote
 
 import android.content.Context
 import android.util.Log
-import android.view.View
-import android.widget.ProgressBar
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.*
+import com.android.volley.toolbox.HttpHeaderParser
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import jr.brian.myShop.R
+import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
+import com.google.gson.reflect.TypeToken
 import jr.brian.myShop.model.remote.Constant.BASE_URL
-import jr.brian.myShop.model.remote.Constant.SIGN_IN_END_POINT
-import jr.brian.myShop.model.remote.Constant.SIGN_UP_END_POINT
-import org.json.JSONObject
+import jr.brian.myShop.model.remote.Constant.CATEGORY_EP
+import java.io.UnsupportedEncodingException
+import java.nio.charset.Charset
 
 class VolleyHelper(context: Context) {
 
     private var requestQueue: RequestQueue = Volley.newRequestQueue(context)
-    private val signInUrl = BASE_URL + SIGN_IN_END_POINT
-    private val signUpUrl = BASE_URL + SIGN_UP_END_POINT
 
-    private fun auth(
-        view: View,
-        data: JSONObject,
-        callback: OperationalCallback,
-        url: String,
-        tag: String
-    ) :String {
-        val cpb = view.findViewById<ProgressBar>(R.id.progress_bar_signUp)
-        cpb.visibility = View.VISIBLE
-        var msg = ""
-        val request = JsonObjectRequest(Request.Method.POST, url, data, { response: JSONObject ->
-            msg = response.getString("message")
-            Log.i(tag, msg)
-            cpb.visibility = View.GONE
-            callback.onSuccess("Success")
-        }, { error: VolleyError -> callback.onFailure(error.message.toString()) })
-        requestQueue.add(request)
-        return msg
+    fun getCategories(): Inventory {
+        val url = BASE_URL + CATEGORY_EP
+        var response = Inventory(arrayListOf(), "", 0)
+        val strRequest = object : StringRequest(url, {
+            val typeToken = object : TypeToken<Inventory>() {}
+            val gson = Gson()
+            response = gson.fromJson(it, typeToken.type)
+            Log.i("RESPONSE_SUCCESS", response.toString())
+        }, { Log.i("RESPONSE_FAIL", it.toString()) }) {
+        }
+        requestQueue.add(strRequest)
+        return response
     }
+}
 
-    fun signUpUser(view: View, data: JSONObject, callback: OperationalCallback): String {
-        return auth(view, data, callback, signUpUrl, "RESPONSE_SIGN_UP")
-    }
+class GsonRequest<T>(
+    url: String,
+    private val clazz: Class<T>,
+    private val headers: MutableMap<String, String>?,
+    private val listener: Response.Listener<T>,
+    errorListener: Response.ErrorListener
+) : Request<T>(Method.GET, url, errorListener) {
+    private val gson = Gson()
 
-    fun signInUser(view: View, data: JSONObject, callback: OperationalCallback): String {
-        return auth(view, data, callback, signInUrl, "RESPONSE_SIGN_IN")
+    override fun getHeaders(): MutableMap<String, String> = headers ?: super.getHeaders()
+
+    override fun deliverResponse(response: T) = listener.onResponse(response)
+
+    override fun parseNetworkResponse(response: NetworkResponse?): Response<T> {
+        return try {
+            val json = String(
+                response?.data ?: ByteArray(0),
+                Charset.forName(HttpHeaderParser.parseCharset(response?.headers))
+            )
+            Response.success(
+                gson.fromJson(json, clazz),
+                HttpHeaderParser.parseCacheHeaders(response)
+            )
+        } catch (e: UnsupportedEncodingException) {
+            Response.error(ParseError(e))
+        } catch (e: JsonSyntaxException) {
+            Response.error(ParseError(e))
+        }
     }
 }

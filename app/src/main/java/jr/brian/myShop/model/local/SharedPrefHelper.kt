@@ -5,11 +5,12 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import jr.brian.myShop.model.remote.OperationalCallback
+import jr.brian.myShop.view.auth_fragments.SignInFragment
 import jr.brian.myShop.view.auth_fragments.SignUpFragment
 
 class SharedPrefHelper(context: Context) {
     private var editor: SharedPreferences.Editor
-    var encryptedSharedPrefs: SharedPreferences
+    private var encryptedSharedPrefs: SharedPreferences
 
     init {
         val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
@@ -35,10 +36,17 @@ class SharedPrefHelper(context: Context) {
     }
 
     fun verifySignIn(email: String, password: String, callback: OperationalCallback) {
-        if (email.isNotEmpty() && password.isNotEmpty()) {
-            callback.onSuccess("Success")
-        } else {
-            callback.onFailure("Failure")
+        apply {
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                if (encryptedSharedPrefs.contains(SignInFragment.EMAIL)
+                    && encryptedSharedPrefs.contains(SignInFragment.PASSWORD)
+                ) {
+                    callback.onSuccess("Success")
+                } else {
+                    callback.onFailure("Failure")
+                }
+            }
+            else callback.onFailure("Empty")
         }
     }
 

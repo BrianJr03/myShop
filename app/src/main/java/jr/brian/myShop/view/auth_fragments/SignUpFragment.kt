@@ -17,7 +17,7 @@ import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.User
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpMVP
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpPresenter
-import jr.brian.myShop.view.note_activities.NotesGridActivity
+import jr.brian.myShop.view.activities.HomeActivity
 
 class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     private lateinit var intent: Intent
@@ -39,6 +39,8 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     private fun initView(view: View) {
         presenter = SignUpPresenter(SharedPrefHelper(view.context), this)
         val signUpBtn = view.findViewById<Button>(R.id.sign_up_btn)
+        val fullNameEt = view.findViewById<Button>(R.id.fullName_et)
+        val mobileNoEt = view.findViewById<Button>(R.id.mobileNo_et)
         val emailEt = view.findViewById<EditText>(R.id.email_et)
         val passwordEt = view.findViewById<EditText>(R.id.password_et)
         val cPasswordEt = view.findViewById<EditText>(R.id.cPassword_et)
@@ -48,13 +50,13 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
                 || cPasswordEt.text.isNotEmpty()
             ) {
                 if (passwordEt.text.toString() == cPasswordEt.text.toString()) {
-                    intent = Intent(view.context, NotesGridActivity::class.java)
+                    intent = Intent(view.context, HomeActivity::class.java)
                     intent.putExtra(
                         USER, User(
                             emailId = emailEt.text.toString(),
                             password = passwordEt.text.toString(),
-                            fullName = "Brian Jr",
-                            mobileNo = "2123223432"
+                            fullName = fullNameEt.text.toString(),
+                            mobileNo = mobileNoEt.text.toString()
                         )
                     )
                     presenter.signUpUser(

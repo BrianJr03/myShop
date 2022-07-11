@@ -1,10 +1,15 @@
 package jr.brian.myShop.model.remote
 
 object Constant {
-    private const val PANTRY_ID = "98f22f2b-d24a-4ba6-a741-c7df895f2e3b"
     const val BASE_URL = "https://psmobitech.com/myshop/index.php/"
-    const val SIGN_IN_END_POINT = "User/auth"
-    const val SIGN_UP_END_POINT = "User/register"
-    const val CRUD_BASKET_URL =
-        "https://getpantry.cloud/apiv1/pantry/$PANTRY_ID/basket/"
+    const val CATEGORY_EP = "Category"
+    const val GET_SUB_CATEGORY_BY_ID_EP = "SubCategory?category_id="
+    const val GET_PRODUCT_LIST_BY_SUB_CATEGORY_EP = "SubCategory/products/"
+    const val GET_SEARCH_PRODUCT_EP = "Product/search?query="
+    const val GET_PRODUCT_DETAILS_EP = "Product/details/"
+    const val POST_ADD_DELIVERY_ADDR_EP = "User/address"
+    const val GET_ALL_USER_ADDRESSES_EP = "User/addresses/"
+    const val POST_PLACE_ORDER_EP = "/Order"
+    const val GET_ALL_USER_ORDERS_EP = "Order/userOrders/"
+    const val GET_ORDER_DETAILS_EP = "Order?order_id="
 }

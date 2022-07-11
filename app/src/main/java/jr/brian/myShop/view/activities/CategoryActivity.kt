@@ -1,4 +1,4 @@
-package jr.brian.myShop.view.note_activities
+package jr.brian.myShop.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,23 +7,21 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
-import jr.brian.myShop.databinding.ActivityNoteEditorBinding
-import jr.brian.myShop.databinding.ActivityNotesGridBinding
+import jr.brian.myShop.databinding.ActivityCategoryBinding
+import jr.brian.myShop.databinding.ActivityHomeBinding
+
 import jr.brian.myShop.databinding.PasscodeDialogBinding
 import jr.brian.myShop.model.local.DatabaseHelper
 import jr.brian.myShop.model.remote.Note
-import jr.brian.myShop.model.remote.PantryHelper
 import jr.brian.myShop.view.adapter.NoteAdapter.Companion.NOTE_DATA
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-
-class NoteEditorActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityNoteEditorBinding
-    private lateinit var gridBinding: ActivityNotesGridBinding
+class CategoryActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityCategoryBinding
+    private lateinit var gridBinding: ActivityHomeBinding
     private lateinit var passcodeDialogBinding: PasscodeDialogBinding
     private lateinit var databaseHelper: DatabaseHelper
-    private lateinit var pantryHelper: PantryHelper
 
     private val current = LocalDateTime.now()
     private val formatter = DateTimeFormatter.ofPattern("M/d/yyyy")
@@ -39,11 +37,10 @@ class NoteEditorActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNoteEditorBinding.inflate(layoutInflater)
-        gridBinding = ActivityNotesGridBinding.inflate(layoutInflater)
+        binding = ActivityCategoryBinding.inflate(layoutInflater)
+        gridBinding = ActivityHomeBinding.inflate(layoutInflater)
         passcodeDialogBinding = PasscodeDialogBinding.inflate(layoutInflater)
         databaseHelper = DatabaseHelper(this)
-        pantryHelper = PantryHelper()
         setContentView(binding.root)
         supportActionBar?.hide()
         initView()
@@ -197,11 +194,9 @@ class NoteEditorActivity : AppCompatActivity() {
                 when (mode) {
                     "update" -> {
                         databaseHelper.updateNote(note)
-                        pantryHelper.updateNote(note, binding.root)
                     }
                     "save" -> {
                         databaseHelper.addNote(note)
-                        pantryHelper.saveNote(note, binding.root)
                     }
                 }
                 startNoteGridActivity()
@@ -281,14 +276,14 @@ class NoteEditorActivity : AppCompatActivity() {
 
     private fun showSnackbar(str: String) {
         Snackbar.make(
-            this@NoteEditorActivity,
+            this@CategoryActivity,
             binding.root,
             str,
             Snackbar.LENGTH_SHORT
         ).show()
     }
 
-    private fun setEditTextColor(binding: ActivityNoteEditorBinding, color: String) {
+    private fun setEditTextColor(binding: ActivityCategoryBinding, color: String) {
         binding.titleEt.setTextColor(getTextColor(color))
         binding.bodyET.setTextColor(getTextColor(color))
         binding.colorLens.setColorFilter(getTextColor(color))
@@ -297,8 +292,8 @@ class NoteEditorActivity : AppCompatActivity() {
     private fun startNoteGridActivity() {
         this.startActivity(
             Intent(
-                this@NoteEditorActivity,
-                NotesGridActivity::class.java
+                this@CategoryActivity,
+                HomeActivity::class.java
             )
         )
         finish()

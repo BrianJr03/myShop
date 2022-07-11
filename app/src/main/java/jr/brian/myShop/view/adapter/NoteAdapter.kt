@@ -12,14 +12,12 @@ import jr.brian.myShop.R
 import jr.brian.myShop.model.remote.Note
 import jr.brian.myShop.databinding.NoteBinding
 import jr.brian.myShop.databinding.PasscodeDialogBinding
-import jr.brian.myShop.model.remote.PantryHelper
-import jr.brian.myShop.view.note_activities.NoteEditorActivity
+import jr.brian.myShop.view.activities.CategoryActivity
 
 class NoteAdapter(private val context: Context, private val notes: List<Note>) :
     RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     private lateinit var binding: NoteBinding
-    private lateinit var pantryHelper: PantryHelper
     private lateinit var passcodeDialogBinding: PasscodeDialogBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -27,7 +25,6 @@ class NoteAdapter(private val context: Context, private val notes: List<Note>) :
         binding = NoteBinding.inflate(layoutInflater, parent, false)
         passcodeDialogBinding =
             PasscodeDialogBinding.inflate(layoutInflater, parent, false)
-        pantryHelper = PantryHelper()
         return NoteViewHolder(binding.root)
     }
 
@@ -96,7 +93,7 @@ class NoteAdapter(private val context: Context, private val notes: List<Note>) :
 
     private fun startNoteEditorActivity(note: Note, index: Int) {
         val intent =
-            Intent(context, NoteEditorActivity::class.java)
+            Intent(context, CategoryActivity::class.java)
         intent.putExtra(NOTE_DATA, note)
         intent.putExtra("mode", "update")
         intent.putExtra("index", index)

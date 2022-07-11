@@ -23,10 +23,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="jr.brian.myShop.view.note_activities.NotesGridActivity"
+            android:name="jr.brian.myShop.view.activities.HomeActivity"
             android:exported="true" />
         <activity
-            android:name="jr.brian.myShop.view.note_activities.NoteEditorActivity"
+            android:name="jr.brian.myShop.view.activities.CategoryActivity"
             android:exported="false" />
     </application>
 

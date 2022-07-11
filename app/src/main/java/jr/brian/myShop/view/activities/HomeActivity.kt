@@ -1,4 +1,4 @@
-package jr.brian.myShop.view.note_activities
+package jr.brian.myShop.view.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,22 +12,20 @@ import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.*
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
-import jr.brian.myShop.databinding.ActivityNotesGridBinding
+import jr.brian.myShop.databinding.ActivityHomeBinding
 import jr.brian.myShop.databinding.NavHeaderBinding
 import jr.brian.myShop.model.local.DatabaseHelper
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.Note
-import jr.brian.myShop.model.remote.PantryHelper
 import jr.brian.myShop.model.remote.User
 import jr.brian.myShop.view.adapter.NoteAdapter
 import jr.brian.myShop.view.auth_fragments.SignUpFragment.Companion.USER
 import jr.brian.myShop.view.main.LandingActivity
 
-class NotesGridActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityNotesGridBinding
+class HomeActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityHomeBinding
     private lateinit var navHeaderBinding: NavHeaderBinding
     private lateinit var databaseHelper: DatabaseHelper
-    private lateinit var pantryHelper: PantryHelper
     private lateinit var noteAdapter: NoteAdapter
     private lateinit var noteList: ArrayList<Note>
     private lateinit var favList: ArrayList<Note>
@@ -38,10 +36,9 @@ class NotesGridActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNotesGridBinding.inflate(layoutInflater)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
         navHeaderBinding = NavHeaderBinding.inflate(layoutInflater)
         navHeaderBinding.animationView.setMinAndMaxFrame(67, 120)
-        pantryHelper = PantryHelper()
         setContentView(binding.root)
         init()
         supportActionBar?.hide()
@@ -136,7 +133,7 @@ class NotesGridActivity : AppCompatActivity() {
         }
         binding.fab.setOnClickListener {
             val intent =
-                Intent(this, NoteEditorActivity::class.java)
+                Intent(this, CategoryActivity::class.java)
             intent.putExtra("index", noteList.size)
             startActivity(intent)
         }
@@ -175,7 +172,6 @@ class NotesGridActivity : AppCompatActivity() {
     private fun deleteNote(viewHolder: RecyclerView.ViewHolder) {
         val pos = viewHolder.adapterPosition
         databaseHelper.deleteNote(noteList[pos])
-        pantryHelper.deleteNote(noteList[pos], binding.root)
         noteList.removeAt(pos)
         noteAdapter.notifyItemRemoved(pos)
         Snackbar.make(
@@ -223,7 +219,7 @@ class NotesGridActivity : AppCompatActivity() {
 
     private fun setGridLayout() {
         binding.notesRecyclerView.layoutManager =
-            GridLayoutManager(this@NotesGridActivity, 2)
+            GridLayoutManager(this@HomeActivity, 2)
         binding.notesRecyclerView.adapter = noteAdapter
     }
 
@@ -235,7 +231,7 @@ class NotesGridActivity : AppCompatActivity() {
 
     private fun setLinearLayout() {
         binding.notesRecyclerView.layoutManager =
-            LinearLayoutManager(this@NotesGridActivity)
+            LinearLayoutManager(this@HomeActivity)
         binding.notesRecyclerView.adapter = noteAdapter
     }
 
@@ -248,7 +244,7 @@ class NotesGridActivity : AppCompatActivity() {
         SharedPrefHelper(this).signOut()
         startActivity(
             Intent(
-                this@NotesGridActivity,
+                this@HomeActivity,
                 LandingActivity::class.java
             )
         )

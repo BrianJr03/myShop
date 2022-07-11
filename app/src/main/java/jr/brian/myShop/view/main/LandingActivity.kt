@@ -13,7 +13,7 @@ import jr.brian.myShop.databinding.ActivityLandingBinding
 import jr.brian.myShop.model.local.replaceFragment
 import jr.brian.myShop.view.auth_fragments.SignInFragment
 import jr.brian.myShop.view.auth_fragments.SignUpFragment
-import jr.brian.myShop.view.note_activities.NotesGridActivity
+import jr.brian.myShop.view.activities.HomeActivity
 
 class LandingActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListener {
     private lateinit var binding: ActivityLandingBinding
@@ -58,7 +58,7 @@ class LandingActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListener 
     }
 
     private fun startHomeActivity() {
-        startActivity(Intent(this, NotesGridActivity::class.java))
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 
     private fun verifySignIn() {
