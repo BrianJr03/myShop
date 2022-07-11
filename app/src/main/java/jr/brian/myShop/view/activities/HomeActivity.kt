@@ -32,8 +32,6 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var fullName: String
 
-    private var areAllNotesDisplayed = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -93,23 +91,19 @@ class HomeActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.grid_item -> {
-                    setGridLayout()
+                R.id.drawer_home -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
-                R.id.linear_item -> {
-                    setLinearLayout()
+                R.id.drawer_cart -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
-                R.id.st_grid_item -> {
-                    setStaggeredLayout()
+                R.id.drawer_orders -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
-                R.id.toggle_favorites -> {
-                    toggleFavorites()
+                R.id.drawer_profile -> {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
-                R.id.sign_out_item -> {
+                R.id.drawer_sign_out -> {
                     signOut()
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
@@ -127,9 +121,6 @@ class HomeActivity : AppCompatActivity() {
     private fun initListeners() {
         binding.menu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
-        }
-        binding.pageTitle.setOnClickListener {
-            toggleFavorites()
         }
         binding.fab.setOnClickListener {
             val intent =
@@ -196,44 +187,12 @@ class HomeActivity : AppCompatActivity() {
         )
     }
 
-    private fun toggleFavorites() {
-        areAllNotesDisplayed = !areAllNotesDisplayed
-        if (areAllNotesDisplayed) {
-            binding.pageTitle.text = getString(R.string.mynotesnative)
-            setAdapter(noteList)
-            if (noteList.size < 1) {
-                binding.noNotesIv.visibility = View.VISIBLE
-            } else {
-                binding.noNotesIv.visibility = View.INVISIBLE
-            }
-        } else {
-            binding.pageTitle.text = getString(R.string.favorites)
-            setAdapter(favList)
-            if (favList.size < 1) {
-                binding.noNotesIv.visibility = View.VISIBLE
-            } else {
-                binding.noNotesIv.visibility = View.INVISIBLE
-            }
-        }
-    }
-
     private fun setGridLayout() {
         binding.notesRecyclerView.layoutManager =
             GridLayoutManager(this@HomeActivity, 2)
         binding.notesRecyclerView.adapter = noteAdapter
     }
 
-    private fun setStaggeredLayout() {
-        binding.notesRecyclerView.layoutManager =
-            StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        binding.notesRecyclerView.adapter = noteAdapter
-    }
-
-    private fun setLinearLayout() {
-        binding.notesRecyclerView.layoutManager =
-            LinearLayoutManager(this@HomeActivity)
-        binding.notesRecyclerView.adapter = noteAdapter
-    }
 
     private fun setAdapter(list: List<Note>) {
         noteAdapter = NoteAdapter(this, list)

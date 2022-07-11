@@ -39,8 +39,8 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     private fun initView(view: View) {
         presenter = SignUpPresenter(SharedPrefHelper(view.context), this)
         val signUpBtn = view.findViewById<Button>(R.id.sign_up_btn)
-        val fullNameEt = view.findViewById<Button>(R.id.fullName_et)
-        val mobileNoEt = view.findViewById<Button>(R.id.mobileNo_et)
+        val fullNameEt = view.findViewById<EditText>(R.id.fullName_et)
+        val mobileNoEt = view.findViewById<EditText>(R.id.mobileNo_et)
         val emailEt = view.findViewById<EditText>(R.id.email_et)
         val passwordEt = view.findViewById<EditText>(R.id.password_et)
         val cPasswordEt = view.findViewById<EditText>(R.id.cPassword_et)

@@ -4,12 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/drawable/shopping_cart.xml" value="0.1815" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_landing.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_note_editor.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_notes_grid.xml" value="0.21" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/fragment_sign_in.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/fragment_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/nav_header.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/menu/nav_drawer_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

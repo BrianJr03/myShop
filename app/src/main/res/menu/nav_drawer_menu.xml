@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/grid_item"
-        android:title="@string/grid_layout" />
+        android:id="@+id/drawer_home"
+        android:title="@string/Home" />
 
     <item
-        android:id="@+id/linear_item"
-        android:title="@string/linear_layout" />
+        android:id="@+id/drawer_cart"
+        android:title="@string/Cart" />
 
     <item
-        android:id="@+id/st_grid_item"
-        android:title="@string/st_grid_layout" />
+        android:id="@+id/drawer_orders"
+        android:title="@string/Orders" />
 
     <item
-        android:id="@+id/toggle_favorites"
-        android:title="@string/toggle_favorites" />
+        android:id="@+id/drawer_profile"
+        android:title="@string/Profile" />
 
     <item
-        android:id="@+id/sign_out_item"
+        android:id="@+id/drawer_sign_out"
         android:title="@string/sign_out" />
 </menu>
