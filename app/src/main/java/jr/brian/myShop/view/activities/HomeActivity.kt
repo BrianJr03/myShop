@@ -12,15 +12,20 @@ import jr.brian.myShop.R
 import jr.brian.myShop.databinding.ActivityHomeBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.Category
+import jr.brian.myShop.model.remote.Inventory
+import jr.brian.myShop.model.remote.VolleyHelper
+import jr.brian.myShop.presenter.category_presenter.CategoryMVP
+import jr.brian.myShop.presenter.category_presenter.CategoryPresenter
 import jr.brian.myShop.view.adapter.CategoryAdapter
 import jr.brian.myShop.view.auth_fragments.SignUpFragment
 import jr.brian.myShop.view.main.LandingActivity
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), CategoryMVP.CategoryView {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categories: ArrayList<Category>
     private lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var presenter: CategoryPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,16 +37,8 @@ class HomeActivity : AppCompatActivity() {
 
     private fun init() {
         categories = ArrayList()
-        for (i in 1..6) {
-            categories.add(
-                Category(
-                    "1",
-                    "",
-                    "",
-                    ""
-                )
-            )
-        }
+        presenter = CategoryPresenter(VolleyHelper(this), this)
+        presenter.getCategories()
         setAdapter(categories)
         initDrawer()
         initListeners()
@@ -111,7 +108,7 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerView.adapter = categoryAdapter
     }
 
-    private fun setAdapter(list: List<Category>) {
+    private fun setAdapter(list: ArrayList<Category>) {
         categoryAdapter = CategoryAdapter(this, list)
         setGridLayout()
     }
@@ -150,5 +147,17 @@ class HomeActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun setResult(inventory: Inventory?) {
+        if (inventory != null) {
+            setAdapter(inventory.categories)
+        } else {
+            setAdapter(ArrayList())
+        }
+    }
+
+    override fun onLoad(isLoading: Boolean) {
+
     }
 }

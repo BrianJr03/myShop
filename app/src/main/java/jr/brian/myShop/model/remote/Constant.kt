@@ -2,6 +2,7 @@ package jr.brian.myShop.model.remote
 
 object Constant {
     const val BASE_URL = "https://psmobitech.com/myshop/index.php/"
+    const val BASE_IMAGE_URL = "https://psmobitech.com/myshop/images/"
     const val CATEGORY_EP = "Category"
     const val GET_SUB_CATEGORY_BY_ID_EP = "SubCategory?category_id="
     const val GET_PRODUCT_LIST_BY_SUB_CATEGORY_EP = "SubCategory/products/"

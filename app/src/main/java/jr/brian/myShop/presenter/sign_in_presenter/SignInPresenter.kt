@@ -19,8 +19,8 @@ class SignInPresenter(
         registrationView.onLoad(true)
         sharedPrefHelper = SharedPrefHelper(view.context)
         sharedPrefHelper.verifySignIn(email, password, object : OperationalCallback {
-            override fun onSuccess(message: String) {
-                status = message
+            override fun onSuccess(message: Any) {
+                status = message as String
                 registrationView.apply {
                     onLoad(false)
                     setResult(message)
