@@ -16,7 +16,7 @@ import jr.brian.myShop.R
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpMVP
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpPresenter
-import jr.brian.myShop.view.activities.HomeActivity
+import jr.brian.myShop.view.activities.CategoryActivity
 
 class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     private lateinit var intent: Intent
@@ -49,7 +49,7 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
                 || cPasswordEt.text.isNotEmpty()
             ) {
                 if (passwordEt.text.toString() == cPasswordEt.text.toString()) {
-                    intent = Intent(view.context, HomeActivity::class.java)
+                    intent = Intent(view.context, CategoryActivity::class.java)
                     presenter.signUpUser(
                         fullNameEt.text.toString(),
                         mobileNoEt.text.toString(),

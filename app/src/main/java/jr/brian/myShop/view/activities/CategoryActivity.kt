@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import jr.brian.myShop.R
-import jr.brian.myShop.databinding.ActivityHomeBinding
+import jr.brian.myShop.databinding.ActivityCategoryBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.Category
 import jr.brian.myShop.model.remote.Inventory
@@ -21,8 +21,8 @@ import jr.brian.myShop.view.adapter.CategoryAdapter
 import jr.brian.myShop.view.auth_fragments.SignUpFragment
 import jr.brian.myShop.view.main.LandingActivity
 
-class HomeActivity : AppCompatActivity(), CategoryMVP.CategoryView {
-    private lateinit var binding: ActivityHomeBinding
+class CategoryActivity : AppCompatActivity(), CategoryMVP.CategoryView {
+    private lateinit var binding: ActivityCategoryBinding
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categories: ArrayList<Category>
     private lateinit var toggle: ActionBarDrawerToggle
@@ -30,7 +30,7 @@ class HomeActivity : AppCompatActivity(), CategoryMVP.CategoryView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
+        binding = ActivityCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
         supportActionBar?.hide()
