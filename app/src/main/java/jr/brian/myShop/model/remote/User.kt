@@ -8,5 +8,6 @@ data class User(
     var emailId: String,
     var fullName: String,
     var mobileNo: String,
-    var password: String
+    var password: String,
+    var userId: String
 ) : Parcelable

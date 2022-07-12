@@ -13,6 +13,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import jr.brian.myShop.R
 import jr.brian.myShop.model.local.SharedPrefHelper
+import jr.brian.myShop.model.remote.Constant.SIGN_IN_TAG
+import jr.brian.myShop.model.remote.User
 import jr.brian.myShop.presenter.sign_in_presenter.SignInMVP
 import jr.brian.myShop.presenter.sign_in_presenter.SignInPresenter
 import jr.brian.myShop.view.activities.HomeActivity
@@ -29,8 +31,10 @@ class SignInFragment : Fragment(), SignInMVP.SignInView {
         presenter = SignInPresenter(SharedPrefHelper(view.context), this)
         val email = view.findViewById<EditText>(R.id.email_et_signIn).text.toString()
         val password = view.findViewById<EditText>(R.id.password_et_signIn).text.toString()
+        val user = User(emailId = email, "", "", password = password, "")
+
         view.findViewById<Button>(R.id.signInBTN).setOnClickListener {
-            presenter.signInUser(email, password, view)
+            (presenter as SignInPresenter).signInUser(user, view)
         }
     }
 
@@ -48,7 +52,7 @@ class SignInFragment : Fragment(), SignInMVP.SignInView {
     }
 
     override fun setResult(msg: String) {
-        Log.i("RESULT", msg)
+        Log.i(SIGN_IN_TAG, msg)
     }
 
     override fun onLoad(isLoading: Boolean) {

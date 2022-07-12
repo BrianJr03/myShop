@@ -1,12 +1,12 @@
 package jr.brian.myShop.presenter.sign_in_presenter
 
 import android.view.View
+import jr.brian.myShop.model.remote.User
 
 interface SignInMVP {
     interface SignInPresenter {
         fun signInUser(
-            email: String,
-            password: String,
+            user: User,
             view: View
         ): String
     }

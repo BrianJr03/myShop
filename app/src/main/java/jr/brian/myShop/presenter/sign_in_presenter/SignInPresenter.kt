@@ -4,6 +4,7 @@ import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.OperationalCallback
+import jr.brian.myShop.model.remote.User
 
 class SignInPresenter(
     private var sharedPrefHelper: SharedPrefHelper,
@@ -11,14 +12,13 @@ class SignInPresenter(
 ) : SignInMVP.SignInPresenter {
 
     override fun signInUser(
-        email: String,
-        password: String,
+        user: User,
         view: View
     ): String {
         var status = ""
         registrationView.onLoad(true)
         sharedPrefHelper = SharedPrefHelper(view.context)
-        sharedPrefHelper.verifySignIn(email, password, object : OperationalCallback {
+        sharedPrefHelper.verifySignIn(user, object : OperationalCallback {
             override fun onSuccess(message: Any) {
                 status = message as String
                 registrationView.apply {

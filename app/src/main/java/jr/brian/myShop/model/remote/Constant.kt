@@ -13,4 +13,10 @@ object Constant {
     const val POST_PLACE_ORDER_EP = "/Order"
     const val GET_ALL_USER_ORDERS_EP = "Order/userOrders/"
     const val GET_ORDER_DETAILS_EP = "Order?order_id="
+
+    const val SIGN_UP_EP = "User/register"
+    const val SIGN_IN_EP = "User/auth"
+
+    const val SIGN_UP_TAG = "SIGNUP"
+    const val SIGN_IN_TAG = "SIGNIN"
 }
