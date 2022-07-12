@@ -1,6 +1,7 @@
 package jr.brian.myShop.view.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import com.bumptech.glide.Glide
 import jr.brian.myShop.databinding.CategoryBinding
 import jr.brian.myShop.model.remote.Category
 import jr.brian.myShop.model.remote.Constant.BASE_IMAGE_URL
+import jr.brian.myShop.model.remote.Constant.SUB_CATEGORY_ID
+import jr.brian.myShop.view.activities.SubCategoryActivity
 
 class CategoryAdapter(private val context: Context, private val categories: List<Category>) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
@@ -28,9 +31,16 @@ class CategoryAdapter(private val context: Context, private val categories: List
             val category = categories[index]
             bind(category)
             itemView.setOnClickListener {
-
+                startSubCategoryActivity(category.category_id)
             }
         }
+    }
+
+    private fun startSubCategoryActivity(id: String) {
+        val intent =
+            Intent(context, SubCategoryActivity::class.java)
+        intent.putExtra(SUB_CATEGORY_ID, id)
+        context.startActivity(intent)
     }
 
     inner class CategoryViewHolder(v: View) : RecyclerView.ViewHolder(v) {

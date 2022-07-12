@@ -15,7 +15,7 @@ import jr.brian.myShop.R
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.presenter.sign_in_presenter.SignInMVP
 import jr.brian.myShop.presenter.sign_in_presenter.SignInPresenter
-import jr.brian.myShop.view.activities.HomeActivity
+import jr.brian.myShop.view.activities.CategoryActivity
 
 class SignInFragment : Fragment(), SignInMVP.SignInView {
     private lateinit var presenter: SignInMVP.SignInPresenter
@@ -63,7 +63,7 @@ class SignInFragment : Fragment(), SignInMVP.SignInView {
     override fun startHomeActivity() {
         ContextCompat.startActivity(
             requireContext(),
-            Intent(context, HomeActivity::class.java),
+            Intent(context, CategoryActivity::class.java),
             null
         )
     }

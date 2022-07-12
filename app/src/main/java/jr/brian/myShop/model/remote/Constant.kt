@@ -13,4 +13,6 @@ object Constant {
     const val POST_PLACE_ORDER_EP = "/Order"
     const val GET_ALL_USER_ORDERS_EP = "Order/userOrders/"
     const val GET_ORDER_DETAILS_EP = "Order?order_id="
+
+    const val SUB_CATEGORY_ID = "SUB_CATEGORY_ID"
 }
