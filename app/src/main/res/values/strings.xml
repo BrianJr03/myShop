@@ -47,4 +47,5 @@
     <string name="category_image">category_image</string>
     <string name="versionNo">myShop v1.0</string>
     <string name="fetching_data">Fetching Data …</string>
+    <string name="categories">Categories</string>
 </resources>

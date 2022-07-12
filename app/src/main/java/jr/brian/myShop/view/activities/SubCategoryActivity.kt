@@ -8,6 +8,7 @@ import jr.brian.myShop.view.adapter.ViewPagerAdapter
 
 class SubCategoryActivity : AppCompatActivity() {
 
+    private lateinit var tabs: ArrayList<String>
     private lateinit var binding: ActivitySubCategoryBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,17 +18,26 @@ class SubCategoryActivity : AppCompatActivity() {
         supportActionBar?.hide()
         initViewPager()
         initTabLayout()
+        initViews()
     }
 
     private fun initTabLayout() {
+        tabs = arrayListOf("Android", "iPhone", "Windows")
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, pos ->
-            tab.text = (pos + 1).toString()
+            tab.text = tabs[pos]
         }.attach()
     }
 
     private fun initViewPager() {
         val adapter = ViewPagerAdapter(this, 3)
         binding.pager.adapter = adapter
+    }
+
+    private fun initViews() {
+//        binding.categoriesTv.text = category_name
+        binding.back.setOnClickListener {
+            super.onBackPressed()
+        }
     }
 
     override fun onBackPressed() {
