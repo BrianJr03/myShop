@@ -3,6 +3,7 @@ package jr.brian.myShop.view.activities
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -158,6 +159,15 @@ class HomeActivity : AppCompatActivity(), CategoryMVP.CategoryView {
     }
 
     override fun onLoad(isLoading: Boolean) {
-
+        when (isLoading) {
+            true -> {
+                binding.animationView.visibility = View.VISIBLE
+                binding.fetchingDataTv.visibility = View.VISIBLE
+            }
+            else -> {
+                binding.animationView.visibility = View.GONE
+                binding.fetchingDataTv.visibility = View.GONE
+            }
+        }
     }
 }

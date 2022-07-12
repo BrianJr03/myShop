@@ -26,7 +26,7 @@
             android:name="jr.brian.myShop.view.activities.HomeActivity"
             android:exported="true" />
         <activity
-            android:name="jr.brian.myShop.view.activities.CategoryActivity"
+            android:name="jr.brian.myShop.view.activities.SubCategoryActivity"
             android:exported="false" />
     </application>
 

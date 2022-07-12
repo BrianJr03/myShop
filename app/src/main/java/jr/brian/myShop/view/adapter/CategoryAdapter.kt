@@ -43,8 +43,4 @@ class CategoryAdapter(private val context: Context, private val categories: List
             }
         }
     }
-
-    companion object {
-        const val CATEGORY_DATA = "note"
-    }
 }
