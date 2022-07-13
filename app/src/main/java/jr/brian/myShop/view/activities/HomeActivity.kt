@@ -14,11 +14,11 @@ import jr.brian.myShop.databinding.ActivityHomeBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.Category
 import jr.brian.myShop.model.remote.Inventory
-import jr.brian.myShop.model.remote.User
 import jr.brian.myShop.model.remote.VolleyHelper
 import jr.brian.myShop.presenter.category_presenter.CategoryMVP
 import jr.brian.myShop.presenter.category_presenter.CategoryPresenter
 import jr.brian.myShop.view.adapter.CategoryAdapter
+import jr.brian.myShop.view.auth_fragments.SignUpFragment
 import jr.brian.myShop.view.main.LandingActivity
 
 class HomeActivity : AppCompatActivity(), CategoryMVP.CategoryView {
@@ -83,10 +83,11 @@ class HomeActivity : AppCompatActivity(), CategoryMVP.CategoryView {
         val fullNameTv = navView.findViewById<TextView>(R.id.full_name_tv)
         val emailTv = navView.findViewById<TextView>(R.id.email_tv)
         val mobileNoTv = navView.findViewById<TextView>(R.id.mobileNo_tv)
-        val user = intent.extras?.getParcelable<User>("USER")
-        fullNameTv.text = user?.fullName
-        emailTv.text = user?.emailId
-        mobileNoTv.text = user?.mobileNo
+        SharedPrefHelper(this).apply {
+            fullNameTv.text = encryptedSharedPrefs.getString(SignUpFragment.FULL_NAME, "Full Name")
+            emailTv.text = encryptedSharedPrefs.getString(SignUpFragment.EMAIL, "Email")
+            mobileNoTv.text = encryptedSharedPrefs.getString(SignUpFragment.MOBILE_NO, "Mobile No")
+        }
     }
 
     private fun initListeners() {
