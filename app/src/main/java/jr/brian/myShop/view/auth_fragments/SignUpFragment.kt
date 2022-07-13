@@ -24,7 +24,6 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     private lateinit var intent: Intent
     private lateinit var presenter: SignUpMVP.SignUpPresenter
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
