@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken
 import jr.brian.myShop.model.remote.Constant.BASE_URL
 import jr.brian.myShop.model.remote.Constant.CATEGORY_EP
 import jr.brian.myShop.model.remote.Constant.ERROR_TAG
+import jr.brian.myShop.model.remote.Constant.GET_SUB_CATEGORY_BY_ID_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_IN_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_UP_EP
 import org.json.JSONObject
@@ -27,6 +28,19 @@ class VolleyHelper(context: Context) {
             val typeToken = object : TypeToken<Inventory>() {}
             val gson = Gson()
             val response: Inventory = gson.fromJson(it, typeToken.type)
+            callback.onSuccess(response)
+            Log.i("RESPONSE_SUCCESS", response.toString())
+        }, { Log.i("RESPONSE_FAIL", it.toString()) }) {
+        }
+        requestQueue.add(strRequest)
+    }
+
+    fun getSubCategories(categoryId: String, callback: OperationalCallback) {
+        val url = BASE_URL + GET_SUB_CATEGORY_BY_ID_EP + categoryId
+        val strRequest = object : StringRequest(url, {
+            val typeToken = object : TypeToken<SubCategories>() {}
+            val gson = Gson()
+            val response: SubCategories = gson.fromJson(it, typeToken.type)
             callback.onSuccess(response)
             Log.i("RESPONSE_SUCCESS", response.toString())
         }, { Log.i("RESPONSE_FAIL", it.toString()) }) {

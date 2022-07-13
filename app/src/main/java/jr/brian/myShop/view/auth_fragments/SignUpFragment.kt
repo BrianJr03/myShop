@@ -34,7 +34,7 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
-        intent = Intent(view.context, HomeActivity::class.java)
+        intent = Intent(view.context, CategoryActivity::class.java)
     }
 
     private fun initView(view: View) {
