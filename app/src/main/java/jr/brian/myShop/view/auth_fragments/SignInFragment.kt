@@ -75,11 +75,11 @@ class SignInFragment : Fragment(), SignInMVP.SignInView {
     }
 
     override fun onLoad(isLoading: Boolean) {
-        val cpb = view?.findViewById<ProgressBar>(R.id.progress_bar_signIn)
+        val pb = view?.findViewById<ProgressBar>(R.id.progress_bar_signIn)
         if (isLoading) {
-            cpb?.visibility = View.VISIBLE
+            pb?.visibility = View.VISIBLE
         } else {
-            cpb?.visibility = View.GONE
+            pb?.visibility = View.GONE
         }
     }
 

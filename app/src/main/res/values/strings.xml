@@ -48,4 +48,6 @@
     <string name="versionNo">myShop v1.0</string>
     <string name="fetching_data">Fetching Data …</string>
     <string name="categories">Categories</string>
+    <string name="error">error</string>
+    <string name="no_data_for_this_subcategory">No data for this subcategory</string>
 </resources>

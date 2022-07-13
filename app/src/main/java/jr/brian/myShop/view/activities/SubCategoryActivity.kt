@@ -1,7 +1,7 @@
 package jr.brian.myShop.view.activities
 
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import jr.brian.myShop.databinding.ActivitySubCategoryBinding
@@ -37,7 +37,7 @@ class SubCategoryActivity : AppCompatActivity(), SubCategoryMVP.SubCategoryView 
         initViews()
     }
 
-    private fun initTabLayout(subList:  ArrayList<SubCategory>) {
+    private fun initTabLayout(subList: ArrayList<SubCategory>) {
         for (sub in subList) {
             tabs.add(sub.subcategory_name)
         }
@@ -70,10 +70,21 @@ class SubCategoryActivity : AppCompatActivity(), SubCategoryMVP.SubCategoryView 
             if (sub.subcategories.isNotEmpty()) {
                 initViewPager(sub.subcategories.size)
                 initTabLayout(sub.subcategories)
+            } else {
+                binding.apply {
+                    errorIcon.visibility = View.VISIBLE
+                    errorText.visibility = View.VISIBLE
+                }
             }
         }
     }
 
     override fun onLoad(isLoading: Boolean) {
+        val pb = binding.pbSubCategory
+        if (isLoading) {
+            pb.visibility = View.VISIBLE
+        } else {
+            pb.visibility = View.GONE
+        }
     }
 }
