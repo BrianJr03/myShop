@@ -34,32 +34,39 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
+        intent = Intent(view.context, HomeActivity::class.java)
     }
 
     private fun initView(view: View) {
         presenter = SignUpPresenter(SharedPrefHelper(view.context), this)
         val signUpBtn = view.findViewById<Button>(R.id.sign_up_btn)
-        val fullName = view.findViewById<EditText>(R.id.fullName_et).text.toString()
-        val mobileNo = view.findViewById<EditText>(R.id.mobileNo_et).text.toString()
-        val email = view.findViewById<EditText>(R.id.email_et).text.toString()
-        val password = view.findViewById<EditText>(R.id.password_et).text.toString()
-        val cPassword = view.findViewById<EditText>(R.id.cPassword_et).text.toString()
+        val fullName = view.findViewById<EditText>(R.id.fullName_et).text
+        val mobileNo = view.findViewById<EditText>(R.id.mobileNo_et).text
+        val email = view.findViewById<EditText>(R.id.email_et).text
+        val password = view.findViewById<EditText>(R.id.password_et).text
+        val cPassword = view.findViewById<EditText>(R.id.cPassword_et).text
         signUpBtn.setOnClickListener {
-            if (email.isEmpty()
-                || password.isEmpty()
-                || cPassword.isEmpty()
-                || fullName.isEmpty()
-                || mobileNo.isEmpty()
+            if (email.toString().isNotEmpty()
+                || password.toString().isNotEmpty()
+                || cPassword.toString().isNotEmpty()
+                || fullName.toString().isNotEmpty()
+                || mobileNo.toString().isNotEmpty()
             ) {
-                if (password == cPassword) {
-                    intent = Intent(view.context, HomeActivity::class.java)
-                    val user = User(email, fullName, mobileNo, password, "")
+                if (password.toString() == cPassword.toString()) {
+                    val user = User(
+                        email.toString(),
+                        fullName.toString(),
+                        mobileNo.toString(),
+                        password.toString(),
+                        ""
+                    )
+                    intent.putExtra("USER", user)
                     (presenter as SignUpPresenter).signUpUser(
                         user,
                         view
                     )
                 } else showSnackbar("Passwords do not match", view)
-            } else showSnackbar("Please ensure all fields aren't empty", view)
+            } else showSnackbar("Ensure fields are not empty", view)
         }
     }
 

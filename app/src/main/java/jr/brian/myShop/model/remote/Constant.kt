@@ -19,4 +19,5 @@ object Constant {
 
     const val SIGN_UP_TAG = "SIGNUP"
     const val SIGN_IN_TAG = "SIGNIN"
+    const val ERROR_TAG = "ERROR"
 }

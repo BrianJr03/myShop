@@ -44,21 +44,6 @@ class SharedPrefHelper(context: Context) {
         }
     }
 
-    fun verifySignIn(user: User, callback: OperationalCallback) {
-        apply {
-//            if (user.emailId.isNotEmpty() && user.password.isNotEmpty()) {
-                if (encryptedSharedPrefs.contains(SignInFragment.EMAIL)
-                    && encryptedSharedPrefs.contains(SignInFragment.PASSWORD)
-                ) {
-                    volleyHelper.signInUser(user, callback)
-                    callback.onSuccess("Success")
-                } else {
-                    callback.onFailure("Failure")
-                }
-//            } else callback.onFailure("Empty")
-        }
-    }
-
     fun signOut() {
         editor.apply {
             clear()

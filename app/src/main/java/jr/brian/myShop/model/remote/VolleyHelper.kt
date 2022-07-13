@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import jr.brian.myShop.model.remote.Constant.BASE_URL
 import jr.brian.myShop.model.remote.Constant.CATEGORY_EP
+import jr.brian.myShop.model.remote.Constant.ERROR_TAG
 import jr.brian.myShop.model.remote.Constant.SIGN_IN_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_UP_EP
 import org.json.JSONObject
@@ -47,9 +48,7 @@ class VolleyHelper(context: Context) {
             Request.Method.POST, url, data,
             { response: JSONObject ->
                 message = response.getString("message")
-                Log.i("tag", message.toString())
                 val status = response.getInt("status")
-                Log.e("tag", "message is $message")
                 if (status == 0) {
                     callback.onSuccess(message.toString())
                 } else {
@@ -58,7 +57,7 @@ class VolleyHelper(context: Context) {
 
             }, { error: VolleyError ->
                 error.printStackTrace()
-                Log.i("tag", "${error.printStackTrace()}")
+                Log.i(ERROR_TAG, "${error.printStackTrace()}")
                 callback.onFailure(message.toString())
             })
         requestQueue.add(request)
@@ -77,9 +76,7 @@ class VolleyHelper(context: Context) {
             Request.Method.POST, url, data,
             { response: JSONObject ->
                 message = response.getString("message")
-                Log.i("tag", message.toString())
                 val status = response.getInt("status")
-                Log.e("tag", "message is $message")
                 if (status == 0) {
                     val responseUser = response.getJSONObject("user")
                     user.userId = responseUser.getString("user_id")
@@ -91,7 +88,7 @@ class VolleyHelper(context: Context) {
                 }
             }, { error: VolleyError ->
                 error.printStackTrace()
-                Log.i("tag", "${error.printStackTrace()}")
+                Log.i(ERROR_TAG,"${error.printStackTrace()}")
                 callback.onFailure(message.toString())
             })
         requestQueue.add(request)
