@@ -3,6 +3,7 @@ package jr.brian.myShop.presenter.sign_up_presenter
 import android.view.View
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.OperationalCallback
+import jr.brian.myShop.model.remote.User
 
 class SignUpPresenter(
     private var sharedPrefHelper: SharedPrefHelper,
@@ -10,20 +11,14 @@ class SignUpPresenter(
 ) : SignUpMVP.SignUpPresenter {
 
     override fun signUpUser(
-        fullName: String,
-        mobileNo: String,
-        email: String,
-        password: String,
+        user: User,
         view: View
     ): String {
         var status = ""
         registrationView.onLoad(true)
         sharedPrefHelper = SharedPrefHelper(view.context)
         sharedPrefHelper.saveUserInDB(
-            fullName,
-            mobileNo,
-            email,
-            password,
+            user,
             object : OperationalCallback {
                 override fun onSuccess(message: Any) {
                     status = message as String

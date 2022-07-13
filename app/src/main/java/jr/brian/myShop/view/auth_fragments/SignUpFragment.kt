@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
 import jr.brian.myShop.model.local.SharedPrefHelper
+import jr.brian.myShop.model.remote.Constant.SIGN_UP_TAG
+import jr.brian.myShop.model.remote.User
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpMVP
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpPresenter
 import jr.brian.myShop.view.activities.CategoryActivity
@@ -21,7 +23,6 @@ import jr.brian.myShop.view.activities.CategoryActivity
 class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     private lateinit var intent: Intent
     private lateinit var presenter: SignUpMVP.SignUpPresenter
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,32 +34,39 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
+        intent = Intent(view.context, HomeActivity::class.java)
     }
 
     private fun initView(view: View) {
         presenter = SignUpPresenter(SharedPrefHelper(view.context), this)
         val signUpBtn = view.findViewById<Button>(R.id.sign_up_btn)
-        val fullNameEt = view.findViewById<EditText>(R.id.fullName_et)
-        val mobileNoEt = view.findViewById<EditText>(R.id.mobileNo_et)
-        val emailEt = view.findViewById<EditText>(R.id.email_et)
-        val passwordEt = view.findViewById<EditText>(R.id.password_et)
-        val cPasswordEt = view.findViewById<EditText>(R.id.cPassword_et)
+        val fullName = view.findViewById<EditText>(R.id.fullName_et).text
+        val mobileNo = view.findViewById<EditText>(R.id.mobileNo_et).text
+        val email = view.findViewById<EditText>(R.id.email_et).text
+        val password = view.findViewById<EditText>(R.id.password_et).text
+        val cPassword = view.findViewById<EditText>(R.id.cPassword_et).text
         signUpBtn.setOnClickListener {
-            if (emailEt.text.isNotEmpty()
-                || passwordEt.text.isNotEmpty()
-                || cPasswordEt.text.isNotEmpty()
+            if (email.toString().isNotEmpty()
+                || password.toString().isNotEmpty()
+                || cPassword.toString().isNotEmpty()
+                || fullName.toString().isNotEmpty()
+                || mobileNo.toString().isNotEmpty()
             ) {
-                if (passwordEt.text.toString() == cPasswordEt.text.toString()) {
-                    intent = Intent(view.context, CategoryActivity::class.java)
-                    presenter.signUpUser(
-                        fullNameEt.text.toString(),
-                        mobileNoEt.text.toString(),
-                        emailEt.text.toString(),
-                        passwordEt.text.toString(),
+                if (password.toString() == cPassword.toString()) {
+                    val user = User(
+                        email.toString(),
+                        fullName.toString(),
+                        mobileNo.toString(),
+                        password.toString(),
+                        ""
+                    )
+                    intent.putExtra("USER", user)
+                    (presenter as SignUpPresenter).signUpUser(
+                        user,
                         view
                     )
                 } else showSnackbar("Passwords do not match", view)
-            } else showSnackbar("Please ensure all fields aren't empty", view)
+            } else showSnackbar("Ensure fields are not empty", view)
         }
     }
 
@@ -80,7 +88,7 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     }
 
     override fun setResult(msg: String) {
-        Log.i("RESULT", msg)
+        Log.i(SIGN_UP_TAG, msg)
     }
 
     override fun onLoad(isLoading: Boolean) {

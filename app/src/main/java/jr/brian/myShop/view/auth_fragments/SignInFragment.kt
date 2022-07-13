@@ -11,8 +11,11 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
-import jr.brian.myShop.model.local.SharedPrefHelper
+import jr.brian.myShop.model.remote.Constant.SIGN_IN_TAG
+import jr.brian.myShop.model.remote.User
+import jr.brian.myShop.model.remote.VolleyHelper
 import jr.brian.myShop.presenter.sign_in_presenter.SignInMVP
 import jr.brian.myShop.presenter.sign_in_presenter.SignInPresenter
 import jr.brian.myShop.view.activities.CategoryActivity
@@ -26,11 +29,21 @@ class SignInFragment : Fragment(), SignInMVP.SignInView {
     }
 
     private fun initView(view: View) {
-        presenter = SignInPresenter(SharedPrefHelper(view.context), this)
-        val email = view.findViewById<EditText>(R.id.email_et_signIn).text.toString()
-        val password = view.findViewById<EditText>(R.id.password_et_signIn).text.toString()
+        presenter = SignInPresenter(VolleyHelper(view.context), this)
+        val email = view.findViewById<EditText>(R.id.email_et_signIn).text
+        val password = view.findViewById<EditText>(R.id.password_et_signIn).text
+        val user = User(
+            emailId = email.toString(),
+            "",
+            "",
+            password = password.toString(),
+            "")
         view.findViewById<Button>(R.id.signInBTN).setOnClickListener {
-            presenter.signInUser(email, password, view)
+            if (email.isEmpty() || password.isEmpty()) {
+                showSnackbar("Ensure fields are not empty")
+            } else {
+                (presenter as SignInPresenter).signInUser(user, view)
+            }
         }
     }
 
@@ -48,11 +61,21 @@ class SignInFragment : Fragment(), SignInMVP.SignInView {
     }
 
     override fun setResult(msg: String) {
-        Log.i("RESULT", msg)
+        Log.i(SIGN_IN_TAG, msg)
+        showSnackbar(msg)
+    }
+
+    private fun showSnackbar(msg: String) {
+        activity?.let {
+            Snackbar.make(
+                it.findViewById(android.R.id.content),
+                msg, Snackbar.LENGTH_LONG
+            ).show()
+        }
     }
 
     override fun onLoad(isLoading: Boolean) {
-        val cpb = view?.findViewById<ProgressBar>(R.id.progress_bar_signUp)
+        val cpb = view?.findViewById<ProgressBar>(R.id.progress_bar_signIn)
         if (isLoading) {
             cpb?.visibility = View.VISIBLE
         } else {

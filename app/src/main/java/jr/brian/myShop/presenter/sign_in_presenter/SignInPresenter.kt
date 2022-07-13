@@ -2,23 +2,23 @@ package jr.brian.myShop.presenter.sign_in_presenter
 
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
-import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.OperationalCallback
+import jr.brian.myShop.model.remote.User
+import jr.brian.myShop.model.remote.VolleyHelper
 
 class SignInPresenter(
-    private var sharedPrefHelper: SharedPrefHelper,
+    private var volleyHelper: VolleyHelper,
     private val registrationView: SignInMVP.SignInView
 ) : SignInMVP.SignInPresenter {
 
     override fun signInUser(
-        email: String,
-        password: String,
+        user: User,
         view: View
     ): String {
         var status = ""
         registrationView.onLoad(true)
-        sharedPrefHelper = SharedPrefHelper(view.context)
-        sharedPrefHelper.verifySignIn(email, password, object : OperationalCallback {
+        volleyHelper = VolleyHelper(view.context)
+        volleyHelper.signInUser(user, object : OperationalCallback {
             override fun onSuccess(message: Any) {
                 status = message as String
                 registrationView.apply {
@@ -30,15 +30,14 @@ class SignInPresenter(
 
             override fun onFailure(message: String) {
                 status = message
-                if (message == "Empty") {
-                    showSnackbar("Ensure all fields aren't empty", view)
-                } else {
                     registrationView.apply {
                         onLoad(false)
                         setResult(message)
-                        showSnackbar("Account not found. Please sign up.", view)
+//                        showSnackbar(
+//                            "Failed to login. Please check your email id or password.",
+//                            view
+//                        )
                     }
-                }
             }
         })
         return status
