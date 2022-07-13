@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="jr.brian.myShop.view.activities.HomeActivity"
+            android:name="jr.brian.myShop.view.activities.CategoryActivity"
             android:exported="true" />
         <activity
             android:name="jr.brian.myShop.view.activities.SubCategoryActivity"

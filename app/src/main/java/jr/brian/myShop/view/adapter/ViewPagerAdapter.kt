@@ -1,33 +1,22 @@
 package jr.brian.myShop.view.adapter
 
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import jr.brian.myShop.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import jr.brian.myShop.view.sub_category_fragments.SubCategoryOneFragment
+import jr.brian.myShop.view.sub_category_fragments.SubCategoryThreeFragment
+import jr.brian.myShop.view.sub_category_fragments.SubCategoryTwoFragment
 
-class ViewPagerAdapter(private val context: Context, private val images: ArrayList<String>) :
-    RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
+class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val totalCount: Int) :
+    FragmentStateAdapter(fragmentActivity) {
+    override fun getItemCount() = totalCount
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewPagerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.vp_item, parent, false)
-        return ViewPagerViewHolder(view)
-    }
-
-    override fun getItemCount() = images.size
-
-    override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
-        holder.apply {
-            bind()
+    override fun createFragment(position: Int): Fragment {
+        return when (position) {
+            0 -> SubCategoryOneFragment()
+            1 -> SubCategoryTwoFragment()
+            else -> SubCategoryThreeFragment()
         }
     }
 
-    inner class ViewPagerViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
-        fun bind() {
-            val textView = v.findViewById<TextView>(R.id.textItem_vp)
-            textView.text = images[layoutPosition]
-        }
-    }
 }
