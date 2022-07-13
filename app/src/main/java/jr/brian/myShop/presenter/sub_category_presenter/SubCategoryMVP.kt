@@ -1,6 +1,6 @@
 package jr.brian.myShop.presenter.sub_category_presenter
 
-import jr.brian.myShop.model.remote.SubCategories
+import jr.brian.myShop.model.remote.Sub
 
 interface SubCategoryMVP {
     interface SubCategoryPresenter {
@@ -8,7 +8,7 @@ interface SubCategoryMVP {
     }
 
     interface SubCategoryView {
-        fun setResult(subCategories: SubCategories?)
+        fun setResult(sub: Sub?)
         fun onLoad(isLoading: Boolean)
     }
 }

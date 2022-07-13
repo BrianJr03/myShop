@@ -1,7 +1,7 @@
 package jr.brian.myShop.presenter.sub_category_presenter
 
 import jr.brian.myShop.model.remote.OperationalCallback
-import jr.brian.myShop.model.remote.SubCategories
+import jr.brian.myShop.model.remote.Sub
 import jr.brian.myShop.model.remote.VolleyHelper
 
 class SubCategoryPresenter(
@@ -16,7 +16,7 @@ class SubCategoryPresenter(
             object : OperationalCallback {
                 override fun onSuccess(message: Any) {
                     subCategoryView.onLoad(false)
-                    subCategoryView.setResult(message as SubCategories)
+                    subCategoryView.setResult(message as Sub)
                 }
 
                 override fun onFailure(message: String) {

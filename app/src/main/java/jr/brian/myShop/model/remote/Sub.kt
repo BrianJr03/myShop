@@ -1,7 +1,7 @@
 package jr.brian.myShop.model.remote
 
-data class SubCategories(
+data class Sub(
     val message: String,
     val status: Int,
-    val subcategories: List<SubCategory>
+    val subcategories: ArrayList<SubCategory>
 )

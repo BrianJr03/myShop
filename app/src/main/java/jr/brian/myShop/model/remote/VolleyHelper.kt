@@ -38,9 +38,9 @@ class VolleyHelper(context: Context) {
     fun getSubCategories(categoryId: String, callback: OperationalCallback) {
         val url = BASE_URL + GET_SUB_CATEGORY_BY_ID_EP + categoryId
         val strRequest = object : StringRequest(url, {
-            val typeToken = object : TypeToken<SubCategories>() {}
+            val typeToken = object : TypeToken<Sub>() {}
             val gson = Gson()
-            val response: SubCategories = gson.fromJson(it, typeToken.type)
+            val response: Sub = gson.fromJson(it, typeToken.type)
             callback.onSuccess(response)
             Log.i("RESPONSE_SUCCESS", response.toString())
         }, { Log.i("RESPONSE_FAIL", it.toString()) }) {
