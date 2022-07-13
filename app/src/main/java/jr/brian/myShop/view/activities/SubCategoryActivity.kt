@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import jr.brian.myShop.databinding.ActivitySubCategoryBinding
 import jr.brian.myShop.model.remote.Category
-import jr.brian.myShop.model.remote.Constant.SUB_CATEGORY
+import jr.brian.myShop.model.remote.Constant.SUB_CATEGORY_KEY
 import jr.brian.myShop.model.remote.Sub
 import jr.brian.myShop.model.remote.SubCategory
 import jr.brian.myShop.model.remote.VolleyHelper
@@ -30,7 +30,7 @@ class SubCategoryActivity : AppCompatActivity(), SubCategoryMVP.SubCategoryView 
     }
 
     private fun init() {
-        category = intent.extras?.getParcelable(SUB_CATEGORY)!!
+        category = intent.extras?.getParcelable(SUB_CATEGORY_KEY)!!
         tabs = ArrayList()
         presenter = SubCategoryPresenter(VolleyHelper(this), this)
         presenter.getSubCategories(category.category_id)
