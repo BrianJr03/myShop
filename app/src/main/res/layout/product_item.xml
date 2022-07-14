@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_115dp"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/_10dp"
     android:padding="@dimen/_10dp"
     app:cardBackgroundColor="@color/blueish_idk"
@@ -13,8 +13,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/c_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/category_card_color_selector">
+        android:layout_height="wrap_content"
+        android:background="@drawable/category_card_color_selector"
+        android:padding="@dimen/_10dp">
 
         <ImageView
             android:id="@+id/product_image"
@@ -24,68 +25,66 @@
             android:src="@drawable/phone_50"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.325" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5dp"
             android:layout_marginBottom="@dimen/_10dp"
             android:text="@string/example_product_name"
             android:textColor="@color/white"
             android:textSize="@dimen/date_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/product_image" />
+            app:layout_constraintStart_toEndOf="@id/product_image"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:layout_marginStart="@dimen/_5dp"
             android:id="@+id/product_descr"
             android:layout_width="255dp"
             android:layout_height="45dp"
-            android:text="@string/example_product_title"
+            android:text="@string/example_product_descr"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@id/product_price"
-            app:layout_constraintEnd_toEndOf="@id/product_rating"
-            app:layout_constraintStart_toStartOf="@id/product_name"
-            app:layout_constraintTop_toBottomOf="@id/product_name" />
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/product_image"
+            app:layout_constraintTop_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/product_add_to_cart"
-            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:clickable="true"
             android:text="@string/add_to_cart"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/product_image"
-            app:layout_constraintEnd_toEndOf="@id/product_descr" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5dp"
             android:layout_marginTop="32dp"
             android:text="@string/example_product_price"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/product_image"
-            app:layout_constraintStart_toStartOf="@id/product_descr" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/product_image" />
 
         <RatingBar
             android:id="@+id/product_rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_10dp"
             android:numStars="5"
             android:progressTint="@color/gold"
             android:rating="4"
-            app:layout_constraintBottom_toBottomOf="@id/product_name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/product_name" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

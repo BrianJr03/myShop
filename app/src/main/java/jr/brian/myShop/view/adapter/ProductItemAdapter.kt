@@ -52,9 +52,9 @@ class ProductItemAdapter(
     inner class ProductItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         fun bind(productItem: ProductItem) {
             binding.apply {
-                Glide.with(context)
-                    .load(BASE_IMAGE_URL + productItem.product_image_url)
-                    .into(productImage)
+//                Glide.with(context)
+//                    .load(BASE_IMAGE_URL + productItem.product_image_url)
+//                    .into(productImage)
                 productName.text = productItem.product_name
                 productDescr.text = productItem.description
                 productPrice.text = productItem.price

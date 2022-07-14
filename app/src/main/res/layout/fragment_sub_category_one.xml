@@ -7,7 +7,7 @@
     tools:context=".view.sub_category_fragments.SubCategoryOneFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recycler_view_product_item"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_0dp"
         app:layout_constraintTop_toTopOf="parent"
