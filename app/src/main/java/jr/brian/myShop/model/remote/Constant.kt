@@ -24,4 +24,5 @@ object Constant {
     const val ERROR_TAG = "ERROR"
 
     const val SUB_CATEGORY_KEY= "SUB_CATEGORY"
+    const val PRODUCT_ITEM_KEY = "PRODUCT_ITEM"
 }

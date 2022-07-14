@@ -50,4 +50,8 @@
     <string name="categories">Categories</string>
     <string name="error">error</string>
     <string name="no_data_for_this_subcategory">No data for this subcategory</string>
+    <string name="example_product_name">RealMe Nazro 50</string>
+    <string name="example_product_title">RealMe Nazro 50 (Speed Blue, 4GB RAM + 64GB Storage) Helio G96 Processor | 50MP AI Triple Camera</string>
+    <string name="example_product_price">$200</string>
+    <string name="add_to_cart">ADD TO CART</string>
 </resources>
