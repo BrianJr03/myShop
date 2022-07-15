@@ -12,4 +12,6 @@
     <color name="green">#4CAF50</color>
     <color name="red">#800D0D</color>
     <color name="transparent_bg_color">#0053A99A</color>
+    <color name="darkGrey">#212121</color>
+    <color name="gold">#FFD700</color>
 </resources>

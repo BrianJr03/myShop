@@ -47,4 +47,11 @@
     <string name="category_image">category_image</string>
     <string name="versionNo">myShop v1.0</string>
     <string name="fetching_data">Fetching Data …</string>
+    <string name="categories">Categories</string>
+    <string name="error">error</string>
+    <string name="no_data_for_this_subcategory">No data for this subcategory</string>
+    <string name="example_product_name">RealMe Nazro 50</string>
+    <string name="example_product_descr">RealMe Nazro 50\nHelio G96 Processor\n64GB Storage</string>
+    <string name="example_product_price">$200</string>
+    <string name="add_to_cart">ADD TO CART</string>
 </resources>
