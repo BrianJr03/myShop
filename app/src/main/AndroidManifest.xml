@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="jr.brian.myShop">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,7 +16,7 @@
         android:theme="@style/Theme.MyNotesNative"
         tools:targetApi="31">
         <activity
-            android:name="jr.brian.myShop.view.main.LandingActivity"
+            android:name=".view.activities.StartUpActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,10 +25,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="jr.brian.myShop.view.activities.CategoryActivity"
+            android:name="jr.brian.myShop.view.main.LandingActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".view.activities.CategoryActivity"
             android:exported="true" />
         <activity
-            android:name="jr.brian.myShop.view.activities.SubCategoryActivity"
+            android:name=".view.activities.SubCategoryActivity"
             android:exported="false" />
     </application>
 
