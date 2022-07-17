@@ -7,18 +7,21 @@
     android:layout_gravity="center"
     android:background="@color/transparent_bg_color">
 
-    <ProgressBar
-        android:id="@+id/progress_bar_signIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="125dp"
+        android:layout_height="117dp"
         android:visibility="gone"
-        app:indicatorColor="@color/blueish_idk"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/shopping_icon_2000x1600" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/email_et_signIn"
         android:layout_width="@dimen/_250dp"
         android:layout_height="wrap_content"
@@ -32,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/password_et_signIn"
         android:layout_width="@dimen/_250dp"
         android:layout_height="wrap_content"
@@ -46,7 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signInBTN"
         android:layout_width="@dimen/_250dp"
         android:layout_height="wrap_content"

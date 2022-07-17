@@ -7,20 +7,19 @@
     android:layout_margin="10dp"
     tools:context=".view.activities.SubCategoryActivity">
 
-    <ImageView
-        android:visibility="gone"
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/error_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/error"
         android:src="@drawable/error_30"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/error_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,11 +27,12 @@
         android:text="@string/no_data_for_this_subcategory"
         android:textColor="@color/blueish_idk"
         android:textSize="@dimen/_25sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/error_icon"/>
+        app:layout_constraintTop_toBottomOf="@id/error_icon" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

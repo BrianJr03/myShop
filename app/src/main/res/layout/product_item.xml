@@ -13,11 +13,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/c_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_115dp"
         android:background="@drawable/category_card_color_selector"
         android:padding="@dimen/_10dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/product_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,22 +40,23 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_marginStart="@dimen/_5dp"
             android:id="@+id/product_descr"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5dp"
             android:text="@string/example_product_descr"
             android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="parent"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/product_price"
             app:layout_constraintStart_toEndOf="@id/product_image"
-            app:layout_constraintTop_toBottomOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/product_name" />
 
         <TextView
             android:id="@+id/product_add_to_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:background="@drawable/add_to_cart_selector"
             android:clickable="true"
             android:text="@string/add_to_cart"
             android:textColor="@color/white"
@@ -86,7 +87,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/product_dollar_sign" />
 
-        <RatingBar
+        <androidx.appcompat.widget.AppCompatRatingBar
             android:id="@+id/product_rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
