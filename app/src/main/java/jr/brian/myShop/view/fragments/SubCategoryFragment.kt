@@ -1,4 +1,4 @@
-package jr.brian.myShop.view.sub_category_fragment
+package jr.brian.myShop.view.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import jr.brian.myShop.databinding.FragmentSubCategoryBinding
 import jr.brian.myShop.model.remote.Constant.SUB_CATEGORY_KEY
-import jr.brian.myShop.model.remote.Product
-import jr.brian.myShop.model.remote.ProductItem
-import jr.brian.myShop.model.remote.VolleyHelper
+import jr.brian.myShop.model.remote.product.Product
+import jr.brian.myShop.model.remote.product.ProductItem
+import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.sub_category_presenter.SubCategoryMVP
 import jr.brian.myShop.presenter.sub_category_presenter.SubCategoryPresenter
 import jr.brian.myShop.view.adapter.ProductItemAdapter
@@ -52,7 +52,7 @@ class SubCategoryFragment : Fragment(), SubCategoryMVP.SubCategoryView {
                 errorText.visibility = View.VISIBLE
             }
         } else {
-            productItemAdapter = ProductItemAdapter(productItems)
+            productItemAdapter = ProductItemAdapter(requireContext(), productItems)
             binding.recyclerViewProductItem.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = productItemAdapter

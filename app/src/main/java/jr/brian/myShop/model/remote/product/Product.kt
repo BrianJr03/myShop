@@ -1,4 +1,4 @@
-package jr.brian.myShop.model.remote
+package jr.brian.myShop.model.remote.product
 
 data class Product(
     val message: String,

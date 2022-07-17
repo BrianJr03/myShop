@@ -16,6 +16,9 @@
         android:theme="@style/Theme.MyNotesNative"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.ProductDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.StartUpActivity"
             android:exported="true">
             <intent-filter>
@@ -26,8 +29,7 @@
         </activity>
         <activity
             android:name="jr.brian.myShop.view.main.LandingActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false"/>
         <activity
             android:name=".view.activities.CategoryActivity"
             android:exported="true" />

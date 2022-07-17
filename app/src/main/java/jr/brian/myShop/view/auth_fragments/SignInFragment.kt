@@ -14,8 +14,8 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
 import jr.brian.myShop.model.remote.Constant.SIGN_IN_TAG
-import jr.brian.myShop.model.remote.User
-import jr.brian.myShop.model.remote.VolleyHelper
+import jr.brian.myShop.model.remote.user.User
+import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.sign_in_presenter.SignInMVP
 import jr.brian.myShop.presenter.sign_in_presenter.SignInPresenter
 import jr.brian.myShop.view.activities.CategoryActivity

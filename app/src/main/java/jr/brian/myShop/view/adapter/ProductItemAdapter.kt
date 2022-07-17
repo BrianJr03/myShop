@@ -1,14 +1,19 @@
 package jr.brian.myShop.view.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import jr.brian.myShop.databinding.ProductItemBinding
-import jr.brian.myShop.model.remote.ProductItem
+import jr.brian.myShop.model.remote.Constant.PRODUCT_ITEM_KEY
+import jr.brian.myShop.model.remote.product.ProductItem
+import jr.brian.myShop.view.activities.ProductDetailActivity
 
 class ProductItemAdapter(
+    private val context: Context,
     private val productItems: List<ProductItem>
 ) :
     RecyclerView.Adapter<ProductItemAdapter.ProductItemViewHolder>() {
@@ -28,7 +33,7 @@ class ProductItemAdapter(
             val productItem = productItems[index]
             bind(productItem)
             itemView.setOnClickListener {
-                startSubCategoryActivity(productItem)
+                startProductDetailActivity(productItem)
             }
             binding.apply {
                 productAddToCart.setOnClickListener {
@@ -64,14 +69,14 @@ class ProductItemAdapter(
         }
     }
 
-    private fun startSubCategoryActivity(productItem: ProductItem) {
-//        val intent =
-//            Intent(context, SubCategoryActivity::class.java)
-//        intent.putExtra(PRODUCT_ITEM_KEY, productItem)
-//        context.startActivity(intent)
+    private fun startProductDetailActivity(productItem: ProductItem) {
+        val intent =
+            Intent(context, ProductDetailActivity::class.java)
+        intent.putExtra(PRODUCT_ITEM_KEY, productItem)
+        context.startActivity(intent)
     }
 
-    inner class ProductItemViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
+    inner class ProductItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         fun bind(productItem: ProductItem) {
             binding.apply {
 //                Glide.with(v.context)

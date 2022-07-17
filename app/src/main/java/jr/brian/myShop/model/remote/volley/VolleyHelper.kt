@@ -1,10 +1,9 @@
-package jr.brian.myShop.model.remote
+package jr.brian.myShop.model.remote.volley
 
 import android.content.Context
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
-import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
@@ -18,6 +17,11 @@ import jr.brian.myShop.model.remote.Constant.GET_PRODUCT_LIST_BY_SUB_CATEGORY_EP
 import jr.brian.myShop.model.remote.Constant.GET_SUB_CATEGORY_BY_ID_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_IN_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_UP_EP
+import jr.brian.myShop.model.remote.OperationalCallback
+import jr.brian.myShop.model.remote.user.User
+import jr.brian.myShop.model.remote.category.Inventory
+import jr.brian.myShop.model.remote.category.Sub
+import jr.brian.myShop.model.remote.product.Product
 import org.json.JSONObject
 
 class VolleyHelper(context: Context) {

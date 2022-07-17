@@ -1,8 +1,8 @@
 package jr.brian.myShop.presenter.category_presenter
 
-import jr.brian.myShop.model.remote.Inventory
+import jr.brian.myShop.model.remote.category.Inventory
 import jr.brian.myShop.model.remote.OperationalCallback
-import jr.brian.myShop.model.remote.VolleyHelper
+import jr.brian.myShop.model.remote.volley.VolleyHelper
 
 class CategoryPresenter(
     private val volleyHelper: VolleyHelper,

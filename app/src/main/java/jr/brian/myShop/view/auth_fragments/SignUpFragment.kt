@@ -15,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.Constant.SIGN_UP_TAG
-import jr.brian.myShop.model.remote.User
+import jr.brian.myShop.model.remote.user.User
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpMVP
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpPresenter
 import jr.brian.myShop.view.activities.CategoryActivity

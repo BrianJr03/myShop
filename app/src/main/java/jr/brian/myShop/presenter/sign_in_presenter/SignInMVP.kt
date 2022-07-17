@@ -1,7 +1,7 @@
 package jr.brian.myShop.presenter.sign_in_presenter
 
 import android.view.View
-import jr.brian.myShop.model.remote.User
+import jr.brian.myShop.model.remote.user.User
 
 interface SignInMVP {
     interface SignInPresenter {

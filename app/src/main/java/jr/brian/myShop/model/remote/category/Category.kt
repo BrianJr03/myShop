@@ -1,4 +1,4 @@
-package jr.brian.myShop.model.remote
+package jr.brian.myShop.model.remote.category
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

@@ -5,9 +5,8 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import jr.brian.myShop.model.remote.OperationalCallback
-import jr.brian.myShop.model.remote.User
-import jr.brian.myShop.model.remote.VolleyHelper
-import jr.brian.myShop.view.auth_fragments.SignInFragment
+import jr.brian.myShop.model.remote.user.User
+import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.view.auth_fragments.SignUpFragment
 
 class SharedPrefHelper(context: Context) {

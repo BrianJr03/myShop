@@ -1,6 +1,6 @@
 package jr.brian.myShop.presenter.category_presenter
 
-import jr.brian.myShop.model.remote.Inventory
+import jr.brian.myShop.model.remote.category.Inventory
 
 interface CategoryMVP {
     interface CategoryPresenter {

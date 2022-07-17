@@ -3,7 +3,7 @@ package jr.brian.myShop.presenter.sign_up_presenter
 import android.view.View
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.OperationalCallback
-import jr.brian.myShop.model.remote.User
+import jr.brian.myShop.model.remote.user.User
 
 class SignUpPresenter(
     private var sharedPrefHelper: SharedPrefHelper,

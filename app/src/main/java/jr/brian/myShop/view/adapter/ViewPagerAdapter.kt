@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import jr.brian.myShop.model.remote.Constant.SUB_CATEGORY_KEY
-import jr.brian.myShop.model.remote.SubCategory
-import jr.brian.myShop.view.sub_category_fragment.SubCategoryFragment
+import jr.brian.myShop.model.remote.category.SubCategory
+import jr.brian.myShop.view.fragments.SubCategoryFragment
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val subCategoryList: List<SubCategory>) :
     FragmentStateAdapter(fragmentActivity) {

@@ -21,7 +21,7 @@
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:contentDescription="@string/category_image"
-            android:src="@drawable/phone_50"
+            android:src="@drawable/phone_90_70"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -3,8 +3,8 @@ package jr.brian.myShop.presenter.sign_in_presenter
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.model.remote.OperationalCallback
-import jr.brian.myShop.model.remote.User
-import jr.brian.myShop.model.remote.VolleyHelper
+import jr.brian.myShop.model.remote.user.User
+import jr.brian.myShop.model.remote.volley.VolleyHelper
 
 class SignInPresenter(
     private var volleyHelper: VolleyHelper,

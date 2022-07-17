@@ -1,4 +1,4 @@
-package jr.brian.myShop.model.remote
+package jr.brian.myShop.model.remote.category
 
 data class SubCategory(
     val category_id: String,

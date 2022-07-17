@@ -1,9 +1,9 @@
 package jr.brian.myShop.presenter.sub_category_presenter
 
 import jr.brian.myShop.model.remote.OperationalCallback
-import jr.brian.myShop.model.remote.Product
-import jr.brian.myShop.model.remote.Sub
-import jr.brian.myShop.model.remote.VolleyHelper
+import jr.brian.myShop.model.remote.product.Product
+import jr.brian.myShop.model.remote.category.Sub
+import jr.brian.myShop.model.remote.volley.VolleyHelper
 
 class SubCategoryPresenter(
     private val volleyHelper: VolleyHelper,
