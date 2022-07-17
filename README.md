@@ -2,8 +2,8 @@
 
 A simple shopping Android app built with Kotlin. 
 
-![myContacts Homepage](https://github.com/BrianJr03/myContacts/blob/master/myContacts_homepage_tiny.jpg)
-![Update Info Dialog](https://github.com/BrianJr03/myContacts/blob/master/updateInfoDialog_tiny.jpg)
+![myContacts Homepage](https://github.com/BrianJr03/myShop/blob/master/myShop_home.jpg)
+![Update Info Dialog](https://github.com/BrianJr03/myShop/blob/master/myShop_home.jpg)
 
 ## Features
 
