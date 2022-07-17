@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.sub_category_fragments.SubCategoryFragment">
+    tools:context=".view.sub_category_fragment.SubCategoryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_product_item"
@@ -43,6 +43,7 @@
         android:id="@+id/animation_view"
         android:layout_width="125dp"
         android:layout_height="117dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"

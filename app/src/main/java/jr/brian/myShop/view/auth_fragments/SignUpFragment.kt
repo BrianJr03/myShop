@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
 import jr.brian.myShop.model.local.SharedPrefHelper
@@ -92,11 +92,12 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     }
 
     override fun onLoad(isLoading: Boolean) {
-        val cpb = view?.findViewById<ProgressBar>(R.id.progress_bar_signUp)
+        val animationView =
+            view?.findViewById<LottieAnimationView>(R.id.animation_view)
         if (isLoading) {
-            cpb?.visibility = View.VISIBLE
+            animationView?.visibility = View.VISIBLE
         } else {
-            cpb?.visibility = View.GONE
+            animationView?.visibility = View.GONE
         }
     }
 

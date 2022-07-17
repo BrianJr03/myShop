@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
 import jr.brian.myShop.model.remote.Constant.SIGN_IN_TAG
@@ -37,7 +37,8 @@ class SignInFragment : Fragment(), SignInMVP.SignInView {
             "",
             "",
             password = password.toString(),
-            "")
+            ""
+        )
         view.findViewById<Button>(R.id.signInBTN).setOnClickListener {
             if (email.isEmpty() || password.isEmpty()) {
                 showSnackbar("Ensure fields are not empty")
@@ -75,11 +76,12 @@ class SignInFragment : Fragment(), SignInMVP.SignInView {
     }
 
     override fun onLoad(isLoading: Boolean) {
-        val pb = view?.findViewById<ProgressBar>(R.id.progress_bar_signIn)
+        val animationView =
+            view?.findViewById<LottieAnimationView>(R.id.animation_view)
         if (isLoading) {
-            pb?.visibility = View.VISIBLE
+            animationView?.visibility = View.VISIBLE
         } else {
-            pb?.visibility = View.GONE
+            animationView?.visibility = View.GONE
         }
     }
 

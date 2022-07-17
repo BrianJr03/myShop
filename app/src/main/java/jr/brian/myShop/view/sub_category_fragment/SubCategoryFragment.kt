@@ -1,4 +1,4 @@
-package jr.brian.myShop.view.sub_category_fragments
+package jr.brian.myShop.view.sub_category_fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -62,9 +62,7 @@ class SubCategoryFragment : Fragment(), SubCategoryMVP.SubCategoryView {
 
     override fun onLoad(isLoading: Boolean) {
         val animationView = binding.animationView
-        if (isLoading) {
-            animationView.visibility = View.VISIBLE
-        } else {
+        if (!isLoading) {
             animationView.visibility = View.GONE
         }
     }
