@@ -24,7 +24,7 @@ A simple shopping Android app built with Kotlin.
   - Once a user is ready, they can check out all items added to their cart. 
   An address can be provided for shipment, and multiple payment methods are available.
 
-- ### Product Saerch
+- ### Product Search
   - A user can chose directly search for items available in myShop.
   
 - ### Clean Architecture
