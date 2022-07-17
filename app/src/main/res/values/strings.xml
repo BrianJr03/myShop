@@ -55,4 +55,5 @@
     <string name="example_product_price">200</string>
     <string name="add_to_cart">ADD TO CART</string>
     <string name="dollar_sign">$</string>
+    <string name="_1">1</string>
 </resources>

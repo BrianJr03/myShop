@@ -3,10 +3,9 @@ package jr.brian.myShop.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import jr.brian.myShop.databinding.ProductItemBinding
-import jr.brian.myShop.model.remote.Constant.BASE_IMAGE_URL
 import jr.brian.myShop.model.remote.ProductItem
 
 class ProductItemAdapter(
@@ -31,8 +30,36 @@ class ProductItemAdapter(
             itemView.setOnClickListener {
                 startSubCategoryActivity(productItem)
             }
-            binding.productAddToCart.setOnClickListener {
-
+            binding.apply {
+                productAddToCart.setOnClickListener {
+                    productAddToCart.visibility = View.GONE
+                    qtyGroup.visibility = View.VISIBLE
+                    if (qtyGroup.isVisible) {
+                        incQtyBtn.setOnClickListener {
+                            var qty = productItem.qty
+                            val price = productItem.price.toInt()
+                            qty++
+                            qtyTv.text = qty.toString()
+                            productItem.qty = qty
+                            productItem.price = (qty * price).toString()
+                        }
+                        decQtyBtn.setOnClickListener {
+                            var qty = productItem.qty
+                            val price = productItem.price.toInt()
+                            qty--
+                            if (qty < 1) {
+                                qty = 1
+                                productItem.qty = 1
+                                productItem.price = price.toString()
+                                productAddToCart.visibility = View.VISIBLE
+                                qtyGroup.visibility = View.GONE
+                            }
+                            qtyTv.text = qty.toString()
+                            productItem.qty = qty
+                            productItem.price = (qty * price).toString()
+                        }
+                    }
+                }
             }
         }
     }
@@ -52,7 +79,7 @@ class ProductItemAdapter(
 //                    .into(productImage)
                 productName.text = productItem.product_name
                 productDescr.text = productItem.description
-                productPrice.text =   productItem.price
+                productPrice.text = productItem.price
                 productRating.rating = productItem.average_rating.toFloat()
             }
         }

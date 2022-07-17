@@ -75,5 +75,10 @@ class SubCategoryActivity : AppCompatActivity(), SubCategoryMVP.SubCategoryView 
         }
     }
 
-    override fun onLoad(isLoading: Boolean) {}
+    override fun onLoad(isLoading: Boolean) {
+        val animationView = binding.animationView
+        if (!isLoading) {
+            animationView.visibility = View.GONE
+        }
+    }
 }
