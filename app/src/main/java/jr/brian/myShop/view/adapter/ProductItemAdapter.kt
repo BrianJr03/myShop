@@ -1,7 +1,5 @@
 package jr.brian.myShop.view.adapter
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import jr.brian.myShop.databinding.ProductItemBinding
 import jr.brian.myShop.model.remote.Constant.BASE_IMAGE_URL
-import jr.brian.myShop.model.remote.Constant.PRODUCT_ITEM_KEY
 import jr.brian.myShop.model.remote.ProductItem
-import jr.brian.myShop.view.activities.SubCategoryActivity
 
 class ProductItemAdapter(
-    private val context: Context,
     private val productItems: List<ProductItem>
 ) :
     RecyclerView.Adapter<ProductItemAdapter.ProductItemViewHolder>() {
@@ -49,15 +44,15 @@ class ProductItemAdapter(
 //        context.startActivity(intent)
     }
 
-    inner class ProductItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    inner class ProductItemViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
         fun bind(productItem: ProductItem) {
             binding.apply {
-//                Glide.with(context)
+//                Glide.with(v.context)
 //                    .load(BASE_IMAGE_URL + productItem.product_image_url)
 //                    .into(productImage)
                 productName.text = productItem.product_name
                 productDescr.text = productItem.description
-                productPrice.text = productItem.price
+                productPrice.text =   productItem.price
                 productRating.rating = productItem.average_rating.toFloat()
             }
         }

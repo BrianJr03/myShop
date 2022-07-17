@@ -42,8 +42,8 @@
         <TextView
             android:layout_marginStart="@dimen/_5dp"
             android:id="@+id/product_descr"
-            android:layout_width="255dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/example_product_descr"
             android:textColor="@color/white"
             android:textSize="12sp"
@@ -64,16 +64,27 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/product_price"
+            android:id="@+id/product_dollar_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5dp"
+            android:layout_marginTop="32dp"
+            android:text="@string/dollar_sign"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/product_image" />
+
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/example_product_price"
             android:textColor="@color/white"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/product_image" />
+            app:layout_constraintStart_toEndOf="@id/product_dollar_sign" />
 
         <RatingBar
             android:id="@+id/product_rating"

@@ -1,21 +1,22 @@
 package jr.brian.myShop.view.adapter
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import jr.brian.myShop.view.sub_category_fragments.SubCategoryOneFragment
-import jr.brian.myShop.view.sub_category_fragments.SubCategoryThreeFragment
-import jr.brian.myShop.view.sub_category_fragments.SubCategoryTwoFragment
+import jr.brian.myShop.model.remote.Constant.SUB_CATEGORY_KEY
+import jr.brian.myShop.model.remote.SubCategory
+import jr.brian.myShop.view.sub_category_fragments.SubCategoryFragment
 
-class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val totalCount: Int) :
+class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val subCategoryList: List<SubCategory>) :
     FragmentStateAdapter(fragmentActivity) {
-    override fun getItemCount() = totalCount
+    override fun getItemCount() = subCategoryList.size
 
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> SubCategoryOneFragment()
-            1 -> SubCategoryTwoFragment()
-            else -> SubCategoryThreeFragment()
+        return SubCategoryFragment().apply {
+            val bundle = Bundle(1)
+            bundle.putString(SUB_CATEGORY_KEY, subCategoryList[position].subcategory_id)
+            this.arguments = bundle
         }
     }
 

@@ -16,7 +16,7 @@ import jr.brian.myShop.view.adapter.ViewPagerAdapter
 
 class SubCategoryActivity : AppCompatActivity(), SubCategoryMVP.SubCategoryView {
 
-    private lateinit var tabs: ArrayList<String>
+    private lateinit var subCategories: ArrayList<SubCategory>
     private lateinit var presenter: SubCategoryPresenter
     private lateinit var binding: ActivitySubCategoryBinding
     private lateinit var category: Category
@@ -31,23 +31,19 @@ class SubCategoryActivity : AppCompatActivity(), SubCategoryMVP.SubCategoryView 
 
     private fun init() {
         category = intent.extras?.getParcelable(SUB_CATEGORY_KEY)!!
-        tabs = ArrayList()
         presenter = SubCategoryPresenter(VolleyHelper(this), this)
         presenter.getSubCategories(category.category_id)
         initViews()
     }
 
-    private fun initTabLayout(subList: ArrayList<SubCategory>) {
-        for (sub in subList) {
-            tabs.add(sub.subcategory_name)
-        }
+    private fun initTabLayout() {
         TabLayoutMediator(binding.tabLayout, binding.pager) { tab, pos ->
-            tab.text = tabs[pos]
+            tab.text = subCategories[pos].subcategory_name
         }.attach()
     }
 
-    private fun initViewPager(tabCount: Int) {
-        val adapter = ViewPagerAdapter(this, tabCount)
+    private fun initViewPager() {
+        val adapter = ViewPagerAdapter(this, subCategories)
         binding.pager.adapter = adapter
     }
 
@@ -65,26 +61,26 @@ class SubCategoryActivity : AppCompatActivity(), SubCategoryMVP.SubCategoryView 
         } else vp.currentItem = vp.currentItem - 1
     }
 
-    override fun setResult(sub: Sub?) {
-        if (sub != null) {
-            if (sub.subcategories.isNotEmpty()) {
-                initViewPager(sub.subcategories.size)
-                initTabLayout(sub.subcategories)
-            } else {
-                binding.apply {
-                    errorIcon.visibility = View.VISIBLE
-                    errorText.visibility = View.VISIBLE
-                }
+    override fun setResult(sub: Any?) {
+        val s = sub as Sub
+        subCategories = s.subcategories
+        if (s.subcategories.isNotEmpty()) {
+            initViewPager()
+            initTabLayout()
+        } else {
+            binding.apply {
+                errorIcon.visibility = View.VISIBLE
+                errorText.visibility = View.VISIBLE
             }
         }
     }
 
     override fun onLoad(isLoading: Boolean) {
-        val pb = binding.pbSubCategory
+        val animationView = binding.animationView
         if (isLoading) {
-            pb.visibility = View.VISIBLE
+            animationView.visibility = View.VISIBLE
         } else {
-            pb.visibility = View.GONE
+            animationView.visibility = View.GONE
         }
     }
 }

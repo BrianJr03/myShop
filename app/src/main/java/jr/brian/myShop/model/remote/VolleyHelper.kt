@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
+import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
@@ -13,6 +14,7 @@ import com.google.gson.reflect.TypeToken
 import jr.brian.myShop.model.remote.Constant.BASE_URL
 import jr.brian.myShop.model.remote.Constant.CATEGORY_EP
 import jr.brian.myShop.model.remote.Constant.ERROR_TAG
+import jr.brian.myShop.model.remote.Constant.GET_PRODUCT_LIST_BY_SUB_CATEGORY_EP
 import jr.brian.myShop.model.remote.Constant.GET_SUB_CATEGORY_BY_ID_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_IN_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_UP_EP
@@ -41,6 +43,19 @@ class VolleyHelper(context: Context) {
             val typeToken = object : TypeToken<Sub>() {}
             val gson = Gson()
             val response: Sub = gson.fromJson(it, typeToken.type)
+            callback.onSuccess(response)
+            Log.i("RESPONSE_SUCCESS", response.toString())
+        }, { Log.i("RESPONSE_FAIL", it.toString()) }) {
+        }
+        requestQueue.add(strRequest)
+    }
+
+    fun getSubCategoryProducts(sub_category_id: String, callback: OperationalCallback) {
+        val url = BASE_URL + GET_PRODUCT_LIST_BY_SUB_CATEGORY_EP + sub_category_id
+        val strRequest = object : StringRequest(url, {
+            val typeToken = object : TypeToken<Product>() {}
+            val gson = Gson()
+            val response: Product = gson.fromJson(it, typeToken.type)
             callback.onSuccess(response)
             Log.i("RESPONSE_SUCCESS", response.toString())
         }, { Log.i("RESPONSE_FAIL", it.toString()) }) {

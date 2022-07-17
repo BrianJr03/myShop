@@ -1,14 +1,14 @@
 package jr.brian.myShop.presenter.sub_category_presenter
 
-import jr.brian.myShop.model.remote.Sub
 
 interface SubCategoryMVP {
     interface SubCategoryPresenter {
         fun getSubCategories(categoryId: String)
+        fun loadSubCategoryProducts(subCategoryId: String)
     }
 
     interface SubCategoryView {
-        fun setResult(sub: Sub?)
+        fun setResult(sub: Any?)
         fun onLoad(isLoading: Boolean)
     }
 }

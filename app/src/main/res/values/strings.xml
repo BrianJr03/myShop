@@ -52,6 +52,7 @@
     <string name="no_data_for_this_subcategory">No data for this subcategory</string>
     <string name="example_product_name">RealMe Nazro 50</string>
     <string name="example_product_descr">RealMe Nazro 50\nHelio G96 Processor\n64GB Storage</string>
-    <string name="example_product_price">$200</string>
+    <string name="example_product_price">200</string>
     <string name="add_to_cart">ADD TO CART</string>
+    <string name="dollar_sign">$</string>
 </resources>
