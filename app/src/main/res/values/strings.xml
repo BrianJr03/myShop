@@ -109,4 +109,7 @@
     <string name="cash_on_delivery">Cash On Delivery</string>
     <string name="crypto">Cryptocurrency</string>
     <string name="debit_credit">Debit / Credit Card</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="payment_option">Payment Option</string>
+    <string name="place_order">PLACE ORDER</string>
 </resources>
