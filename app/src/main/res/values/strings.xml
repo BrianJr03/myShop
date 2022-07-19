@@ -99,4 +99,10 @@
     <string name="_2">2</string>
     <string name="ex_price">$200</string>
     <string name="_400">400</string>
+    <string name="select_address">Select Delivery Address</string>
+    <string name="addr_title">Address Title</string>
+    <string name="addr">Address</string>
+    <string name="add_address">Add Address</string>
+    <string name="addr_ex_1">643 E Parks Highway Gracewood Creek Miami, Ohio, 57868</string>
+    <string name="addr_ex_2">323 S Manning, Muncie, IN, 46404</string>
 </resources>
