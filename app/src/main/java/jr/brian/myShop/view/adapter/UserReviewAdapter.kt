@@ -33,6 +33,7 @@ class UserReviewAdapter(private val reviews: List<Review>) :
                 userName.text = review.full_name
                 productReviewTitle.text = review.review_title
                 productReviewBody.text = review.review
+                productRating.rating = review.rating.toFloat()
             }
         }
     }

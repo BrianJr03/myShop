@@ -80,4 +80,14 @@
     <string name="example_product_review_title">This Phone is Trash af</string>
     <string name="ex_body">This phone is low quality. Snapchat does not work and the camera is that of a potato. I don\'t recommend buying such nonsense. Your better off buying a phone from walmart. A true scam. L / 10</string>
     <string name="example_user_name">Brain Walter</string>
+    <string name="title_activity_test">TestActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="no_reviews">No reviews yet</string>
 </resources>

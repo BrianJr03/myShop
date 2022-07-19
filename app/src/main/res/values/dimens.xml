@@ -34,4 +34,5 @@
     <dimen name="_125dp">125dp</dimen>
     <dimen name="_100dp">100dp</dimen>
     <dimen name="_245">245dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

@@ -1,67 +1,63 @@
 package jr.brian.myShop.view.activities
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import jr.brian.myShop.R
-import jr.brian.myShop.databinding.ActivityProductDetailBinding
-import jr.brian.myShop.databinding.FragmentProductReviewBinding
-import jr.brian.myShop.model.local.replaceFragment
+import jr.brian.myShop.databinding.ActivityDetailsBinding
+import jr.brian.myShop.model.remote.Constant.PRODUCT_ITEM_KEY
 import jr.brian.myShop.model.remote.product.Detail
-import jr.brian.myShop.model.remote.product.ProductDetails
+import jr.brian.myShop.model.remote.product.ProductItem
 import jr.brian.myShop.model.remote.product.Review
 import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.product_details_presenter.DetailsMVP
 import jr.brian.myShop.presenter.product_details_presenter.DetailsPresenter
 import jr.brian.myShop.view.adapter.UserReviewAdapter
-import jr.brian.myShop.view.fragments.ProductDetailFragment
-import jr.brian.myShop.view.fragments.ProductReviewFragment
-import jr.brian.myShop.view.fragments.ProductSpecsFragment
 
 class ProductDetailActivity : AppCompatActivity(), DetailsMVP.DetailsView {
 
-    private lateinit var binding: ActivityProductDetailBinding
-    private lateinit var reviewBinding: FragmentProductReviewBinding
-    private lateinit var presenter: DetailsPresenter
-    private lateinit var userReviews: List<Review>
+    private lateinit var binding: ActivityDetailsBinding
     private lateinit var userReviewAdapter: UserReviewAdapter
-    private lateinit var productDetails: ProductDetails
+    private lateinit var userReviews: ArrayList<Review>
+    private lateinit var presenter: DetailsPresenter
+    private lateinit var productItem: ProductItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityProductDetailBinding.inflate(layoutInflater)
+        binding = ActivityDetailsBinding.inflate(layoutInflater)
+        productItem = intent.getParcelableExtra(PRODUCT_ITEM_KEY)!!
         setContentView(binding.root)
         supportActionBar?.hide()
+        init()
         binding.back.setOnClickListener { super.onBackPressed() }
-        replaceFragment(R.id.container_details, ProductDetailFragment())
-        replaceFragment(R.id.container_specs, ProductSpecsFragment())
-
     }
 
 
     private fun init() {
+        userReviews = ArrayList()
         presenter = DetailsPresenter(VolleyHelper(this), this)
-        presenter.getProductDetails(productDetails.product_id)
+        presenter.getProductDetails(productItem.product_id)
+        setAdapter(userReviews)
+    }
+
+    private fun setAdapter(list: ArrayList<Review>) {
+        userReviewAdapter = UserReviewAdapter(list)
+        binding.recyclerViewProductItem.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = userReviewAdapter
+        }
     }
 
 
     override fun setResult(detail: Detail?) {
-        productDetails = detail?.product!!
-        userReviews = detail.product.reviews
-        if (userReviews.isEmpty()) {
-            binding.apply {
-//                errorIcon.visibility = View.VISIBLE
-//                errorText.visibility = View.VISIBLE
-            }
-        } else {
-            userReviewAdapter = UserReviewAdapter(userReviews)
-            reviewBinding.recyclerViewProductItem.apply {
-                layoutManager = LinearLayoutManager(context)
-                adapter = userReviewAdapter
+        if (detail != null) {
+            if (detail.product.reviews.isNotEmpty()) {
+                setAdapter(detail.product.reviews)
+            } else {
+                binding.reviewErrorGroup.visibility = View.VISIBLE
+                setAdapter(ArrayList())
             }
         }
-        init()
-        replaceFragment(R.id.container_reviews, ProductReviewFragment())
     }
 
     override fun onLoad(isLoading: Boolean) {
