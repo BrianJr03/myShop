@@ -1,5 +1,6 @@
 package jr.brian.myShop.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import jr.brian.myShop.databinding.ActivityCartBinding
@@ -15,7 +16,18 @@ class CartActivity : AppCompatActivity() {
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
-        binding.back.setOnClickListener { super.onBackPressed() }
+        binding.apply {
+            back.setOnClickListener { super.onBackPressed() }
+            checkOutBtn.setOnClickListener {
+                startActivity(
+                    Intent(
+                        this@CartActivity,
+                        CheckOutActivity::class.java
+                    )
+                )
+            }
+        }
+
         initQtyBTNS()
     }
 

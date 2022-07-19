@@ -12,7 +12,7 @@ import jr.brian.myShop.model.remote.category.SubCategory
 import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.sub_category_presenter.SubCategoryMVP
 import jr.brian.myShop.presenter.sub_category_presenter.SubCategoryPresenter
-import jr.brian.myShop.view.adapter.ViewPagerAdapter
+import jr.brian.myShop.view.adapter.SubViewPagerAdapter
 
 class SubCategoryActivity : AppCompatActivity(), SubCategoryMVP.SubCategoryView {
 
@@ -43,7 +43,7 @@ class SubCategoryActivity : AppCompatActivity(), SubCategoryMVP.SubCategoryView 
     }
 
     private fun initViewPager() {
-        val adapter = ViewPagerAdapter(this, subCategories)
+        val adapter = SubViewPagerAdapter(this, subCategories)
         binding.pager.adapter = adapter
     }
 

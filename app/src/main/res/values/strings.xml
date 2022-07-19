@@ -93,4 +93,10 @@
     <string name="no_items_in_cart">No items in cart</string>
     <string name="unit_price">Price</string>
     <string name="checkout">CHECKOUT</string>
+    <string name="Total">Total</string>
+    <string name="amount">Amount</string>
+    <string name="QTY">QTY</string>
+    <string name="_2">2</string>
+    <string name="ex_price">$200</string>
+    <string name="_400">400</string>
 </resources>

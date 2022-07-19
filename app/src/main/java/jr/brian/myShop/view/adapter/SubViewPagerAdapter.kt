@@ -8,7 +8,7 @@ import jr.brian.myShop.model.remote.Constant.SUB_CATEGORY_KEY
 import jr.brian.myShop.model.remote.category.SubCategory
 import jr.brian.myShop.view.fragments.SubCategoryFragment
 
-class ViewPagerAdapter(fragmentActivity: FragmentActivity, private val subCategoryList: List<SubCategory>) :
+class SubViewPagerAdapter(fragmentActivity: FragmentActivity, private val subCategoryList: List<SubCategory>) :
     FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount() = subCategoryList.size
 
