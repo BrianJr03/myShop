@@ -14,55 +14,57 @@
         android:background="@color/transparent_bg_color"
         android:contentDescription="@string/back"
         android:src="@drawable/back_30"
-        app:layout_constraintBottom_toBottomOf="@id/total_tv"
+        app:layout_constraintBottom_toBottomOf="@id/categories_tv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/total_tv"
+        app:layout_constraintTop_toTopOf="@id/categories_tv"
         app:tint="@color/blueish_idk" />
 
     <TextView
-        android:id="@+id/total_tv"
+        android:id="@+id/categories_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10dp"
-        android:text="@string/Cart"
+        android:text="@string/Home"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintBottom_toTopOf="@id/guideline73"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.448" />
+
+    <TextView
+        android:id="@+id/order_id_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/order_id"
         android:textColor="@color/blueish_idk"
         android:textSize="@dimen/_25sp"
         app:layout_constraintBottom_toTopOf="@id/page_title_guideline"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/guideline73" />
 
     <TextView
-        android:id="@+id/dollar_sign_total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10dp"
-        android:text="@string/dollar_sign"
-        android:textColor="@color/blueish_idk"
-        android:textSize="@dimen/_25sp"
-        app:layout_constraintBottom_toBottomOf="@id/page_title_guideline"
-        app:layout_constraintEnd_toStartOf="@id/product_price_total"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/product_price_total"
+        android:id="@+id/order_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10dp"
         android:layout_marginEnd="@dimen/_10dp"
-        android:text="@string/example_product_price"
+        android:text="@string/ex_order_id"
         android:textColor="@color/blueish_idk"
         android:textSize="@dimen/_25sp"
         app:layout_constraintBottom_toTopOf="@id/page_title_guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/guideline73" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/page_title_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="73dp" />
+        app:layout_constraintGuide_begin="134dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -89,6 +91,7 @@
                 android:contentDescription="@string/category_image"
                 android:src="@drawable/phone_90_70"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -101,73 +104,84 @@
                 android:text="@string/example_product_name"
                 android:textColor="@color/white"
                 android:textSize="@dimen/date_text_size"
-                app:layout_constraintStart_toEndOf="@id/product_image"
+                app:layout_constraintEnd_toEndOf="@id/guideline4"
+                app:layout_constraintStart_toEndOf="@id/guideline3"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/product_descr"
+                android:id="@+id/price_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5dp"
-                android:text="@string/example_product_descr"
+                android:layout_marginBottom="@dimen/_10dp"
+                android:text="@string/unit_price"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@id/product_price"
-                app:layout_constraintStart_toEndOf="@id/product_image"
+                app:layout_constraintBottom_toTopOf="@id/qty_tv"
+                app:layout_constraintStart_toStartOf="@id/guideline3"
+                app:layout_constraintTop_toBottomOf="@id/product_name" />
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="@dimen/_10dp"
+                android:layout_marginBottom="@dimen/_10dp"
+                android:text="@string/ex_price"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/qty_tv"
+                app:layout_constraintEnd_toEndOf="@id/guideline4"
                 app:layout_constraintTop_toBottomOf="@id/product_name" />
 
             <TextView
                 android:id="@+id/qty_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_5dp"
-                android:background="@drawable/add_to_cart_selector"
-                android:clickable="true"
-                android:text="@string/_1"
+                android:layout_marginStart="@dimen/_5dp"
+                android:layout_marginBottom="@dimen/_10dp"
+                android:text="@string/QTY"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_15sp"
+                android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/inc_qty_btn"
-                app:layout_constraintTop_toTopOf="@id/inc_qty_btn" />
+                app:layout_constraintStart_toStartOf="@id/guideline3"
+                app:layout_constraintTop_toBottomOf="@id/qty_group"
+                app:layout_constraintVertical_bias="0.626" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/inc_qty_btn"
-                android:layout_width="@dimen/_40dp"
-                android:layout_height="@dimen/_40dp"
-                android:backgroundTint="@color/white"
-                android:src="@drawable/add_15"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/dec_qty_btn"
-                android:layout_width="@dimen/_40dp"
-                android:layout_height="@dimen/_40dp"
-                android:layout_marginEnd="@dimen/_5dp"
-                android:backgroundTint="@color/white"
-                android:src="@drawable/remove_15"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/qty_tv" />
+            <TextView
+                android:id="@+id/qty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="@dimen/_10dp"
+                android:text="@string/_2"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/qty_tv"
+                app:layout_constraintEnd_toEndOf="@id/guideline4"
+                app:layout_constraintTop_toTopOf="@id/qty_tv"
+                app:layout_constraintVertical_bias="0.0" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/qty_group"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10dp"
                 android:visibility="visible"
-                app:constraint_referenced_ids="qty_tv,inc_qty_btn,dec_qty_btn" />
+                tools:layout_editor_absoluteX="-74dp"
+                tools:layout_editor_absoluteY="10dp" />
 
             <TextView
-                android:id="@+id/unit_price_tv"
+                android:id="@+id/amount_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5dp"
                 android:layout_marginTop="32dp"
-                android:text="@string/unit_price"
+                android:text="@string/amount"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/product_image" />
+                app:layout_constraintStart_toStartOf="@id/guideline3" />
 
             <TextView
                 android:id="@+id/product_dollar_sign"
@@ -179,43 +193,135 @@
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/unit_price_tv" />
+                app:layout_constraintEnd_toStartOf="@id/product_price" />
 
             <TextView
                 android:id="@+id/product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/example_product_price"
+                android:layout_marginEnd="@dimen/_10dp"
+                android:text="@string/_400"
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/product_dollar_sign" />
+                app:layout_constraintEnd_toEndOf="@id/guideline4" />
 
 
-            <TextView
-                android:id="@+id/dollar_sign_total_card"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/dollar_sign"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toStartOf="@id/product_price_total_card"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.30" />
 
-            <TextView
-                android:id="@+id/product_price_total_card"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/example_product_price"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.7" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/order_status_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40dp"
+        android:text="@string/order_status"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/card_view" />
+
+    <TextView
+        android:id="@+id/order_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40dp"
+        android:text="@string/order_confirmed"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintEnd_toEndOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/card_view" />
+
+    <TextView
+        android:id="@+id/total_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40dp"
+        android:text="@string/Total"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/order_status_tv" />
+
+    <TextView
+        android:id="@+id/dollar_sign_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40dp"
+        android:text="@string/dollar_sign"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintEnd_toStartOf="@id/price_total"
+        app:layout_constraintTop_toBottomOf="@id/order_status_tv" />
+
+    <TextView
+        android:id="@+id/price_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40dp"
+        android:layout_marginEnd="@dimen/_10dp"
+        android:text="@string/example_product_price"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintEnd_toEndOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/order_status_tv" />
+
+    <TextView
+        android:id="@+id/delivery_addr_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40dp"
+        android:text="@string/delivery_address"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/total_tv" />
+
+    <TextView
+        android:id="@+id/delivery_addr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/addr_ex_1"
+        android:textColor="@color/blueish_idk"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/delivery_addr_tv" />
+
+    <TextView
+        android:id="@+id/payment_option_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_40dp"
+        android:text="@string/payment_option"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/delivery_addr" />
+
+    <TextView
+        android:id="@+id/payment_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/cash_on_delivery"
+        android:textColor="@color/blueish_idk"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintTop_toBottomOf="@id/payment_option_tv" />
     <!--    TODO - ADD Dynamic Data and re-enable this recyclerView
             TODO - AND delete @+id/card_view
     <androidx.recyclerview.widget.RecyclerView-->
@@ -252,18 +358,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/error_icon" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/check_out_btn"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline73"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_30dp"
-        android:backgroundTint="@color/blueish_idk"
-        android:text="@string/checkout"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="73dp" />
 
     <!--    <com.airbnb.lottie.LottieAnimationView-->
     <!--        android:id="@+id/animation_view"-->

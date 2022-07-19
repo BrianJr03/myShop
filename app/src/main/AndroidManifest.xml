@@ -16,6 +16,11 @@
         android:theme="@style/Theme.MyNotesNative"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.OrderConfirmedActivity"
+            android:exported="false"
+            android:label="@string/title_activity_order_confirmed"
+            android:theme="@style/Theme.MyNotesNative.NoActionBar" />
+        <activity
             android:name=".view.activities.CheckOutActivity"
             android:exported="false" />
         <activity

@@ -23,9 +23,10 @@
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_landing.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_note_editor.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_notes_grid.xml" value="0.21" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_order_confirmed.xml" value="0.33" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_product_detail.xml" value="0.47962962962962963" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_start_up.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_sub_category.xml" value="0.33" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_sub_category.xml" value="0.25" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/activity_test.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/add_address_dialog.xml" value="0.2" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/cart_item.xml" value="0.33" />
@@ -38,6 +39,7 @@
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/fragment_product_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/fragment_product_review.xml" value="0.33" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/fragment_product_specs.xml" value="0.33" />
+        <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/fragment_second.xml" value="0.1" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/fragment_sign_in.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/fragment_sign_up.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/walte/OneDrive/Desktop/training/app_practice_2/ecommerce/app/src/main/res/layout/fragment_sub_category.xml" value="0.20416666666666666" />
