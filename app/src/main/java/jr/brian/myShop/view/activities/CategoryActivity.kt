@@ -60,6 +60,7 @@ class CategoryActivity : AppCompatActivity(), CategoryMVP.CategoryView {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.drawer_cart -> {
+                    startActivity(Intent(this, CartActivity::class.java))
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.drawer_orders -> {
