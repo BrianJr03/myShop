@@ -31,7 +31,6 @@ class DeliveryFragment : Fragment() {
                     childFragmentManager, QuickDialog.DIALOG_TAG
                 )
             }
-
         }
     }
 }

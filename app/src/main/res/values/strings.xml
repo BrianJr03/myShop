@@ -105,4 +105,8 @@
     <string name="add_address">Add Address</string>
     <string name="addr_ex_1">643 E Parks Highway Gracewood Creek Miami, Ohio, 57868</string>
     <string name="addr_ex_2">323 S Manning, Muncie, IN, 46404</string>
+    <string name="select_payment">Select Payment Option</string>
+    <string name="cash_on_delivery">Cash On Delivery</string>
+    <string name="crypto">Cryptocurrency</string>
+    <string name="debit_credit">Debit / Credit Card</string>
 </resources>

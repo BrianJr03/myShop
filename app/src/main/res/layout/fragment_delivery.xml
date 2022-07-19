@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/select_addr">
 
         <androidx.appcompat.widget.AppCompatRadioButton
-            android:id="@+id/signin_rb"
+            android:id="@+id/addr_rb1"
             android:layout_width="@dimen/_300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
@@ -43,7 +43,7 @@
             tools:ignore="RtlSymmetry" />
 
         <androidx.appcompat.widget.AppCompatRadioButton
-            android:id="@+id/signup_rb"
+            android:id="@+id/addr_rb2"
             android:layoutDirection="rtl"
             android:layout_marginTop="@dimen/_15dp"
             android:paddingStart="@dimen/_25dp"
@@ -63,14 +63,6 @@
         android:text="@string/add_address"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/blueish_idk"/>
-
-    <Button
-        android:id="@+id/next_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="@color/blueish_idk"/>
 
