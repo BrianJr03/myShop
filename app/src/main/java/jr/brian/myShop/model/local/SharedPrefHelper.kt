@@ -4,15 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
-import jr.brian.myShop.model.remote.OperationalCallback
 import jr.brian.myShop.model.remote.user.User
-import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.view.auth_fragments.SignUpFragment
 
 class SharedPrefHelper(context: Context) {
-    private var editor: SharedPreferences.Editor
+    var editor: SharedPreferences.Editor
     var encryptedSharedPrefs: SharedPreferences
-    private val volleyHelper = VolleyHelper(context)
 
     init {
         val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
@@ -26,22 +23,18 @@ class SharedPrefHelper(context: Context) {
         )
         editor = encryptedSharedPrefs.edit()
     }
-//
-//    fun saveUserInDB(
-//        user: User,
-//        callback: OperationalCallback
-//    ) {
-//        editor.apply {
-//            putString(SignUpFragment.FULL_NAME, user.fullName)
-//            putString(SignUpFragment.MOBILE_NO, user.mobileNo)
-//            putString(SignUpFragment.EMAIL, user.emailId)
-//            putString(SignUpFragment.PASSWORD, user.password)
-//            if (commit()) {
-//                volleyHelper.signUpUser(user, callback)
-//                callback.onSuccess("Success")
-//            } else callback.onFailure("Failure")
-//        }
-//    }
+
+    fun saveUserInDB(user: User) {
+        editor.apply {
+            clear()
+            apply()
+            putString(SignUpFragment.FULL_NAME, user.fullName)
+            putString(SignUpFragment.MOBILE_NO, user.mobileNo)
+            putString(SignUpFragment.EMAIL, user.emailId)
+            putString(SignUpFragment.PASSWORD, user.password)
+            commit()
+        }
+    }
 
     fun signOut() {
         editor.apply {

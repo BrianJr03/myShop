@@ -14,6 +14,6 @@ interface SignUpMVP {
     interface SignUpView {
         fun setResult(msg: String)
         fun onLoad(isLoading: Boolean)
-        fun startHomeActivity()
+        fun clear()
     }
 }

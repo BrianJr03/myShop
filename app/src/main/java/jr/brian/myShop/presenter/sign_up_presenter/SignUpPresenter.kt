@@ -2,6 +2,7 @@ package jr.brian.myShop.presenter.sign_up_presenter
 
 import android.view.View
 import jr.brian.myShop.R
+import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.local.showSnackbar
 import jr.brian.myShop.model.remote.OperationalCallback
 import jr.brian.myShop.model.remote.user.User
@@ -21,11 +22,13 @@ class SignUpPresenter(
         volleyHelper = VolleyHelper(view.context)
         volleyHelper.signUpUser(user, object : OperationalCallback {
             override fun onSuccess(message: Any) {
+                SharedPrefHelper(view.context).saveUserInDB(user)
                 status = message as String
                 registrationView.apply {
                     onLoad(false)
                     setResult(message)
-                    showSnackbar("Please sign in", view, R.id.sign_up_root)
+                    clear()
+                    showSnackbar("Account created. Please sign in", view, R.id.sign_up_root)
                 }
             }
 
