@@ -2,18 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/delivery_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/_20dp"
     tools:context=".view.fragments.DeliveryFragment">
 
     <TextView
-        android:textSize="@dimen/_20sp"
-        android:textColor="@color/blueish_idk"
         android:id="@+id/select_addr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/select_address"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,12 +45,12 @@
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/addr_rb2"
-            android:layoutDirection="rtl"
-            android:layout_marginTop="@dimen/_15dp"
-            android:paddingStart="@dimen/_25dp"
-            android:text="@string/addr_ex_1"
             android:layout_width="@dimen/_300dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15dp"
+            android:layoutDirection="rtl"
+            android:paddingStart="@dimen/_25dp"
+            android:text="@string/addr_ex_1"
             android:textColor="@color/blueish_idk"
             android:textSize="@dimen/_15sp"
             android:textStyle="bold"
@@ -60,11 +61,11 @@
         android:id="@+id/add_addr_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/blueish_idk"
         android:text="@string/add_address"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:backgroundTint="@color/blueish_idk"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

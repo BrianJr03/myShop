@@ -5,11 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import jr.brian.myShop.R
 import jr.brian.myShop.databinding.FragmentDeliveryBinding
+import jr.brian.myShop.model.local.showSnackbar
+import jr.brian.myShop.model.remote.address.AddAddressResponse
+import jr.brian.myShop.presenter.address_presenter.AddressMVP
+import jr.brian.myShop.presenter.address_presenter.AddressPresenter
 import jr.brian.myShop.view.dialog.QuickDialog
 
-class DeliveryFragment : Fragment() {
+class DeliveryFragment : Fragment(), AddressMVP.AddressView {
     private lateinit var binding: FragmentDeliveryBinding
+    private lateinit var presenter: AddressPresenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,5 +38,14 @@ class DeliveryFragment : Fragment() {
                 )
             }
         }
+    }
+
+    override fun setResult(message: Any?) {
+        val addr = message as AddAddressResponse
+        view?.let { showSnackbar(addr.message, it, R.id.delivery_root) }
+    }
+
+    override fun onLoad(isLoading: Boolean) {
+        // TODO
     }
 }
