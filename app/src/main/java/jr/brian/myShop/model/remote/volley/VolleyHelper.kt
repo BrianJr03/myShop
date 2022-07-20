@@ -112,25 +112,21 @@ class VolleyHelper(context: Context) {
         return message.toString()
     }
 
-    fun signInUser(user: User, callback: OperationalCallback): String {
+    fun signInUser(email: String, password: String, callback: OperationalCallback) {
         val url = BASE_URL + SIGN_IN_EP
         val data = JSONObject()
-        var message: String? = null
+        val message: String? = null
 
-        data.put("email_id", user.emailId)
-        data.put("password", user.password)
+        data.put("email_id", email)
+        data.put("password", password)
 
         val request = JsonObjectRequest(
             Request.Method.POST, url, data,
             { response: JSONObject ->
-                message = response.getString("message")
+               val jsonObject = response.getJSONObject("user")
                 val status = response.getInt("status")
                 if (status == 0) {
-                    val responseUser = response.getJSONObject("user")
-                    user.userId = responseUser.getString("user_id")
-                    user.fullName = responseUser.getString("full_name")
-                    user.mobileNo = responseUser.getString("mobile_no")
-                    callback.onSuccess(message.toString())
+                    callback.onSuccess(jsonObject)
                 } else {
                     callback.onFailure(message.toString())
                 }
@@ -140,6 +136,5 @@ class VolleyHelper(context: Context) {
                 callback.onFailure(message.toString())
             })
         requestQueue.add(request)
-        return message.toString()
     }
 }

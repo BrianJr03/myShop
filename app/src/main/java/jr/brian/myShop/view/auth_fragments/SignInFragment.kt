@@ -2,7 +2,6 @@ package jr.brian.myShop.view.auth_fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,14 +12,15 @@ import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
-import jr.brian.myShop.model.remote.Constant.SIGN_IN_TAG
-import jr.brian.myShop.model.remote.user.User
+import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.sign_in_presenter.SignInMVP
 import jr.brian.myShop.presenter.sign_in_presenter.SignInPresenter
 import jr.brian.myShop.view.activities.CategoryActivity
+import org.json.JSONObject
 
 class SignInFragment : Fragment(), SignInMVP.SignInView {
+    private lateinit var sharedPrefHelper: SharedPrefHelper
     private lateinit var presenter: SignInMVP.SignInPresenter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,28 +30,26 @@ class SignInFragment : Fragment(), SignInMVP.SignInView {
 
     private fun initView(view: View) {
         presenter = SignInPresenter(VolleyHelper(view.context), this)
+        sharedPrefHelper = SharedPrefHelper(requireContext())
         val email = view.findViewById<EditText>(R.id.email_et_signIn).text
         val password = view.findViewById<EditText>(R.id.password_et_signIn).text
-        val user = User(
-            emailId = email.toString(),
-            "",
-            "",
-            password = password.toString(),
-            ""
-        )
         view.findViewById<Button>(R.id.signInBTN).setOnClickListener {
             if (email.isEmpty() || password.isEmpty()) {
-                showSnackbar("Ensure fields are not empty")
+                showEmptyFieldsMsg()
             } else {
-                (presenter as SignInPresenter).signInUser(user, view)
+                (presenter as SignInPresenter).signInUser(
+                    email.toString(),
+                    password.toString(),
+                    view
+                )
             }
         }
     }
 
     companion object {
         const val FILENAME = "login-details"
-        const val EMAIL = "email"
-        const val PASSWORD = "password"
+        const val USER_ID = "user_id"
+
     }
 
     override fun onCreateView(
@@ -61,16 +59,17 @@ class SignInFragment : Fragment(), SignInMVP.SignInView {
         return inflater.inflate(R.layout.fragment_sign_in, container, false)
     }
 
-    override fun setResult(msg: String) {
-        Log.i(SIGN_IN_TAG, msg)
-        showSnackbar(msg)
+    override fun setResult(msg: Any) {
+        val user = msg as JSONObject
+        sharedPrefHelper.editor
+            .putString(USER_ID, user.getString("user_id"))
     }
 
-    private fun showSnackbar(msg: String) {
+    private fun showEmptyFieldsMsg() {
         activity?.let {
             Snackbar.make(
                 it.findViewById(android.R.id.content),
-                msg, Snackbar.LENGTH_LONG
+                "Ensure fields are not empty", Snackbar.LENGTH_LONG
             ).show()
         }
     }

@@ -62,9 +62,9 @@ class LandingActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListener 
     }
 
     private fun verifySignIn() {
-        if (encryptedSharedPrefs.contains(SignInFragment.EMAIL)
+        if (encryptedSharedPrefs.contains(SignUpFragment.EMAIL)
             && encryptedSharedPrefs.contains(
-                SignInFragment.PASSWORD
+                SignUpFragment.PASSWORD
             )
         ) {
             startHomeActivity()

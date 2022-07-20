@@ -1,10 +1,9 @@
 package jr.brian.myShop.presenter.sign_in_presenter
 
 import android.view.View
-import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.model.remote.OperationalCallback
-import jr.brian.myShop.model.remote.user.User
 import jr.brian.myShop.model.remote.volley.VolleyHelper
+import org.json.JSONObject
 
 class SignInPresenter(
     private var volleyHelper: VolleyHelper,
@@ -12,43 +11,31 @@ class SignInPresenter(
 ) : SignInMVP.SignInPresenter {
 
     override fun signInUser(
-        user: User,
+        email: String,
+        password: String,
         view: View
     ): String {
         var status = ""
         registrationView.onLoad(true)
         volleyHelper = VolleyHelper(view.context)
-        volleyHelper.signInUser(user, object : OperationalCallback {
+        volleyHelper.signInUser(email, password, object : OperationalCallback {
             override fun onSuccess(message: Any) {
-                status = message as String
+                val obj = message as JSONObject
                 registrationView.apply {
                     onLoad(false)
-                    setResult(message)
+                    setResult(obj)
                     startHomeActivity()
                 }
             }
 
             override fun onFailure(message: String) {
                 status = message
-                    registrationView.apply {
-                        onLoad(false)
-                        setResult(message)
-//                        showSnackbar(
-//                            "Failed to login. Please check your email id or password.",
-//                            view
-//                        )
-                    }
+                registrationView.apply {
+                    onLoad(false)
+                    setResult(message)
+                }
             }
         })
         return status
-    }
-
-    private fun showSnackbar(msg: String, view: View) {
-        Snackbar.make(
-            view.context,
-            view,
-            msg,
-            Snackbar.LENGTH_SHORT
-        ).show()
     }
 }
