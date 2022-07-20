@@ -8,10 +8,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
 
-//fun AppCompatActivity.addFragment(containerId: Int, fragment: Fragment) {
-//    supportFragmentManager.inTransaction { add(containerId, fragment) }
-//}
-
 fun AppCompatActivity.replaceFragment(containerId: Int, fragment: Fragment) {
     supportFragmentManager.inTransaction { replace(containerId, fragment) }
 }
@@ -20,10 +16,10 @@ inline fun FragmentManager.inTransaction(func: FragmentTransaction.() -> Fragmen
     beginTransaction().func().commit()
 }
 
-fun showSnackbar(str: String, view: View) {
+fun showSnackbar(str: String, view: View, id: Int) {
     Snackbar.make(
         view.context,
-        view.findViewById(R.id.sign_in_root),
+        view.findViewById(id),
         str,
         Snackbar.LENGTH_SHORT
     ).show()

@@ -26,22 +26,22 @@ class SharedPrefHelper(context: Context) {
         )
         editor = encryptedSharedPrefs.edit()
     }
-
-    fun saveUserInDB(
-        user: User,
-        callback: OperationalCallback
-    ) {
-        editor.apply {
-            putString(SignUpFragment.FULL_NAME, user.fullName)
-            putString(SignUpFragment.MOBILE_NO, user.mobileNo)
-            putString(SignUpFragment.EMAIL, user.emailId)
-            putString(SignUpFragment.PASSWORD, user.password)
-            if (commit()) {
-                volleyHelper.signUpUser(user, callback)
-                callback.onSuccess("Success")
-            } else callback.onFailure("Failure")
-        }
-    }
+//
+//    fun saveUserInDB(
+//        user: User,
+//        callback: OperationalCallback
+//    ) {
+//        editor.apply {
+//            putString(SignUpFragment.FULL_NAME, user.fullName)
+//            putString(SignUpFragment.MOBILE_NO, user.mobileNo)
+//            putString(SignUpFragment.EMAIL, user.emailId)
+//            putString(SignUpFragment.PASSWORD, user.password)
+//            if (commit()) {
+//                volleyHelper.signUpUser(user, callback)
+//                callback.onSuccess("Success")
+//            } else callback.onFailure("Failure")
+//        }
+//    }
 
     fun signOut() {
         editor.apply {

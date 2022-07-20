@@ -13,9 +13,9 @@ import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
 import jr.brian.myShop.R
-import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.Constant.SIGN_UP_TAG
 import jr.brian.myShop.model.remote.user.User
+import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpMVP
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpPresenter
 import jr.brian.myShop.view.activities.CategoryActivity
@@ -38,7 +38,7 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     }
 
     private fun initView(view: View) {
-        presenter = SignUpPresenter(SharedPrefHelper(view.context), this)
+        presenter = SignUpPresenter(VolleyHelper(view.context), this)
         val signUpBtn = view.findViewById<Button>(R.id.sign_up_btn)
         val fullName = view.findViewById<EditText>(R.id.fullName_et).text
         val mobileNo = view.findViewById<EditText>(R.id.mobileNo_et).text
