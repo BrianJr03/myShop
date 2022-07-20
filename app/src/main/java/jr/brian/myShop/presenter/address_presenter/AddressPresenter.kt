@@ -1,6 +1,7 @@
 package jr.brian.myShop.presenter.address_presenter
 
 import jr.brian.myShop.model.remote.OperationalCallback
+import jr.brian.myShop.model.remote.address.GetAddressesResponse
 import jr.brian.myShop.model.remote.category.Inventory
 import jr.brian.myShop.model.remote.volley.VolleyHelper
 
@@ -9,18 +10,19 @@ class AddressPresenter(
     private val addressView: AddressMVP.AddressView
 ) : AddressMVP.AddressPresenter {
 
-    override fun getAddresses() {
+    override fun getAddresses(userId: String) {
         addressView.onLoad(true)
-        volleyHelper.getCategories(
+        volleyHelper.getAddresses(
+            userId,
             object : OperationalCallback {
                 override fun onSuccess(message: Any) {
                     addressView.onLoad(false)
-                    addressView.setResult(message as Inventory)
+                    addressView.setResult(message as GetAddressesResponse, "get")
                 }
 
                 override fun onFailure(message: String) {
                     addressView.onLoad(false)
-                    addressView.setResult(null)
+                    addressView.setResult(null, "")
                 }
             })
     }
@@ -34,12 +36,12 @@ class AddressPresenter(
             object : OperationalCallback {
                 override fun onSuccess(message: Any) {
                     addressView.onLoad(false)
-                    addressView.setResult(message as String)
+                    addressView.setResult(message as String, "add")
                 }
 
                 override fun onFailure(message: String) {
                     addressView.onLoad(false)
-                    addressView.setResult(null)
+                    addressView.setResult(null, "")
                 }
             })
     }

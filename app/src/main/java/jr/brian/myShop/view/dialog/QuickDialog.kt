@@ -64,7 +64,7 @@ class QuickDialog : DialogFragment(), AddressMVP.AddressView {
         const val DIALOG_TAG = "dialog_tag"
     }
 
-    override fun setResult(message: Any?) {
+    override fun setResult(message: Any?, type: String) {
         view?.let { showSnackbar(message.toString(), it, R.id.delivery_root) }
     }
 

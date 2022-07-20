@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken
 import jr.brian.myShop.model.remote.Constant.BASE_URL
 import jr.brian.myShop.model.remote.Constant.CATEGORY_EP
 import jr.brian.myShop.model.remote.Constant.ERROR_TAG
+import jr.brian.myShop.model.remote.Constant.GET_ALL_USER_ADDRESSES_EP
 import jr.brian.myShop.model.remote.Constant.GET_PRODUCT_DETAILS_EP
 import jr.brian.myShop.model.remote.Constant.GET_PRODUCT_LIST_BY_SUB_CATEGORY_EP
 import jr.brian.myShop.model.remote.Constant.GET_SUB_CATEGORY_BY_ID_EP
@@ -20,6 +21,7 @@ import jr.brian.myShop.model.remote.Constant.POST_ADD_DELIVERY_ADDR_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_IN_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_UP_EP
 import jr.brian.myShop.model.remote.OperationalCallback
+import jr.brian.myShop.model.remote.address.GetAddressesResponse
 import jr.brian.myShop.model.remote.category.Inventory
 import jr.brian.myShop.model.remote.category.Sub
 import jr.brian.myShop.model.remote.product.Detail
@@ -76,6 +78,19 @@ class VolleyHelper(context: Context) {
             val typeToken = object : TypeToken<Detail>() {}
             val gson = Gson()
             val response: Detail = gson.fromJson(it, typeToken.type)
+            callback.onSuccess(response)
+            Log.i("RESPONSE_SUCCESS", response.toString())
+        }, { Log.i("RESPONSE_FAIL", it.toString()) }) {
+        }
+        requestQueue.add(strRequest)
+    }
+
+    fun getAddresses(user_id: String, callback: OperationalCallback) {
+        val url = BASE_URL + GET_ALL_USER_ADDRESSES_EP + user_id
+        val strRequest = object : StringRequest(url, {
+            val typeToken = object : TypeToken<GetAddressesResponse>() {}
+            val gson = Gson()
+            val response: GetAddressesResponse = gson.fromJson(it, typeToken.type)
             callback.onSuccess(response)
             Log.i("RESPONSE_SUCCESS", response.toString())
         }, { Log.i("RESPONSE_FAIL", it.toString()) }) {
