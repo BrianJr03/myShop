@@ -5,7 +5,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import jr.brian.myShop.R
 import jr.brian.myShop.databinding.ActivityDetailsBinding
+import jr.brian.myShop.model.remote.Constant
 import jr.brian.myShop.model.remote.Constant.PRODUCT_ITEM_KEY
 import jr.brian.myShop.model.remote.product.Detail
 import jr.brian.myShop.model.remote.product.ProductItem
@@ -52,9 +55,12 @@ class ProductDetailActivity : AppCompatActivity(), DetailsMVP.DetailsView {
 
     private fun initMainCard(detail: Detail) {
         binding.apply {
-//            Glide.with(this@ProductDetailActivity)
-//                .load(BASE_IMAGE_URL + productItem.product_image_url)
-//                .into(productImage)
+            Glide.with(this@ProductDetailActivity)
+                .load(Constant.BASE_IMAGE_URL + productItem.product_image_url)
+                .placeholder(R.drawable.phone_100)
+                .error(R.drawable.phone_100)
+                .fallback(R.drawable.phone_100)
+                .into(productImage)
             productDescr.text = detail.product.description
             productName.text = detail.product.product_name
             total.text = detail.product.price
