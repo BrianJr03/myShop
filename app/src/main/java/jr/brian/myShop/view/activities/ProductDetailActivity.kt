@@ -58,7 +58,7 @@ class ProductDetailActivity : AppCompatActivity(), DetailsMVP.DetailsView {
 //                .into(productImage)
             productDescr.text = detail.product.description
             productName.text = detail.product.product_name
-            productPrice.text = detail.product.price
+            total.text = detail.product.price
             productRating.rating = productItem.average_rating.toFloat()
         }
     }

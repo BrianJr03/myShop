@@ -28,11 +28,11 @@
         android:textColor="@color/blueish_idk"
         android:textSize="@dimen/_25sp"
         app:layout_constraintBottom_toBottomOf="@id/page_title_guideline"
-        app:layout_constraintEnd_toStartOf="@id/price_total"
+        app:layout_constraintEnd_toStartOf="@id/cart_total_check_out"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/price_total"
+        android:id="@+id/cart_total_check_out"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10dp"
@@ -178,10 +178,10 @@
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/product_price" />
+                app:layout_constraintEnd_toStartOf="@id/total" />
 
             <TextView
-                android:id="@+id/product_price"
+                android:id="@+id/total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_10dp"

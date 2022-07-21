@@ -101,7 +101,7 @@ class ProductItemAdapter(
 //                    .into(productImage)
                 productName.text = productItem.product_name
                 productDescr.text = productItem.description
-                productPrice.text = productItem.price
+                total.text = productItem.price
                 productRating.rating = productItem.average_rating.toFloat()
             }
         }

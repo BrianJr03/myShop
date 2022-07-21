@@ -35,22 +35,23 @@ class CartActivity : AppCompatActivity() {
                 )
             }
         }
+        initView()
+    }
+
+    private fun initView() {
         val json: String? = sharedPrefHelper.encryptedSharedPrefs.getString("cart", null)
         if (json != null) {
             var cartTotal = 0
-            val pls = getCart().distinct()
-            for (p in pls) {
+            val cart = getCart().distinct()
+            for (p in cart) {
                 cartTotal += p.total
-                Log.i("PLS", p.toString())
             }
             binding.cartTotal.text = cartTotal.toString()
-            adapter = CartAdapter(pls)
+            adapter = CartAdapter(cart)
             binding.recyclerViewProductItem.layoutManager =
                 LinearLayoutManager(this)
             binding.recyclerViewProductItem.adapter = adapter
         }
-
-
     }
 
     private fun getCart(): ArrayList<ProductItem> {
@@ -60,7 +61,7 @@ class CartActivity : AppCompatActivity() {
         return gson.fromJson(json, type)
     }
 
-    private fun initQtyBTNS() {
+//    private fun initQtyBTNS() {
 //        binding.apply {
 //            var qty = 1
 //            incQtyBtn.setOnClickListener {
@@ -95,5 +96,5 @@ class CartActivity : AppCompatActivity() {
 ////                productItem.price = (qty * price).toString()
 //            }
 //        }
-    }
+//    }
 }
