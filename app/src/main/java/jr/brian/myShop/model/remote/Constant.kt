@@ -28,4 +28,6 @@ object Constant {
 
     const val DELIVERY_ADDRESS = "DELIVERY_ADDRESS"
     const val PAYMENT_METHOD = "PAYMENT_METHOD"
+
+    const val CART = "cart"
 }

@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import jr.brian.myShop.databinding.ProductItemBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
+import jr.brian.myShop.model.remote.Constant
+import jr.brian.myShop.model.remote.Constant.CART
 import jr.brian.myShop.model.remote.Constant.PRODUCT_ITEM_KEY
 import jr.brian.myShop.model.remote.product.ProductItem
 import jr.brian.myShop.view.activities.ProductDetailActivity
@@ -82,7 +84,7 @@ class ProductItemAdapter(
         val editor = sharedPrefHelper.editor
         val gson = Gson()
         val json: String = gson.toJson(list)
-        editor.putString("cart", json)
+        editor.putString(CART, json)
         editor.apply()
     }
 

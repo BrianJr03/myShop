@@ -1,16 +1,16 @@
 package jr.brian.myShop.view.fragments
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import jr.brian.myShop.databinding.FragmentCartItemsBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
+import jr.brian.myShop.model.remote.Constant.CART
 import jr.brian.myShop.model.remote.product.ProductItem
 import jr.brian.myShop.view.adapter.CheckedOutItemsAdapter
 
@@ -30,7 +30,7 @@ class CartItemsFragment : Fragment() {
     }
 
     private fun initView() {
-        val json: String? = sharedPrefHelper.encryptedSharedPrefs.getString("cart", null)
+        val json: String? = sharedPrefHelper.encryptedSharedPrefs.getString(CART, null)
         if (json != null) {
             var cartTotal = 0
             val cart = getCart().distinct()
@@ -47,7 +47,7 @@ class CartItemsFragment : Fragment() {
 
     private fun getCart(): ArrayList<ProductItem> {
         val gson = Gson()
-        val json: String? = sharedPrefHelper.encryptedSharedPrefs.getString("cart", null)
+        val json: String? = sharedPrefHelper.encryptedSharedPrefs.getString(CART, null)
         val type = object : TypeToken<ArrayList<ProductItem>>() {}.type
         return gson.fromJson(json, type)
     }

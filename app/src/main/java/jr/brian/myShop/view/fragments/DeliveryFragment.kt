@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import jr.brian.myShop.R
 import jr.brian.myShop.databinding.FragmentDeliveryBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
+import jr.brian.myShop.model.local.showSnackbar
 import jr.brian.myShop.model.remote.Constant.DELIVERY_ADDRESS
 import jr.brian.myShop.model.remote.address.Address
 import jr.brian.myShop.model.remote.address.GetAddressesResponse
@@ -84,9 +85,17 @@ class DeliveryFragment : Fragment(), AddressMVP.AddressView {
             saveBtn.setOnClickListener {
                 val index =
                     radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.checkedRadioButtonId))
-                val selected = addresses[index]
-                sharedPrefHelper.editor.putString(DELIVERY_ADDRESS, selected.address).commit()
-                (activity as CheckOutActivity).slideViewPager()
+                if (index != -1) {
+                    val selected = addresses[index]
+                    sharedPrefHelper.editor.putString(DELIVERY_ADDRESS, selected.address).commit()
+                    (activity as CheckOutActivity).slideViewPager()
+                } else view?.let { it1 ->
+                    showSnackbar(
+                        "Please select an option",
+                        it1,
+                        R.id.delivery_root
+                    )
+                }
             }
         }
     }
