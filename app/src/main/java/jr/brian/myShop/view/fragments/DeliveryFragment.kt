@@ -101,6 +101,7 @@ class DeliveryFragment : Fragment(), AddressMVP.AddressView {
     }
 
     override fun setResult(message: Any?, type: String) {
+        addInitialRB()
         initRadioButtons(message)
         initNextBtn()
     }
@@ -113,5 +114,22 @@ class DeliveryFragment : Fragment(), AddressMVP.AddressView {
                 radioGroup.visibility = View.VISIBLE
             }
         }
+    }
+
+    private fun addInitialRB() {
+        val rb = RadioButton(requireContext())
+        rb.apply {
+            layoutParams = ConstraintLayout
+                .LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            text = "Office | Microsoft HQ"
+            setTextColor(getColor(requireContext(), R.color.blueish_idk))
+            textSize = 15f
+            typeface = Typeface.DEFAULT_BOLD
+            layoutDirection = ViewCompat.LAYOUT_DIRECTION_LTR
+        }
+        binding.radioGroup.addView(rb)
     }
 }
