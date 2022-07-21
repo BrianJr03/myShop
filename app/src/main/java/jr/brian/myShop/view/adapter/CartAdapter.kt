@@ -4,7 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import jr.brian.myShop.R
 import jr.brian.myShop.databinding.CartItemBinding
+import jr.brian.myShop.model.remote.Constant
 import jr.brian.myShop.model.remote.product.ProductItem
 
 class CartAdapter(private val cart: List<ProductItem>) :
@@ -27,12 +30,15 @@ class CartAdapter(private val cart: List<ProductItem>) :
         }
     }
 
-    inner class CartViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    inner class CartViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
         fun bind(productItem: ProductItem) {
             binding.apply {
-//                Glide.with(context)
-//                    .load(BASE_IMAGE_URL + productItem.product_image_url)
-//                    .into(productImage)
+                Glide.with(v.context)
+                    .load(Constant.BASE_IMAGE_URL + productItem.product_image_url)
+                    .placeholder(R.drawable.phone_90_70)
+                    .error(R.drawable.phone_90_70)
+                    .fallback(R.drawable.phone_90_70)
+                    .into(productImage)
                 productName.text = productItem.product_name
                 productDescr.text = productItem.description
                 qtyTv.text = productItem.qty.toString()

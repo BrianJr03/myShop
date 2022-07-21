@@ -86,7 +86,7 @@ class DeliveryFragment : Fragment(), AddressMVP.AddressView {
                 val index =
                     radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.checkedRadioButtonId))
                 if (index != -1) {
-                    val selected = addresses[index - 1]
+                    val selected = addresses[index]
                     sharedPrefHelper.editor.putString(
                         DELIVERY_ADDRESS,
                         "${selected.title} | ${selected.address}"

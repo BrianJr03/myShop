@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
+import jr.brian.myShop.R
 import jr.brian.myShop.databinding.ProductItemBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
+import jr.brian.myShop.model.remote.Constant
 import jr.brian.myShop.model.remote.Constant.CART
 import jr.brian.myShop.model.remote.Constant.PRODUCT_ITEM_KEY
 import jr.brian.myShop.model.remote.product.ProductItem
@@ -94,12 +97,15 @@ class ProductItemAdapter(
         context.startActivity(intent)
     }
 
-    inner class ProductItemViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+    inner class ProductItemViewHolder(private val v: View) : RecyclerView.ViewHolder(v) {
         fun bind(productItem: ProductItem) {
             binding.apply {
-//                Glide.with(v.context)
-//                    .load(BASE_IMAGE_URL + productItem.product_image_url)
-//                    .into(productImage)
+                Glide.with(v.context)
+                    .load(Constant.BASE_IMAGE_URL + productItem.product_image_url)
+                    .placeholder(R.drawable.phone_90_70)
+                    .error(R.drawable.phone_90_70)
+                    .fallback(R.drawable.phone_90_70)
+                    .into(productImage)
                 productName.text = productItem.product_name
                 productDescr.text = productItem.description
                 total.text = productItem.price
