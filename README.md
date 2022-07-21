@@ -45,7 +45,7 @@ Instructions for how to install Android Studio and Android SDK can be found [her
  - Fetching of all orders made by user
 
 ## Issues
- - Only placeholder images are shown in place of actual products as there cannot be fetched from the API
+ - Only `placeholder images` are shown in place of actual products as there cannot be fetched from the API
     - This is an API issue and is being looked into by the API Team.
  - Only the `Smart Phones` category has data present in the server, specifically `Android Phones`. Every other category and subcategory is empty.
     - This is an API issue and is being looked into by the API Team.
