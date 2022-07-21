@@ -15,5 +15,6 @@ data class ProductItem(
     val product_name: String,
     val sub_category_id: String,
     val subcategory_name: String,
-    var qty: Int = 0
+    var qty: Int = 0,
+    var total: Int = 0
 ) : Parcelable

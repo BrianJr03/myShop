@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import jr.brian.myShop.databinding.ProductItemBinding
+import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.Constant.PRODUCT_ITEM_KEY
 import jr.brian.myShop.model.remote.product.ProductItem
 import jr.brian.myShop.view.activities.ProductDetailActivity
@@ -19,9 +21,13 @@ class ProductItemAdapter(
     RecyclerView.Adapter<ProductItemAdapter.ProductItemViewHolder>() {
 
     private lateinit var binding: ProductItemBinding
+    private lateinit var sharedPrefHelper: SharedPrefHelper
+
+    private var itemsToCart = ArrayList<ProductItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductItemViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
+        sharedPrefHelper = SharedPrefHelper(context)
         binding = ProductItemBinding.inflate(layoutInflater, parent, false)
         return ProductItemViewHolder(binding.root)
     }
@@ -44,29 +50,40 @@ class ProductItemAdapter(
                             var qty = productItem.qty
                             val price = productItem.price.toInt()
                             qty++
+                            itemsToCart.add(productItem)
                             qtyTv.text = qty.toString()
                             productItem.qty = qty
-                            productItem.price = (qty * price).toString()
+                            productItem.total = (qty * price)
+                            saveArrayList(itemsToCart)
                         }
                         decQtyBtn.setOnClickListener {
                             var qty = productItem.qty
                             val price = productItem.price.toInt()
                             qty--
                             if (qty < 1) {
+                                itemsToCart.remove(productItem)
                                 qty = 1
                                 productItem.qty = 1
-                                productItem.price = price.toString()
                                 productAddToCart.visibility = View.VISIBLE
                                 qtyGroup.visibility = View.GONE
+                                saveArrayList(itemsToCart)
                             }
                             qtyTv.text = qty.toString()
                             productItem.qty = qty
-                            productItem.price = (qty * price).toString()
+                            productItem.total = (qty * price)
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun saveArrayList(list: ArrayList<ProductItem>) {
+        val editor = sharedPrefHelper.editor
+        val gson = Gson()
+        val json: String = gson.toJson(list)
+        editor.putString("cart", json)
+        editor.apply()
     }
 
     private fun startProductDetailActivity(productItem: ProductItem) {
