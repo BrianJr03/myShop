@@ -40,7 +40,13 @@ This application as-is has seen limited testing and there may be bugs/issues pre
 Instructions for how to install Android Studio and Android SDK can be found [here]
 (https://developer.android.com/studio?gclid=CjwKCAjww8mWBhABEiwAl6-2RUbTUlsUlmz-w06ElkHZmXU3xZklWx_VE984fO3vMm3t8RbapDdaUxoCS_kQAvD_BwE&gclsrc=aw.ds). 
 
+## Pending Features
+ - Product Search
+ - Fetching of all orders made by user
+
 ## Issues
+ - Only placeholder images are shown in place of actual products as there cannot be fetched from the API
+    - This is an API issue and is being looked into by the API Team.
  - Only the `Smart Phones` category has data present in the server, specifically `Android Phones`. Every other category and subcategory is empty.
     - This is an API issue and is being looked into by the API Team.
 
