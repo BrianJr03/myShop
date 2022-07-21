@@ -5,8 +5,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import jr.brian.myShop.databinding.ActivitySubCategoryBinding
-import jr.brian.myShop.model.remote.category.Category
 import jr.brian.myShop.model.remote.Constant.SUB_CATEGORY_KEY
+import jr.brian.myShop.model.remote.category.Category
 import jr.brian.myShop.model.remote.category.Sub
 import jr.brian.myShop.model.remote.category.SubCategory
 import jr.brian.myShop.model.remote.volley.VolleyHelper

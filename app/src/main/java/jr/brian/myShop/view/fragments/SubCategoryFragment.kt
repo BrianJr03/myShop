@@ -28,7 +28,6 @@ class SubCategoryFragment : Fragment(), SubCategoryMVP.SubCategoryView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        setHasOptionsMenu(true)
         binding = FragmentSubCategoryBinding.inflate(inflater, container, false)
         subCategoryId = arguments?.getString(SUB_CATEGORY_KEY).toString()
         return binding.root

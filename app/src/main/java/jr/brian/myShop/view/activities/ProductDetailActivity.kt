@@ -34,7 +34,6 @@ class ProductDetailActivity : AppCompatActivity(), DetailsMVP.DetailsView {
 
     }
 
-
     private fun init() {
         userReviews = ArrayList()
         presenter = DetailsPresenter(VolleyHelper(this), this)
@@ -102,7 +101,6 @@ class ProductDetailActivity : AppCompatActivity(), DetailsMVP.DetailsView {
             }
         }
     }
-
 
     override fun setResult(detail: Detail?) {
         if (detail != null) {

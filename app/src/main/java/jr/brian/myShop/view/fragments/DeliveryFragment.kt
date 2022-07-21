@@ -15,13 +15,13 @@ import jr.brian.myShop.databinding.FragmentDeliveryBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.local.showSnackbar
 import jr.brian.myShop.model.remote.Constant.DELIVERY_ADDRESS
+import jr.brian.myShop.model.remote.Constant.USER_ID
 import jr.brian.myShop.model.remote.address.Address
 import jr.brian.myShop.model.remote.address.GetAddressesResponse
 import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.address_presenter.AddressMVP
 import jr.brian.myShop.presenter.address_presenter.AddressPresenter
 import jr.brian.myShop.view.activities.CheckOutActivity
-import jr.brian.myShop.view.auth_fragments.SignInFragment
 import jr.brian.myShop.view.dialog.QuickDialog
 
 class DeliveryFragment : Fragment(), AddressMVP.AddressView {
@@ -46,7 +46,7 @@ class DeliveryFragment : Fragment(), AddressMVP.AddressView {
 
     private fun init() {
         sharedPrefHelper = SharedPrefHelper(requireContext()).apply {
-            userId = encryptedSharedPrefs.getString(SignInFragment.USER_ID, "0").toString()
+            userId = encryptedSharedPrefs.getString(USER_ID, "0").toString()
         }
         presenter = AddressPresenter(VolleyHelper(requireContext()), this)
         presenter.getAddresses(userId)
@@ -86,8 +86,11 @@ class DeliveryFragment : Fragment(), AddressMVP.AddressView {
                 val index =
                     radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.checkedRadioButtonId))
                 if (index != -1) {
-                    val selected = addresses[index]
-                    sharedPrefHelper.editor.putString(DELIVERY_ADDRESS, selected.address).commit()
+                    val selected = addresses[index - 1]
+                    sharedPrefHelper.editor.putString(
+                        DELIVERY_ADDRESS,
+                        "${selected.title} | ${selected.address}"
+                    ).commit()
                     (activity as CheckOutActivity).slideViewPager()
                 } else view?.let { it1 ->
                     showSnackbar(
@@ -101,7 +104,6 @@ class DeliveryFragment : Fragment(), AddressMVP.AddressView {
     }
 
     override fun setResult(message: Any?, type: String) {
-        addInitialRB()
         initRadioButtons(message)
         initNextBtn()
     }
@@ -114,22 +116,5 @@ class DeliveryFragment : Fragment(), AddressMVP.AddressView {
                 radioGroup.visibility = View.VISIBLE
             }
         }
-    }
-
-    private fun addInitialRB() {
-        val rb = RadioButton(requireContext())
-        rb.apply {
-            layoutParams = ConstraintLayout
-                .LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            text = "Office | Microsoft HQ"
-            setTextColor(getColor(requireContext(), R.color.blueish_idk))
-            textSize = 15f
-            typeface = Typeface.DEFAULT_BOLD
-            layoutDirection = ViewCompat.LAYOUT_DIRECTION_LTR
-        }
-        binding.radioGroup.addView(rb)
     }
 }

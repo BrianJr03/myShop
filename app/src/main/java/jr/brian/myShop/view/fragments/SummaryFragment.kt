@@ -14,14 +14,23 @@ import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.remote.Constant.CART
 import jr.brian.myShop.model.remote.Constant.DELIVERY_ADDRESS
 import jr.brian.myShop.model.remote.Constant.PAYMENT_METHOD
+import jr.brian.myShop.model.remote.Constant.USER_ID
+import jr.brian.myShop.model.remote.order.AddOrderInput
+import jr.brian.myShop.model.remote.order.DeliveryAddress
+import jr.brian.myShop.model.remote.order.Item
 import jr.brian.myShop.model.remote.product.ProductItem
+import jr.brian.myShop.model.remote.volley.VolleyHelper
+import jr.brian.myShop.presenter.order_presenter.OrderMVP
+import jr.brian.myShop.presenter.order_presenter.OrderPresenter
 import jr.brian.myShop.view.activities.OrderConfirmedActivity
 import jr.brian.myShop.view.adapter.CheckedOutItemsAdapter
 
-class SummaryFragment : Fragment() {
+class SummaryFragment : Fragment(), OrderMVP.OrderView {
     private lateinit var binding: FragmentSummaryBinding
     private lateinit var adapter: CheckedOutItemsAdapter
+    private lateinit var presenter: OrderPresenter
     private lateinit var sharedPrefHelper: SharedPrefHelper
+    private lateinit var addOrderInput: AddOrderInput
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,25 +48,35 @@ class SummaryFragment : Fragment() {
     }
 
     private fun init() {
+        presenter = OrderPresenter(VolleyHelper(requireContext()), this)
         binding.apply {
             placeOrderBtn.setOnClickListener {
-                startActivity(
-                    Intent(requireContext(), OrderConfirmedActivity::class.java)
-                )
-                activity?.finish()
+                presenter.placeOrder(addOrderInput)
             }
         }
     }
 
     private fun initView() {
+        val userId = sharedPrefHelper.encryptedSharedPrefs.getString(USER_ID, "0").toString()
         val address = sharedPrefHelper.encryptedSharedPrefs.getString(DELIVERY_ADDRESS, null)
+        val addressSplit = address?.split(" | ")
+        val deliveryAddressObj = DeliveryAddress(
+            addressSplit?.get(0) ?: "Office",
+            addressSplit?.get(1) ?: "Microsoft HQ"
+        )
         val payment = sharedPrefHelper.encryptedSharedPrefs.getString(PAYMENT_METHOD, null)
         val json = sharedPrefHelper.encryptedSharedPrefs.getString(CART, null)
+
+        val items = arrayListOf<Item>()
         if (json != null) {
             var cartTotal = 0
             val cart = getCart().distinct()
             for (p in cart) {
                 cartTotal += p.total
+                val id = p.product_id
+                val qty = p.qty
+                val price = p.price
+                items.add(Item(id.toInt(), qty, price.toInt()))
             }
             binding.apply {
                 cartTotalCheckOut.text = cartTotal.toString()
@@ -68,8 +87,14 @@ class SummaryFragment : Fragment() {
                     LinearLayoutManager(requireContext())
                 recyclerViewProductItem.adapter = adapter
             }
+            addOrderInput = AddOrderInput(
+                cartTotal,
+                deliveryAddressObj,
+                items,
+                payment.toString(),
+                userId.toInt()
+            )
         }
-
     }
 
     private fun getCart(): ArrayList<ProductItem> {
@@ -77,5 +102,16 @@ class SummaryFragment : Fragment() {
         val json: String? = sharedPrefHelper.encryptedSharedPrefs.getString(CART, null)
         val type = object : TypeToken<ArrayList<ProductItem>>() {}.type
         return gson.fromJson(json, type)
+    }
+
+    override fun setResult(message: Any?) {
+        startActivity(
+            Intent
+                (requireContext(), OrderConfirmedActivity::class.java)
+        )
+        activity?.finish()
+    }
+
+    override fun onLoad(isLoading: Boolean) {
     }
 }

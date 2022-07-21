@@ -10,6 +10,7 @@ import jr.brian.myShop.R
 import jr.brian.myShop.databinding.AddAddressDialogBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
 import jr.brian.myShop.model.local.showSnackbar
+import jr.brian.myShop.model.remote.Constant.USER_ID
 import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.address_presenter.AddressMVP
 import jr.brian.myShop.presenter.address_presenter.AddressPresenter
@@ -38,7 +39,7 @@ class QuickDialog : DialogFragment(), AddressMVP.AddressView {
 
     private fun init() {
         sharedPrefHelper = SharedPrefHelper(requireContext()).apply {
-            userId = encryptedSharedPrefs.getString(SignInFragment.USER_ID, "0").toString()
+            userId = encryptedSharedPrefs.getString(USER_ID, "0").toString()
         }
         presenter = AddressPresenter(VolleyHelper(requireContext()), this)
         binding.apply {
@@ -68,7 +69,5 @@ class QuickDialog : DialogFragment(), AddressMVP.AddressView {
         view?.let { showSnackbar(message.toString(), it, R.id.delivery_root) }
     }
 
-    override fun onLoad(isLoading: Boolean) {
-        // TODO
-    }
+    override fun onLoad(isLoading: Boolean) {}
 }

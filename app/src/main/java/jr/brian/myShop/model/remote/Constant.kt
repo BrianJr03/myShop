@@ -20,7 +20,6 @@ object Constant {
     const val POST_PLACE_ORDER_EP = "/Order"
 
     const val SIGN_UP_TAG = "SIGNUP"
-    const val SIGN_IN_TAG = "SIGNIN"
     const val ERROR_TAG = "ERROR"
 
     const val SUB_CATEGORY_KEY= "SUB_CATEGORY"
@@ -28,6 +27,8 @@ object Constant {
 
     const val DELIVERY_ADDRESS = "DELIVERY_ADDRESS"
     const val PAYMENT_METHOD = "PAYMENT_METHOD"
+
+    const val USER_ID = "user_id"
 
     const val CART = "cart"
 }

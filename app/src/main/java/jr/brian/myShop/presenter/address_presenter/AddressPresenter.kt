@@ -2,7 +2,6 @@ package jr.brian.myShop.presenter.address_presenter
 
 import jr.brian.myShop.model.remote.OperationalCallback
 import jr.brian.myShop.model.remote.address.GetAddressesResponse
-import jr.brian.myShop.model.remote.category.Inventory
 import jr.brian.myShop.model.remote.volley.VolleyHelper
 
 class AddressPresenter(

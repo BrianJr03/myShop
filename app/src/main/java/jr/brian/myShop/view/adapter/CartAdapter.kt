@@ -24,9 +24,6 @@ class CartAdapter(private val cart: List<ProductItem>) :
         holder.apply {
             val cartItem = cart[index]
             bind(cartItem)
-            itemView.setOnClickListener {
-
-            }
         }
     }
 

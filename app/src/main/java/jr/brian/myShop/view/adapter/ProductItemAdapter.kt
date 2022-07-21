@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import jr.brian.myShop.databinding.ProductItemBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
-import jr.brian.myShop.model.remote.Constant
 import jr.brian.myShop.model.remote.Constant.CART
 import jr.brian.myShop.model.remote.Constant.PRODUCT_ITEM_KEY
 import jr.brian.myShop.model.remote.product.ProductItem

@@ -18,12 +18,14 @@ import jr.brian.myShop.model.remote.Constant.GET_PRODUCT_DETAILS_EP
 import jr.brian.myShop.model.remote.Constant.GET_PRODUCT_LIST_BY_SUB_CATEGORY_EP
 import jr.brian.myShop.model.remote.Constant.GET_SUB_CATEGORY_BY_ID_EP
 import jr.brian.myShop.model.remote.Constant.POST_ADD_DELIVERY_ADDR_EP
+import jr.brian.myShop.model.remote.Constant.POST_PLACE_ORDER_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_IN_EP
 import jr.brian.myShop.model.remote.Constant.SIGN_UP_EP
 import jr.brian.myShop.model.remote.OperationalCallback
 import jr.brian.myShop.model.remote.address.GetAddressesResponse
 import jr.brian.myShop.model.remote.category.Inventory
 import jr.brian.myShop.model.remote.category.Sub
+import jr.brian.myShop.model.remote.order.AddOrderInput
 import jr.brian.myShop.model.remote.product.Detail
 import jr.brian.myShop.model.remote.product.Product
 import jr.brian.myShop.model.remote.user.User
@@ -98,36 +100,6 @@ class VolleyHelper(context: Context) {
         requestQueue.add(strRequest)
     }
 
-    fun signUpUser(user: User, callback: OperationalCallback): String {
-        val url = BASE_URL + SIGN_UP_EP
-        val data = JSONObject()
-        var message: String? = null
-
-        data.put("full_name", user.fullName)
-        data.put("mobile_no", user.mobileNo)
-        data.put("email_id", user.emailId)
-        data.put("password", user.password)
-
-        val request = JsonObjectRequest(
-            Request.Method.POST, url, data,
-            { response: JSONObject ->
-                message = response.getString("message")
-                val status = response.getInt("status")
-                if (status == 0) {
-                    callback.onSuccess(message.toString())
-                } else {
-                    callback.onFailure(message.toString())
-                }
-
-            }, { error: VolleyError ->
-                error.printStackTrace()
-                Log.i(ERROR_TAG, "${error.printStackTrace()}")
-                callback.onFailure(message.toString())
-            })
-        requestQueue.add(request)
-        return message.toString()
-    }
-
     fun addDeliveryAddress(
         userId: String,
         title: String,
@@ -159,6 +131,73 @@ class VolleyHelper(context: Context) {
                 callback.onFailure(message.toString())
             })
         requestQueue.add(request)
+    }
+
+    fun placeOrder(
+        addOrderInput: AddOrderInput,
+        callback: OperationalCallback
+    ) {
+        val url = BASE_URL + POST_PLACE_ORDER_EP
+        val data = JSONObject()
+        var message: String?
+
+        val gson = Gson()
+        val addressStr = gson.toJson(addOrderInput.delivery_address)
+        val itemsStr = gson.toJson(addOrderInput.items)
+
+        data.put("user_id", addOrderInput.user_id)
+        data.put("delivery_address", addressStr)
+        data.put("items", itemsStr)
+        data.put("bill_amount", addOrderInput.bill_amount)
+        data.put("payment_method", addOrderInput.payment_method)
+
+        val request = JsonObjectRequest(
+            Request.Method.POST, url, data,
+            { response: JSONObject ->
+                message = response.getString("message")
+                val status = response.getInt("status")
+                if (status == 0) {
+                    callback.onSuccess(message.toString())
+                } else {
+                    callback.onFailure(message.toString())
+                }
+
+            }, { error: VolleyError ->
+                message = error.toString()
+                Log.i(ERROR_TAG, "${error.printStackTrace()}")
+                callback.onFailure(message.toString())
+            })
+        requestQueue.add(request)
+    }
+
+    fun signUpUser(user: User, callback: OperationalCallback): String {
+        val url = BASE_URL + SIGN_UP_EP
+        val data = JSONObject()
+        var message: String? = null
+
+        data.put("full_name", user.fullName)
+        data.put("mobile_no", user.mobileNo)
+        data.put("email_id", user.emailId)
+        data.put("password", user.password)
+
+        val request = JsonObjectRequest(
+            Request.Method.POST, url, data,
+            { response: JSONObject ->
+                message = response.getString("message")
+                val status = response.getInt("status")
+                if (status == 0) {
+                    callback.onSuccess(message.toString())
+                } else {
+                    callback.onFailure(message.toString())
+                }
+
+            }, { error: VolleyError ->
+                error.printStackTrace()
+                Log.i(ERROR_TAG, "${error.printStackTrace()}")
+                callback.onFailure(message.toString())
+            })
+        requestQueue.add(request)
+        return message.toString()
     }
 
     fun signInUser(email: String, password: String, callback: OperationalCallback) {

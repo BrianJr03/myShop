@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/order_confirmed_root"
     tools:context=".view.activities.CartActivity">
 
     <androidx.appcompat.widget.AppCompatImageButton

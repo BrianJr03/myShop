@@ -20,5 +20,4 @@ class CheckOutViewPageAdapter(fragmentActivity: FragmentActivity, private val ta
             else -> SummaryFragment()
         }
     }
-
 }
