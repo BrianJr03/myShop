@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import jr.brian.myShop.R
 import jr.brian.myShop.databinding.ActivityCategoryBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
-import jr.brian.myShop.model.remote.Category
-import jr.brian.myShop.model.remote.Inventory
-import jr.brian.myShop.model.remote.VolleyHelper
+import jr.brian.myShop.model.remote.category.Category
+import jr.brian.myShop.model.remote.category.Inventory
+import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.category_presenter.CategoryMVP
 import jr.brian.myShop.presenter.category_presenter.CategoryPresenter
 import jr.brian.myShop.view.adapter.CategoryAdapter
@@ -60,6 +60,7 @@ class CategoryActivity : AppCompatActivity(), CategoryMVP.CategoryView {
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.drawer_cart -> {
+                    startActivity(Intent(this, CartActivity::class.java))
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                 }
                 R.id.drawer_orders -> {

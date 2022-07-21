@@ -7,7 +7,32 @@
     android:layout_margin="10dp"
     tools:context=".view.activities.SubCategoryActivity">
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/error_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/error"
+        android:src="@drawable/error_30"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/no_data_for_this_subcategory"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/error_icon" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,9 +40,9 @@
         android:background="@color/transparent_bg_color"
         android:contentDescription="@string/back"
         android:src="@drawable/back_30"
-        app:layout_constraintTop_toTopOf="@id/categories_tv"
         app:layout_constraintBottom_toBottomOf="@id/categories_tv"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/categories_tv"
         app:tint="@color/blueish_idk" />
 
     <TextView
@@ -28,7 +53,7 @@
         android:text="@string/categories"
         android:textColor="@color/blueish_idk"
         android:textSize="@dimen/_25sp"
-        app:layout_constraintBottom_toTopOf="@id/guideline3"
+        app:layout_constraintBottom_toTopOf="@id/page_title_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +67,7 @@
         android:background="@color/blueish_idk"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/guideline3"
+        app:layout_constraintTop_toBottomOf="@id/page_title_guideline"
         app:tabIndicatorColor="@color/white"
         app:tabSelectedTextColor="@color/white"
         app:tabTextColor="@color/darkGrey" />
@@ -57,10 +82,24 @@
         tools:layout_editor_absoluteX="73dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/page_title_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="73dp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="125dp"
+        android:layout_height="117dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/shopping_icon_2000x1600" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

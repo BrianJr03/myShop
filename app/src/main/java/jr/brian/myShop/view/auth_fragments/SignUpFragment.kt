@@ -1,6 +1,5 @@
 package jr.brian.myShop.view.auth_fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,20 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ProgressBar
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
+import com.airbnb.lottie.LottieAnimationView
 import jr.brian.myShop.R
-import jr.brian.myShop.model.local.SharedPrefHelper
+import jr.brian.myShop.model.local.showSnackbar
 import jr.brian.myShop.model.remote.Constant.SIGN_UP_TAG
-import jr.brian.myShop.model.remote.User
+import jr.brian.myShop.model.remote.user.User
+import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpMVP
 import jr.brian.myShop.presenter.sign_up_presenter.SignUpPresenter
-import jr.brian.myShop.view.activities.CategoryActivity
 
 class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
-    private lateinit var intent: Intent
     private lateinit var presenter: SignUpMVP.SignUpPresenter
 
     override fun onCreateView(
@@ -34,11 +30,10 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
-        intent = Intent(view.context, HomeActivity::class.java)
     }
 
     private fun initView(view: View) {
-        presenter = SignUpPresenter(SharedPrefHelper(view.context), this)
+        presenter = SignUpPresenter(VolleyHelper(view.context), this)
         val signUpBtn = view.findViewById<Button>(R.id.sign_up_btn)
         val fullName = view.findViewById<EditText>(R.id.fullName_et).text
         val mobileNo = view.findViewById<EditText>(R.id.mobileNo_et).text
@@ -60,23 +55,13 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
                         password.toString(),
                         ""
                     )
-                    intent.putExtra("USER", user)
                     (presenter as SignUpPresenter).signUpUser(
                         user,
                         view
                     )
-                } else showSnackbar("Passwords do not match", view)
-            } else showSnackbar("Ensure fields are not empty", view)
+                } else showSnackbar("Passwords do not match", view, R.id.sign_up_root)
+            } else showSnackbar("Ensure fields are not empty", view, R.id.sign_up_root)
         }
-    }
-
-    private fun showSnackbar(str: String, view: View) {
-        Snackbar.make(
-            view.context,
-            view.findViewById(R.id.sign_up_root),
-            str,
-            Snackbar.LENGTH_SHORT
-        ).show()
     }
 
     companion object {
@@ -92,19 +77,22 @@ class SignUpFragment : Fragment(), SignUpMVP.SignUpView {
     }
 
     override fun onLoad(isLoading: Boolean) {
-        val cpb = view?.findViewById<ProgressBar>(R.id.progress_bar_signUp)
+        val animationView =
+            view?.findViewById<LottieAnimationView>(R.id.animation_view)
         if (isLoading) {
-            cpb?.visibility = View.VISIBLE
+            animationView?.visibility = View.VISIBLE
         } else {
-            cpb?.visibility = View.GONE
+            animationView?.visibility = View.GONE
         }
     }
 
-    override fun startHomeActivity() {
-        ContextCompat.startActivity(
-            requireContext(),
-            intent,
-            null
-        )
+    override fun clear() {
+        view?.apply {
+            findViewById<EditText>(R.id.fullName_et)?.text?.clear()
+            findViewById<EditText>(R.id.mobileNo_et)?.text?.clear()
+            findViewById<EditText>(R.id.email_et)?.text?.clear()
+            findViewById<EditText>(R.id.password_et)?.text?.clear()
+            findViewById<EditText>(R.id.cPassword_et)?.text?.clear()
+        }
     }
 }

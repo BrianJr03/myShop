@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_10dp"
+    android:padding="@dimen/_10dp"
+    app:cardBackgroundColor="@color/blueish_idk"
+    app:cardCornerRadius="@dimen/_10dp"
+    app:cardElevation="@dimen/_10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/c_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_155dp"
+        android:background="@drawable/category_card_color_selector"
+        android:padding="@dimen/_10dp">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/example_user_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/date_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="85dp" />
+
+        <TextView
+            android:id="@+id/product_review_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:text="@string/example_product_review_title"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
+            tools:layout_editor_absoluteX="85dp" />
+
+        <TextView
+            android:id="@+id/qty_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_5dp"
+            android:background="@drawable/add_to_cart_selector"
+            android:clickable="true"
+            android:text="@string/_1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/inc_qty_btn"
+            app:layout_constraintTop_toTopOf="@id/inc_qty_btn" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/inc_qty_btn"
+            android:layout_width="@dimen/_40dp"
+            android:layout_height="@dimen/_40dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/add_15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/dec_qty_btn"
+            android:layout_width="@dimen/_40dp"
+            android:layout_height="@dimen/_40dp"
+            android:layout_marginEnd="@dimen/_5dp"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/remove_15"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/qty_tv" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/qty_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="qty_tv,inc_qty_btn,dec_qty_btn"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="10dp" />
+
+        <TextView
+            android:id="@+id/product_review_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:text="@string/ex_body"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/product_review_title"
+            tools:layout_editor_absoluteY="117dp" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/product_rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:progressTint="@color/gold"
+            android:rating=".3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

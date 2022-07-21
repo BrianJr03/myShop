@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import jr.brian.myShop.databinding.CategoryBinding
-import jr.brian.myShop.model.remote.Category
 import jr.brian.myShop.model.remote.Constant.BASE_IMAGE_URL
-import jr.brian.myShop.model.remote.Constant.SUB_CATEGORY_ID
+import jr.brian.myShop.model.remote.Constant.SUB_CATEGORY_KEY
+import jr.brian.myShop.model.remote.category.Category
 import jr.brian.myShop.view.activities.SubCategoryActivity
 
 class CategoryAdapter(private val context: Context, private val categories: List<Category>) :
@@ -31,15 +31,15 @@ class CategoryAdapter(private val context: Context, private val categories: List
             val category = categories[index]
             bind(category)
             itemView.setOnClickListener {
-                startSubCategoryActivity(category.category_id)
+                startSubCategoryActivity(category)
             }
         }
     }
 
-    private fun startSubCategoryActivity(id: String) {
+    private fun startSubCategoryActivity(category: Category) {
         val intent =
             Intent(context, SubCategoryActivity::class.java)
-        intent.putExtra(SUB_CATEGORY_ID, id)
+        intent.putExtra(SUB_CATEGORY_KEY, category)
         context.startActivity(intent)
     }
 

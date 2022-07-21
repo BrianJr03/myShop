@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activities.CartActivity">
+
+    <TextView
+        android:id="@+id/total_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/Total"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintBottom_toTopOf="@id/page_title_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dollar_sign_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/dollar_sign"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintBottom_toBottomOf="@id/page_title_guideline"
+        app:layout_constraintEnd_toStartOf="@id/cart_total_check_out"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cart_total_check_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:layout_marginEnd="@dimen/_10dp"
+        android:text="@string/example_product_price"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintBottom_toTopOf="@id/page_title_guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/page_title_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="73dp" />
+
+    <TextView
+        android:id="@+id/delivery_addr_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/delivery_address"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintStart_toStartOf="@id/scroll"
+        app:layout_constraintTop_toBottomOf="@id/page_title_guideline" />
+
+    <TextView
+        android:id="@+id/delivery_addr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/addr_ex_1"
+        android:textColor="@color/blueish_idk"
+        app:layout_constraintStart_toStartOf="@id/scroll"
+        app:layout_constraintTop_toBottomOf="@id/delivery_addr_tv" />
+
+    <TextView
+        android:id="@+id/payment_option_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginTop="@dimen/_20dp"
+        android:text="@string/payment_option"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        app:layout_constraintStart_toStartOf="@id/scroll"
+        app:layout_constraintTop_toBottomOf="@id/delivery_addr" />
+
+    <TextView
+        android:id="@+id/payment_option"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginEnd="@dimen/_10dp"
+        android:text="@string/cash_on_delivery"
+        android:textColor="@color/blueish_idk"
+        app:layout_constraintBottom_toBottomOf="@id/payment_option_tv"
+        app:layout_constraintEnd_toEndOf="@id/scroll"
+        app:layout_constraintTop_toTopOf="@id/payment_option_tv" />
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/payment_option">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_product_item"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_0dp"
+            android:layout_marginTop="@dimen/_20dp"
+            app:layout_constraintTop_toBottomOf="@id/payment_option"
+            tools:itemCount="1"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/checkout_cart_item" />
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/error_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/error"
+        android:src="@drawable/error_30"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/error_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10dp"
+        android:text="@string/no_items_in_cart"
+        android:textColor="@color/blueish_idk"
+        android:textSize="@dimen/_25sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/error_icon" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/place_order_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20dp"
+        android:backgroundTint="@color/blueish_idk"
+        android:text="@string/place_order"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

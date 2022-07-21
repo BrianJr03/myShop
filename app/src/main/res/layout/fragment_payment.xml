@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_20dp"
+    tools:context=".view.fragments.DeliveryFragment">
+
+    <TextView
+        android:textSize="@dimen/_20sp"
+        android:textColor="@color/blueish_idk"
+        android:id="@+id/select_addr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_payment"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20dp"
+        android:layout_marginBottom="@dimen/_40dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_addr">
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/cash_rb"
+            android:layout_width="@dimen/_300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:checked="true"
+            android:layoutDirection="rtl"
+            android:paddingStart="@dimen/_25dp"
+            android:text="@string/cash_on_delivery"
+            android:textAlignment="textStart"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_15sp"
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/internet_rb"
+            android:layoutDirection="rtl"
+            android:layout_marginTop="@dimen/_15dp"
+            android:paddingStart="@dimen/_25dp"
+            android:text="@string/crypto"
+            android:layout_width="@dimen/_300dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_15sp"
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/addr_rb2"
+            android:layoutDirection="rtl"
+            android:layout_marginTop="@dimen/_15dp"
+            android:paddingStart="@dimen/_25dp"
+            android:text="@string/debit_credit"
+            android:layout_width="@dimen/_300dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_15sp"
+            android:textStyle="bold"
+            tools:ignore="RtlSymmetry" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blueish_idk"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

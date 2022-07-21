@@ -34,7 +34,7 @@ class LandingActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListener 
         val checkRadioButton = group.findViewById<RadioButton>(group.checkedRadioButtonId)
         checkRadioButton?.let {
             when (checkRadioButton.id) {
-                R.id.signin_rb -> replaceFragment(R.id.container, SignInFragment())
+                R.id.addr_rb1 -> replaceFragment(R.id.container, SignInFragment())
                 else -> replaceFragment(R.id.container, SignUpFragment())
             }
         }
@@ -62,9 +62,9 @@ class LandingActivity : AppCompatActivity(), RadioGroup.OnCheckedChangeListener 
     }
 
     private fun verifySignIn() {
-        if (encryptedSharedPrefs.contains(SignInFragment.EMAIL)
+        if (encryptedSharedPrefs.contains(SignUpFragment.EMAIL)
             && encryptedSharedPrefs.contains(
-                SignInFragment.PASSWORD
+                SignUpFragment.PASSWORD
             )
         ) {
             startHomeActivity()

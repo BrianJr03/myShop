@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:text="@string/add_address"
+            android:textColor="@color/blueish_idk"
+            android:textSize="@dimen/_25sp"
+            app:layout_constraintBottom_toTopOf="@id/addr_title_et"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/addr_title_et"
+            android:layout_width="@dimen/_250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_25dp"
+            android:layout_marginBottom="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            android:hint="@string/addr_title"
+            android:inputType="text"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:padding="@dimen/_10dp"
+            app:layout_constraintBottom_toTopOf="@id/addr_et"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/addr_et"
+            android:layout_width="@dimen/_250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_25dp"
+            android:backgroundTint="@color/blueish_idk"
+            android:hint="@string/addr"
+            android:inputType="text"
+            android:maxLength="50"
+            android:maxLines="1"
+            android:padding="@dimen/_10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            android:text="@string/save"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addr_et" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/backBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20dp"
+            android:backgroundTint="@color/blueish_idk"
+            android:text="@string/back"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/saveBtn" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

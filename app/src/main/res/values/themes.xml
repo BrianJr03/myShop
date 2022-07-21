@@ -10,10 +10,19 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Enables and Configs page transitions. -->
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowEnterTransition">@transition/animation_up</item>
         <item name="android:windowExitTransition">@transition/animation_up</item>
     </style>
+
+    <style name="Theme.MyNotesNative.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MyNotesNative.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MyNotesNative.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
