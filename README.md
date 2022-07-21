@@ -5,6 +5,9 @@ A simple shopping Android app built with Kotlin.
 ![myContacts Homepage](https://github.com/BrianJr03/myShop/blob/master/myShop_signUp.jpg)
 ![Update Info Dialog](https://github.com/BrianJr03/myShop/blob/master/myShop_home.jpg)
 
+![details](https://github.com/BrianJr03/myShop/blob/master/details_ss.jpg)
+![checkout](https://github.com/BrianJr03/myShop/blob/master/checkout_ss.jpg)
+
 ## Features
 
 - ### Sign Up / Sign In
