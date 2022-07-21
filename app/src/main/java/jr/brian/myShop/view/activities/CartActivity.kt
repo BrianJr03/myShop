@@ -2,6 +2,7 @@ package jr.brian.myShop.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
@@ -51,6 +52,11 @@ class CartActivity : AppCompatActivity() {
             binding.recyclerViewProductItem.layoutManager =
                 LinearLayoutManager(this)
             binding.recyclerViewProductItem.adapter = adapter
+        }
+        else {
+            binding.cartTotal.text = "0"
+            binding.errorIcon.visibility = View.VISIBLE
+            binding.errorText.visibility = View.VISIBLE
         }
     }
 
