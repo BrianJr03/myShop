@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import jr.brian.myShop.databinding.ActivityCartBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
+import jr.brian.myShop.model.remote.Constant.PAYMENT_METHOD
 import jr.brian.myShop.model.remote.product.ProductItem
 import jr.brian.myShop.view.adapter.CartAdapter
 
@@ -22,6 +23,7 @@ class CartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
         sharedPrefHelper = SharedPrefHelper(this)
+        Log.i("ALMOST", sharedPrefHelper.encryptedSharedPrefs.getString(PAYMENT_METHOD, "").toString())
         setContentView(binding.root)
         supportActionBar?.hide()
         binding.apply {

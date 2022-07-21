@@ -2,7 +2,9 @@ package jr.brian.myShop.view.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
+import jr.brian.myShop.R
 import jr.brian.myShop.databinding.ActivityCheckOutBinding
 import jr.brian.myShop.view.adapter.CheckOutViewPageAdapter
 
@@ -15,6 +17,11 @@ class CheckOutActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
         init()
+    }
+
+    fun slideViewPager() {
+        findViewById<ViewPager2>(R.id.pager).currentItem =
+            findViewById<ViewPager2>(R.id.pager).currentItem + 1
     }
 
     private fun init() {

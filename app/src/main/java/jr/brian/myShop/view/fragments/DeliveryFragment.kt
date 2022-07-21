@@ -2,7 +2,6 @@ package jr.brian.myShop.view.fragments
 
 import android.graphics.Typeface
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,11 +13,13 @@ import androidx.fragment.app.Fragment
 import jr.brian.myShop.R
 import jr.brian.myShop.databinding.FragmentDeliveryBinding
 import jr.brian.myShop.model.local.SharedPrefHelper
+import jr.brian.myShop.model.remote.Constant.DELIVERY_ADDRESS
 import jr.brian.myShop.model.remote.address.Address
 import jr.brian.myShop.model.remote.address.GetAddressesResponse
 import jr.brian.myShop.model.remote.volley.VolleyHelper
 import jr.brian.myShop.presenter.address_presenter.AddressMVP
 import jr.brian.myShop.presenter.address_presenter.AddressPresenter
+import jr.brian.myShop.view.activities.CheckOutActivity
 import jr.brian.myShop.view.auth_fragments.SignInFragment
 import jr.brian.myShop.view.dialog.QuickDialog
 
@@ -57,7 +58,7 @@ class DeliveryFragment : Fragment(), AddressMVP.AddressView {
         }
     }
 
-    override fun setResult(message: Any?, type: String) {
+    private fun initRadioButtons(message: Any?) {
         val addr = message as GetAddressesResponse
         addresses = addr.addresses
         for (a in addresses) {
@@ -75,11 +76,33 @@ class DeliveryFragment : Fragment(), AddressMVP.AddressView {
                 layoutDirection = ViewCompat.LAYOUT_DIRECTION_LTR
             }
             binding.radioGroup.addView(rb)
-            Log.i("HELPHELP", a.toString())
         }
     }
 
+    private fun initNextBtn() {
+        binding.apply {
+            saveBtn.setOnClickListener {
+                val index =
+                    radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.checkedRadioButtonId))
+                val selected = addresses[index]
+                sharedPrefHelper.editor.putString(DELIVERY_ADDRESS, selected.address).commit()
+                (activity as CheckOutActivity).slideViewPager()
+            }
+        }
+    }
+
+    override fun setResult(message: Any?, type: String) {
+        initRadioButtons(message)
+        initNextBtn()
+    }
+
     override fun onLoad(isLoading: Boolean) {
-        // TODO
+        binding.apply {
+            radioGroup.visibility = View.GONE
+            if (!isLoading) {
+                animationView.visibility = View.GONE
+                radioGroup.visibility = View.VISIBLE
+            }
+        }
     }
 }

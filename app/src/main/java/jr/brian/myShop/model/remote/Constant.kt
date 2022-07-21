@@ -25,4 +25,7 @@ object Constant {
 
     const val SUB_CATEGORY_KEY= "SUB_CATEGORY"
     const val PRODUCT_ITEM_KEY = "PRODUCT_ITEM"
+
+    const val DELIVERY_ADDRESS = "DELIVERY_ADDRESS"
+    const val PAYMENT_METHOD = "PAYMENT_METHOD"
 }
